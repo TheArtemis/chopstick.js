@@ -7,5 +7,4 @@ export default {
 
 <template>
   <div>Game is going here</div>
-  <h1>Ciao!!</h1>
 </template>
