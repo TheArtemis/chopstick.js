@@ -1,10 +1,14 @@
 <script>
   import Game from './components/Game.vue'
+  import OptionsMenu from './components/OptionsMenu/OptionsMenu.vue'
+  import GameMenu from './components/GameMenu/GameMenu.vue'
 
   export default {
     name: 'App',
     components: {
-      Game
+      Game,
+      OptionsMenu,
+      GameMenu,
     }
   }
 
@@ -13,4 +17,6 @@
 <template>
   <div>Hello World</div>
   <Game/>
+  <OptionsMenu/>
+  <GameMenu/>
 </template>
