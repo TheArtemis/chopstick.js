@@ -1,5 +1,5 @@
 <script>
-  import Game from './components/Game.vue'
+  import Game from './components/Game/Game.vue'
   import OptionsMenu from './components/OptionsMenu/OptionsMenu.vue'
   import GameMenu from './components/GameMenu/GameMenu.vue'
 
