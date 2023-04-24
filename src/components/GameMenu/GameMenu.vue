@@ -10,4 +10,5 @@
 
 <template>
     <div>Game Menu</div>
+    <h1>ciao</h1>
 </template>
