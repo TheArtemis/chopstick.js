@@ -15,8 +15,9 @@
 </script>
 
 <template>
-  <div><h1>Hello World</h1></div> 
-  <Game/>
-  <OptionsMenu/>
-  <GameMenu/>
+  <div class="wrapper">
+    <OptionsMenu/>
+    <Game/>    
+    <GameMenu/>
+  </div>  
 </template>
