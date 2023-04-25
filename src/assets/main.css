@@ -30,6 +30,7 @@ body {
     margin-bottom: 30px;
 }
 
+
 .sidebar ul{
     margin:0;
     padding:10px;
@@ -43,8 +44,17 @@ body {
     padding-bottom: 15px;
 }
 
-.sidebar ul li#Settings{
-    padding-top: 275px;
+.sidebar h2{
+    margin:0;
+    padding:10px;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.sidebar h2 li{
+    font-size: 20px;
+    list-style-type: none;
+    padding-bottom: 15px;
 }
 
 .game-panel { 

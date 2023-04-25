@@ -18,8 +18,10 @@
                     <li><i class="fa-solid fa-users"></i>   Friends</li>
                     <li><i class="fa-solid fa-list-ul"></i>   Recent Games</li>
                     <li><i class="fa-solid fa-chart-simple"></i>   Stats</li>
-                    <li id="Settings"><i class="fa-solid fa-gear"></i>   Settings</li>
                </ul>
+            <h2>
+               <li id="Settings"><i class="fa-solid fa-gear"></i>   Settings</li>
+            </h2>
         </div>
      </div>
 </template>
