@@ -26,3 +26,30 @@
     font-size: 20px;
     margin-top: 5px;
 }
+
+.game-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    color: rgb(177, 177, 177);
+}
+
+.game-dropdown-component{
+    display : flex;
+    flex-direction: column;
+}
+
+.dropdown-button{
+    margin: auto;
+    background-color: #aa4fbd;
+    color: white;    
+    width: 33%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.dropdown-button:hover{
+    background-color: #811394;
+}
