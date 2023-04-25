@@ -60,7 +60,9 @@ export default {
         position of the mouse pointer relative to the viewport */
 
         const newX = this.currentPiece.posX + xDelta;
-        const newY = this.currentPiece.posY + yDelta;             
+        const newY = this.currentPiece.posY + yDelta;
+        
+        /* TODO: Make so the hands cannot get out of bounds */
 
         /* if(handRect.x > boardRect.x){
             this.currentPiece.posX = newX;
