@@ -1,5 +1,4 @@
 <script>
-import GameMenu from '../GameMenu/GameMenu.vue';
 import GameBoard from './GameBoard.vue'
 
 export default {
