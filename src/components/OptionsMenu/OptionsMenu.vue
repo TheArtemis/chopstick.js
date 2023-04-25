@@ -15,10 +15,10 @@
             <h1>Chopsticks</h1>
                 <ul>
                     <li><i class="fa-solid fa-user"></i>   Profile</li>
+                    <li><i class="fa-solid fa-users"></i>   Friends</li>
                     <li><i class="fa-solid fa-list-ul"></i>   Recent Games</li>
                     <li><i class="fa-solid fa-chart-simple"></i>   Stats</li>
-                    <li><i class="fa-solid fa-users"></i>   Friends</li>
-                    <li><i class="fa-solid fa-gear"></i>   Settings</li>
+                    <li id="Settings"><i class="fa-solid fa-gear"></i>   Settings</li>
                </ul>
         </div>
      </div>
