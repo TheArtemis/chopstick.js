@@ -9,15 +9,7 @@
 </script>
 
 <template>
-    <div style="width: 20%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        padding: 20px;
-        background-color: #252323;
-        float: left;
-        color: white;">
+    <div class="options-menu">
         <h1>Chopstick</h1>
         <table>
             <thead>
