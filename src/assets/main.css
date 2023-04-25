@@ -29,16 +29,17 @@ body {
     color:#811394;
     text-align: center;
     margin-bottom: 30px;
+    border: #811394;
 }
 
 .options-menu .sidebar ul{
-   margin-left: 0;
-   padding-left: 1em;
+   text-align: left;
+   font-size: 20px;
 }
 
 .options-menu .sidebar ul li{
     list-style-type: none;
-    padding: 25px;
+    padding: 15px;
 }
 
 .game-panel { 
