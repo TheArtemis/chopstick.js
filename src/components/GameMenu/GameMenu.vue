@@ -11,9 +11,8 @@
 <template>    
     <div class="game-menu">
         <div class="buttons-box">
-            <button style=" margin: auto; background-color: #811394; color: white; padding: 16px 32px; border-radius: 25px; border: none; font-size: 20px;">Play Online</button>
-        <button style="margin: auto; background-color: #811394; color: white; padding: 16px 32px; border-radius: 25px; border: none; font-size: 20px;">Play Computer</button>
-        </div>
-        
+            <button class="game-button">Play Online</button>
+            <button class="game-button">Play Computer</button>
+        </div>        
     </div>
 </template>

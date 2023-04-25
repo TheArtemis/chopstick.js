@@ -33,6 +33,8 @@ body {
     flex-direction: column;
     width: 34%;
     padding:20px;
+    align-items: center;
+    justify-content: center;
     /* width: 20%;
     position: absolute;
     top: 0;
@@ -49,6 +51,18 @@ body {
 .buttons-box {
     display: flex;
     flex-direction: column;
+}
+
+.game-button {
+    margin: auto;
+    background-color: #811394;
+    color: white;
+    padding: 16px 32px;
+    width: 200px;
+    border-radius: 25px;
+    border: none;
+    font-size: 20px;
+    margin-top: 5px;
 }
 
 .game-panel { 
