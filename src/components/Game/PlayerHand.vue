@@ -1,14 +1,14 @@
 <script>
     export default {
         name: 'PlayerHand',
-    }
+        props:{
+            side: String,
+        },       
+};
 </script>
 
 <template>
-    <div                
-      @mousedown="startDrag"
-      @touchstart="startDrag"
-      @mouseup="stopDrag"
-      @touchend="stopDrag"
+    <div    
+      :class = "`hand player ${side}`"
       ></div>
 </template>
