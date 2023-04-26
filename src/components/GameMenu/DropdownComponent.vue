@@ -3,13 +3,19 @@
         name: 'DropdownComponent',
         props: {
             mode : String,
-            modeIcon: String
-        }
+            modeIcon: String,
+            isActive: Boolean,
+        },
+        data(){
+            return{
+                isActive: this.isActive,
+            }
+        },
     }
 </script>
 
 <template>
-    <div class="game-dropdown-component">
+    <div :class="{'game-dropdown-component': true, 'show': isActive}">
         <h4>{{ mode }}</h4>
         <div style="display: flex;">
             <button class="dropdown-button">1 min</button>
