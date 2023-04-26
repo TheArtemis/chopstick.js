@@ -7,12 +7,14 @@
     width: 34%;
     padding:20px;
     align-items: center;
-    justify-content: center;    
+    /* justify-content: center;  */   
 }
 
 .buttons-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .game-button {
@@ -20,8 +22,10 @@
     background-color: #811394;
     color: white;
     padding: 16px 32px;
-    width: 200px;
-    border-radius: 25px;
+    width: 100%;
+    min-width: 250px;
+    max-width: 300px;
+    border-radius: 10px;
     border: none;
     font-size: 20px;
     margin-top: 5px;
@@ -36,20 +40,37 @@
 .game-dropdown-component{
     display : flex;
     flex-direction: column;
+    margin-top: 3px;
 }
 
 .dropdown-button{
-    margin: auto;
+    margin-left: 3px;
+    margin-right: 2px;
+    margin-top: 5px;
+    margin-bottom: 4px;
     background-color: #aa4fbd;
     color: white;    
     width: 33%;
     height: 50px;
     border-radius: 10px;
     border: none;
-    font-size: 10px;
-    margin-top: 5px;
+    font-size: 14px;
+    
+
 }
 
 .dropdown-button:hover{
     background-color: #811394;
+}
+
+.select-mode{
+    width: 100%;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .game-button {
+      width: 100%;
+    }
 }
