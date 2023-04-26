@@ -79,20 +79,20 @@
 .game-dropdown-menu {
     display: flex;
     flex-direction: column;
-    color: rgb(177, 177, 177);
+    color: rgb(224, 224, 224);
 }
 
 .game-dropdown-component{
     display : flex;
     flex-direction: column;
     margin-top: 3px;
-    opacity: 0;
+    /* opacity: 0; */
     transition: opacity 0.5s ease-in-out;
 }
 
-.game-dropdown-component.show{
+/* .show{
     opacity: 1;
-}
+} */
 
 .dropdown-button{
     margin-left: 3px;
