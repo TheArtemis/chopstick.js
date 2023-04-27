@@ -1,5 +1,5 @@
 <script>
-import GameBoard from './GameBoard.vue'
+import GameBoard from '@/components/Game/GameBoard.vue'
 
 export default {
     name: 'Game',

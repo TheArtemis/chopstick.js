@@ -1,5 +1,5 @@
 <script>
-    import DropdownComponent from './DropdownComponent.vue';
+    import DropdownComponent from '@/components/GameMenu/DropdownComponent.vue';
 
     export default{
         name: 'SelectMode',
@@ -16,7 +16,7 @@
 
 <template>    
     <div class="select-mode">
-        <button class="game-button" @click="showMenu=!showMenu">Mode</button>
+        <button class="game-button mode-button" @click="showMenu=!showMenu">Mode</button>
         <Transition name="fade" appear> 
         <div class="game-dropdown-menu" v-if="showMenu">
             <DropdownComponent mode="Easy" modeIcon="" class="first"></DropdownComponent>

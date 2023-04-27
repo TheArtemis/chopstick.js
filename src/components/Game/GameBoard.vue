@@ -1,5 +1,5 @@
 <script>
-import PlayerHand from './PlayerHand.vue'
+import PlayerHand from '@/components/Game/PlayerHand.vue'
 
 export default {
     name: 'GameBoard',

@@ -3,7 +3,7 @@
  -->
 
 <script>
-    import SelectMode from './SelectMode.vue';
+    import SelectMode from '@/components/GameMenu/SelectMode.vue';
 
     export default{
         name: 'GameMenu',
