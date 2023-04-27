@@ -10,6 +10,11 @@
         components: {
             SelectMode,
         },
+        methods:{
+            goToPlayComputerPage(){
+                this.$router.push('/play');
+            }
+        }
     }
 </script>
 
@@ -17,7 +22,7 @@
     <div class="game-menu">
         <div class="buttons-box">            
             <button class="game-button">Play Online</button>
-            <button class="game-button">Play Computer</button>
+            <button class="game-button" @click="goToPlayComputerPage">Play Computer</button>
             <SelectMode></SelectMode>
         </div>        
     </div>
