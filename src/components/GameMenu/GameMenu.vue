@@ -15,10 +15,10 @@
 
 <template>    
     <div class="game-menu">
-        <div class="buttons-box">
-            <SelectMode></SelectMode>
+        <div class="buttons-box">            
             <button class="game-button">Play Online</button>
             <button class="game-button">Play Computer</button>
+            <SelectMode></SelectMode>
         </div>        
     </div>
 </template>

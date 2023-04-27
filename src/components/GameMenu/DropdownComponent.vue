@@ -3,8 +3,7 @@
         name: 'DropdownComponent',
         props: {
             mode : String,
-            modeIcon: String,
-            isActive: Boolean,
+            modeIcon: String,            
         },        
     }
 </script>

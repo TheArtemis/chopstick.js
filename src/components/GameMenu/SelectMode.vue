@@ -17,27 +17,22 @@
 <template>    
     <div class="select-mode">
         <button class="game-button" @click="showMenu=!showMenu">Mode</button>
-        <transition name="fade" mode="out-in" appear> 
+        <Transition name="fade" appear> 
         <div class="game-dropdown-menu" v-if="showMenu">
-            <DropdownComponent :isActive="showMenu" mode="Easy" modeIcon="" class="first"></DropdownComponent>
-            <DropdownComponent :isActive="showMenu" mode="Medium" modeIcon=""></DropdownComponent>
-            <DropdownComponent :isActive="showMenu" mode="Hard" modeIcon=""></DropdownComponent>
+            <DropdownComponent mode="Easy" modeIcon="" class="first"></DropdownComponent>
+            <DropdownComponent mode="Medium" modeIcon=""></DropdownComponent>
+            <DropdownComponent mode="Hard" modeIcon=""></DropdownComponent>
         </div>
-    </transition>  
+    </Transition>  
     </div>
 </template>
 
 <style>
     .fade-enter-active, .fade-leave-active {
-    transition: all 0.5s;
+    transition: opacity 0.2s ease;
   }
   
-  .fade-enter, .fade-leave-to {
-    opacity: 0; 
-    background-color: blue !important;
-  }
-
-  .fade-enter-to, .fade-leave-from {
-    opacity: 1;
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;    
   }
 </style>
