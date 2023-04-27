@@ -118,6 +118,25 @@
     max-width: 300px;   
 }
 
+.mode-button{
+    cursor:pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-button::after {  
+    content: "";  
+    background-image: url('src/assets/svgs/arrow-down.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 10px;    
+    height: 23px;
+    width: 23px;
+    filter: invert(100%) sepia(9%) saturate(387%) hue-rotate(208deg) brightness(110%) contrast(80%);
+}
+
 .first {
     margin-top: 18px;
 }
