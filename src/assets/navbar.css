@@ -1,7 +1,5 @@
 
 .navbar {
-    width: 4rem;
-    height: 100vh;
     position: fixed;
     background-color: var(--bg-primary);
     transition: width 200ms ease;
@@ -43,16 +41,56 @@
   }
 
 .nav-link svg{
-    min-width: 2rem;
+    max-width: 2rem;
     margin: 0 1rem;
     filter: grayscale(100%) opacity(0.9);
     transition: var(--transition-speed);
 }
 
-.navbar:honer{
-    width: 16rem;
+.logo{
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width:100%;
 }
 
+/*schermo piccolo*/
+@media only screen and (max-width:600px){
+  .navbar{
+    top:0;
+    width: 100vw;
+    height: 4rem;
+  }
+  
+  .logo{
+    display: none;
+  }
+
+  .navbar-nav{
+    flex-direction: row;
+  }
+
+  .nav-link{
+    justify-content: center;
+  }
+}
+
+/*schermo grande*/
+@media only screen and (min-width:600px){
+  .navbar{
+    top:0;
+    width: 4rem;
+    height: 100vh;
+  }
+
+  .navbar:hover{
+    width: 16rem;
+  }
+
 .navbar:hover .link-text{
-    display: block;
+  display: block;
+  }
 }
