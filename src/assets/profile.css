@@ -122,3 +122,30 @@
     margin-bottom: 1.5rem;
     cursor: pointer;
 }
+
+.profile .picture .upload-btn{
+    top:0;
+}
+
+.profile .picture .upload-btn{
+    position: absolute;
+}
+
+.profile .picture input[type="file"]{
+    padding: 0.3rem 0.8rem;
+    font-size: 15px;
+    color:#000000;
+    background-color:#44e500;
+    border: 2px solid transparent;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.profile .picture input[type="file"]::file-selector-button{
+    margin-right: 20px;
+    border: none;
+    background: #000000;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: #fff;
+}

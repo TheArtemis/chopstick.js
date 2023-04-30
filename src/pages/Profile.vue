@@ -24,6 +24,9 @@
                 <label>Password</label>
             </div>
             <div class="picture">
+                <div class="upload-btn">
+                  <input type="file" name="img_btn" accept="image/*">
+                </div>
                 <div class="img"></div>
                 <textarea class="bio">
                  </textarea>
