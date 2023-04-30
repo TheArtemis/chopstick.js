@@ -1,11 +1,43 @@
+
+.game-panel {
+    width: 100%;
+}
+.game-panel-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 680px;
+    min-height: 300px;
+    width: 100%;
+    min-width: 300px;
+    max-width: 680px;
+    /* aspect-ratio: 1 / 1;     */
+}
+
+.player-bar {
+    display: flex;    
+}
+
+.player-bar-picture{
+    
+}
+
+.player-bar-picture img{
+    height: 40px;
+    width: 40px;
+}
+
 .game-board {      
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    max-height: 680px;
+    width: 100%;
+    max-width: 680px;
+    aspect-ratio: 1 / 1;      
     display: flex;
     flex-direction: column;
     justify-items: center;
     background-color: #2fcc21;  
-    aspect-ratio: 1 / 1;  
+    
 }
 
 .game-player {
@@ -54,4 +86,10 @@
 .dragging {
     border-color: #d1e7bb !important;
 }
+
+@media only screen and (max-width:600px){
+
+}
+
+
 
