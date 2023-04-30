@@ -1,8 +1,8 @@
 
 .navbar {
-    /* position: fixed; */
-    background-color: var(--bg-primary);
-    transition: width 650ms ease;
+    position: fixed;
+    background-color: var(--bg-secondary);
+    transition: width 400ms ease;
   }
 .navbar-nav {
     list-style: none;
@@ -31,7 +31,7 @@
 
 .nav-link:hover {
     filter: grayscale(0%) opacity(1);
-    background: var(--bg-secondary);
+    background: var(--bg-secondary-highlight);
     color: var(--text-secondary);
   }
   

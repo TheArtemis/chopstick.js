@@ -1,7 +1,7 @@
 .game-menu {
     order:3;
     margin-left:auto;  
-    background-color: rgb(23, 32, 155);
+    background-color: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     width: 34%;
