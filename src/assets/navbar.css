@@ -1,6 +1,6 @@
 
 .navbar {
-    position: fixed;
+    /* position: fixed; */
     background-color: var(--bg-primary);
     transition: width 650ms ease;
   }
@@ -42,6 +42,7 @@
 
 .nav-link svg{
     max-width: 2rem;
+    min-width: 2rem;
     margin: 0 1rem;
     filter: grayscale(100%) opacity(0.9);
     transition: var(--transition-speed);
@@ -58,7 +59,7 @@
 }
 
 /*schermo piccolo*/
-@media only screen and (max-width:600px){
+@media only screen and (max-width:768px){
   .navbar{
     top:0;
     width: 100vw;
@@ -79,7 +80,7 @@
 }
 
 /*schermo grande*/
-@media only screen and (min-width:600px){
+@media only screen and (min-width:768px){
   .navbar{
     top:0;
     width: 4rem;

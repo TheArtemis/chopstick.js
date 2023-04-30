@@ -28,33 +28,44 @@ export default {
       }
     },    
     methods: {
-        findCurrentPiece(event){
-            return Object.values(this.hands).find(hand => hand.id === event.target.id); 
-        },
-        startDrag(event) {
-        event.preventDefault();       
-        this.currentPiece = this.findCurrentPiece(event);
-        if(!this.currentPiece) 
-            return; /* If is not a valid piece stops the drag */
-        this.isDragging = true;        
-        this.startX = event.clientX;
-        this.startY = event.clientY;         
-        console.log(this.currentPiece, this.startX, this.startY)        
+      findCurrentPiece(event){
+          return Object.values(this.hands).find(hand => hand.id === event.target.id); 
+      },
+      startDrag(event, touch) {
+      event.preventDefault();
+      
+      var ev = event;
+      if(touch){
+        ev = event.touches[0];
+      }
+      
+      this.currentPiece = this.findCurrentPiece(event);
+      if(!this.currentPiece) 
+          return; /* If is not a valid piece stops the drag */
+      this.isDragging = true;        
+      this.startX = ev.clientX;
+      this.startY = ev.clientY;         
+      console.log(this.currentPiece, this.startX, this.startY)        
         
     },
-    doDrag(event) {   
+    doDrag(event, touch) {   
 
       if (this.isDragging) {
         if(!this.currentPiece) 
-            return;        
+            return;
+            
+        var ev = event;
+        if(touch){
+          ev = event.touches[0];
+        }
 
         const boardRect = this.$el.getBoundingClientRect();
         console.log(boardRect)
         const handRect = event.target.getBoundingClientRect();
         console.log(handRect)
 
-        const xDelta = event.clientX - this.startX;
-        const yDelta = event.clientY - this.startY;
+        const xDelta = ev.clientX - this.startX;
+        const yDelta = ev.clientY - this.startY;
 
         /* event.clientX tells you the current horizontal 
         position of the mouse pointer relative to the viewport */
@@ -74,10 +85,10 @@ export default {
         } */
 
         this.currentPiece.posX = newX;
-        this.startX = event.clientX
+        this.startX = ev.clientX
 
         this.currentPiece.posY = newY;
-        this.startY = event.clientY 
+        this.startY = ev.clientY 
         
         
 
@@ -99,6 +110,10 @@ export default {
         this.startY = 0;        
         console.log("stopped")
     },
+    startDragTouch(event) {
+      event.preventDefault();
+      var touch = event.touches[0];
+    }    
   },  
 } 
 
@@ -107,9 +122,12 @@ export default {
 <template>
     <div 
     class="game-board"
-    @mousedown="startDrag($event)"
-    @mousemove="doDrag"
-    @mouseup="stopDrag">
+    @mousedown="startDrag($event, false)"
+    @mousemove="doDrag($event, false)"
+    @mouseup="stopDrag"
+    @touchstart="startDrag($event, true)"
+    @touchmove="doDrag($event, true)"
+    @touchend="stopDrag">
       <div class = "game-opponent">
         <div class="hand opponent right"></div>
         <div class="hand opponent left"></div>      
