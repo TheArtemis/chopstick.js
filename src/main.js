@@ -7,6 +7,7 @@ import '@/assets/game.css'
 import '@/assets/game-menu.css'
 import '@/assets/navbar.css'
 import '@/assets/login.css'
+import '@/assets/profile.css'
 
 
 /* We pass into createApp a component App, imported from ./App.vue */

@@ -1,0 +1,124 @@
+
+.contenitor{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color:#000000;
+}
+.profile{
+    position: absolute;
+    padding: 2.5rem;
+    width: 50%;
+    height: 80%;
+    top: 10%;
+    left: 12%;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    border:1px solid #44e500;
+    background-color: #000000;
+   
+}
+
+.picture{
+    position: absolute;
+    padding: 2.5rem;
+    width: 50%;
+    height: 100.3%;
+    top: -0.2%;
+    left: 100%;
+    box-sizing: border-box;
+    border:1px solid #44e500;
+    background-color: #000000;
+
+}
+
+.picture .img {
+    position: absolute;
+    top: 10%;
+    left: 27%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    border:1px;
+    border: solid #44e500;
+    background-color: #1c1c1c;
+  }
+
+  
+
+.profile .bio {
+    width: 250px;
+    height: 100px;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    background-color: #000000;
+    color:#44e500;
+    border: 1px solid #44e500;
+    padding: 20px;
+  }
+
+.profile label{
+    width: 250px;
+    height: 100px;
+    position: absolute;
+    font-size: 18px;
+    top: 57%;
+    left: 8%;
+    color:#44e500;
+}
+  
+
+.profile h2{
+    color:#44e500;
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+.profile .inputProfile{
+    position: relative;
+}
+
+.profile .inputProfile input{
+    width: 100%;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color:#44e500;
+    margin-bottom: 1.875rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #44e500;
+}
+
+.profile .inputProfile label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color:#44e500;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.inputProfile input:focus ~ label,
+.inputProfile input:valid ~ label {
+  transform: translateY(-1rem);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color:#44e500;
+}
+
+.profile input[type="submit"]{
+    padding: 0.8rem 1rem;
+    font-size: 19px;
+    color:#000000;
+    background-color:#44e500;
+    border: 2px solid transparent;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
