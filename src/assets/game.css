@@ -2,17 +2,18 @@
 .game-panel {
     width: 100%;
     /* overflow: scroll; */
+    padding-left: 8em;
 }
 .game-panel-wrap {
     display: flex;
     flex-direction: column;
-    /* justify-content: center;   */  
+    justify-content: center;    
     height: 100%;
-    max-height: 680px;
+    /* max-height: 680px; */
     min-height: 300px;
-    width: 100%;
+    width: 100%;    
+    /* max-width: 680px; */
     min-width: 300px;
-    max-width: 680px;
     aspect-ratio: 1 / 1;    
     
 }
@@ -111,9 +112,14 @@
 @media only screen and (max-width:768px){
     .game-panel {
         overflow: visible;
+        padding-left: 0;
     }
     .game-panel-wrap {
         margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 5.6em;
+        margin-bottom: 7em;
+        justify-content: center;        
     }
 }
 
