@@ -4,7 +4,7 @@
 
 :root {
     font-size: 16px;
-    /* font-family: 'Open Sans'; */
+    font-family: 'Roboto', sans-serif;
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
     --bg-primary: #312E2B;
@@ -12,12 +12,13 @@
     --bg-secondary-highlight : #3a3936;
     --background-board: #E47979;
     --transition-speed: 200ms;
+    --color-primary: #E47979;
   }
 
 body {
     font-family: 'Roboto', sans-serif;
     height: 100vh;
-    background-color: #ac7b7b;    
+    background-color: var(--bg-primary);    
 }
 
 .wrapper {

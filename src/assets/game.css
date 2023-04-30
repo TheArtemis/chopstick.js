@@ -26,7 +26,8 @@
 }
 
 .player-bar-picture{
-    
+    border: 2px solid var(--text-primary);
+    border-radius: 4px;
 }
 
 .player-bar-info {
@@ -36,7 +37,8 @@
 
 .player-bar-picture img{
     height: 50px;
-    width: 50px;    
+    width: 50px;
+    border-radius: 4px;    
 }
 
 .player-bar-name {    
