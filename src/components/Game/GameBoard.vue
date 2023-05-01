@@ -3,36 +3,56 @@ import PlayerHand from '@/components/Game/PlayerHand.vue'
 
 export default {
     name: 'GameBoard',
+    props : {
+      boardActive : Boolean,      
+      playerLeft : Number,
+      playerRight : Number,
+      opponentLeft : Number,
+      opponentRight : Number,      
+    },
     components: {
         PlayerHand,
     }, 
     data () {
       return {        
         isDragging: false,
-        currentHand: null,
+        currentPiece: null,
         startX: 0,
         startY: 0,        
-        hands: 
+        handsPlayer: 
             {
             left:{
                 id: 'hand-player-left',
                 posX: 0,
                 posY: 0,
+                score: this.playerLeft,
             },
             right:{
                 id: 'hand-player-right',
                 posX: 0,
                 posY: 0,
+                score: this.playerRight,
             },
-        },         
+        },
+        handsOpponent: {
+            left:{
+                id: 'hand-opponent-left',                
+                score: this.opponentLeft,
+            },
+            right:{
+                id: 'hand-opponent-right',                
+                score: this.opponentRight,
+            },
+        },
+        targetHand: null,               
       }
     },    
     methods: {
       findCurrentPiece(event){
-          return Object.values(this.hands).find(hand => hand.id === event.target.id); 
+          return Object.values(this.handsPlayer).find(hand => hand.id === event.target.id); 
       },
       startDrag(event, touch) {
-      event.preventDefault();
+      event.preventDefault();      
       
       var ev = event;
       if(touch){
@@ -45,24 +65,26 @@ export default {
       this.isDragging = true;        
       this.startX = ev.clientX;
       this.startY = ev.clientY;         
-      console.log(this.currentPiece, this.startX, this.startY)        
+      /* console.log(this.currentPiece, this.startX, this.startY)    */     
         
     },
     doDrag(event, touch) {   
 
-      if (this.isDragging) {
+      if (this.isDragging == false)
+        return; 
         if(!this.currentPiece) 
             return;
+       
             
         var ev = event;
         if(touch){
           ev = event.touches[0];
         }
 
-        const boardRect = this.$el.getBoundingClientRect();
-        console.log(boardRect)
-        const handRect = event.target.getBoundingClientRect();
-        console.log(handRect)
+        /* const boardRect = this.$el.getBoundingClientRect(); */
+        /* console.log(boardRect) */
+        /* const handRect = event.target.getBoundingClientRect(); */
+        /* console.log(handRect) */
 
         const xDelta = ev.clientX - this.startX;
         const yDelta = ev.clientY - this.startY;
@@ -92,28 +114,62 @@ export default {
         
         
 
-        this.hands[this.currentPiece] = this.currentPiece;
+        this.handsPlayer[this.currentPiece] = this.currentPiece;
 
-        console.log("dragging");
+        /* console.log("dragging");
         console.log(this.currentPiece.posX, this.currentPiece.posY)
-        console.log(this.hands[this.currentPiece].posX, this.hands[this.currentPiece].posY)
-      }
+        console.log(this.handsPlayer[this.currentPiece].posX, this.handsPlayer[this.currentPiece].posY) */
+      
     },
     stopDrag() {
-        if(!this.currentPiece) 
-            return; 
-        this.hands[this.currentPiece].posX = 0;
-        this.hands[this.currentPiece].posY = 0;
+        
+        if(this.isDragging == false)
+          return;
+
+        if(this.currentPiece == null) 
+          return;       
+
+        const currentHand = this.handsPlayer[this.currentPiece];
+        if(currentHand === undefined){
+          this.isDragging = false;
+          this.currentPiece = null;
+          this.startX = 0;
+          this.startY = 0;
+          return;  
+        }          
+
+        this.handsPlayer[this.currentPiece].posX = 0;
+        this.handsPlayer[this.currentPiece].posY = 0;
         this.isDragging = false;
         this.currentPiece = null;
         this.startX = 0;
         this.startY = 0;        
-        console.log("stopped")
+        /* console.log("stopped") */
+
+        if(this.targetHand != null) {
+          this.$emit('player-attack', this.targetHand.id);          
+        }
+        this.targetHand = null;
     },
-    startDragTouch(event) {
-      event.preventDefault();
-      var touch = event.touches[0];
-    }    
+    findCurrentTarget(event){
+          return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id); 
+    },
+    enterTarget(event) {
+      console.log("touched")
+      if(!this.isDragging) 
+          return;
+      console.log("enter")
+      this.targetHand = this.findCurrentTarget(event);        
+    },
+    leaveTarget() {
+      if(!this.isDragging) 
+          return;
+      console.log("leave")
+      this.targetHand = null;
+    },
+    mouseclick(){
+      console.log("clicked")
+    }         
   },  
 } 
 
@@ -127,22 +183,36 @@ export default {
     @mouseup="stopDrag"
     @touchstart="startDrag($event, true)"
     @touchmove="doDrag($event, true)"
-    @touchend="stopDrag">
+    @touchend="stopDrag"
+    @click="handleClick">
       <div class = "game-opponent">
-        <div class="hand opponent right"></div>
-        <div class="hand opponent left"></div>      
+        <div 
+          :id = "this.handsOpponent.right.id"
+          class="hand opponent right"
+          @mouseenter="enterTarget"
+          @mouseleave="leaveTarget"
+          @touchenter="enterTarget"
+          @touchend="leaveTarget"
+          ></div>
+        <div
+          :id = "this.handsOpponent.left.id" 
+          class="hand opponent left"
+          @mouseenter="enterTarget"
+          @mouseleave="leaveTarget"          
+          ></div>      
     </div>
     <div class="game-player">
       <PlayerHand 
-      :id = "this.hands.left.id"
-      :ref = "this.hands.left.id"
+      :id = "this.handsPlayer.left.id"
+      :ref = "this.handsPlayer.left.id"
       side="left"
-      :style="{transform: `translate(${hands.left.posX}%, ${hands.left.posY}%) scale(-1, 1)`}"></PlayerHand>
+      :style="{transform: `translate(${handsPlayer.left.posX}%, ${handsPlayer.left.posY}%) scale(-1, 1)`,
+              pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
       <PlayerHand 
-      :id="this.hands.right.id"
-      :ref = "this.hands.right.id" 
+      :id="this.handsPlayer.right.id"
+      :ref = "this.handsPlayer.right.id" 
       side="right"
-      :style="{transform: `translate(${hands.right.posX}%, ${hands.right.posY}%)`}"></PlayerHand>
+      :style="{transform: `translate(${handsPlayer.right.posX}%, ${handsPlayer.right.posY}%)`}"></PlayerHand>
     </div>
     </div>
 </template>

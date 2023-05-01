@@ -24,6 +24,8 @@
     --button-border: #b18597;
     --button-shadow: #0f0f0f36;
     --button-hover: #d8a0a0;
+    --button-dropdown: #b49292;
+    --button-dropdown-hover: #dbb3b3;
 
     margin: auto;
     margin-top: 5px;
@@ -111,7 +113,7 @@
     margin-right: 2px;
     margin-top: 5px;
     margin-bottom: 4px;
-    background-color: #aa4fbd;
+    background-color: var(--button-dropdown);
     color: white;    
     width: 33%;
     height: 50px;
@@ -121,7 +123,7 @@
 }
 
 .dropdown-button:hover{
-    background-color: #811394;
+    background-color: var(--button-dropdown-hover);
 }
 
 .select-mode{

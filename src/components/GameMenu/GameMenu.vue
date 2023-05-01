@@ -12,7 +12,7 @@
         },
         methods:{
             goToPlayComputerPage(){
-                this.$router.push('/play');
+                this.$router.push('/play/computer');
             }
         }
     }
