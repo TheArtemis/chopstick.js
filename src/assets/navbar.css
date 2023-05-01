@@ -24,6 +24,7 @@
 .nav-item {
     width: 100%;
     height: 80px;
+    display: inline-block;
   }
 .nav-item:last-child {  /*settings*/
     margin-top: auto;
