@@ -1,7 +1,21 @@
+<script>
+    import OptionsMenu from '../components/OptionsMenu/OptionsMenu.vue';
+
+    export default {
+        name: 'Profile',
+        components: {
+            OptionsMenu,
+        },
+    }
+</script>
+
 <template>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-  <div class="contenitor">
+    <div>
+        <h1></h1>
+        <OptionsMenu></OptionsMenu>
+        <div class="contenitor"> 
      <div class="profile">
         <h2>Profile</h2>
         <div class="username">
@@ -73,10 +87,7 @@
             <h2>Recent Games</h2>
         </div>
 	</div>
+    </div>
+  
 </template>
 
-<script>
-    export default {
-        name: 'Profile',
-    }
-</script>
