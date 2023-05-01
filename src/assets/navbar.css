@@ -27,39 +27,38 @@
   display: inline-block;
 }
 .nav-item:last-child {  /*settings*/
-    margin-top: auto;
-    /* margin-bottom: 0; */
-  }
+  margin-top: auto;
+  /* margin-bottom: 0; */
+}
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    height: 4rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: var(--transition-speed);
-    
-  }
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition-speed);    
+}
 
 .nav-link:hover {
-    /* position: fixed; */
-    filter: grayscale(0%) opacity(1);
-    background: var(--bg-secondary-highlight);
-    color: var(--text-secondary);
-  }
+  /* position: fixed; */
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary-highlight);
+  color: var(--text-secondary);
+}
   
 .link-text {
-    display: none;
-    margin-left:0.8rem;
-    white-space: nowrap;
-  }
+  display: none;
+  margin-left:0.8rem;
+  white-space: nowrap;
+}
 
 .nav-link svg{
-    max-width: 1.5rem;
-    min-width: 1.5rem;
-    margin: 0 1.25rem;
-    filter: grayscale(100%) opacity(0.9);
-    transition: var(--transition-speed);
+  max-width: 1.5rem;
+  min-width: 1.5rem;
+  margin: 0 1.25rem;
+  filter: grayscale(100%) opacity(0.9);
+  transition: var(--transition-speed);
 }
 
 .logo{
