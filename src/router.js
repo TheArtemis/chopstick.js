@@ -6,7 +6,7 @@ const routes = [
     {path: '/login', name: 'login', component: () => import('@/pages/Login.vue')},
     {path: '/profile', name: 'profile', component: () => import('@/pages/Profile.vue')},
     {path: '/stats', name: 'stats', component: () => import('@/pages/Stats.vue')},
-
+    {path: '/register', name: 'register', component: () => import('@/pages/Register.vue')},
 ]
 
 const router = createRouter({
