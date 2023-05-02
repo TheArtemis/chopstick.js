@@ -3,7 +3,7 @@
     width: 35rem;
     padding: 2.5rem;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: var(--bg-secondary);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -11,7 +11,7 @@
 }
 
 .box h2{
-    color: #2b2525;
+    color: var(--color-primary);
     font-size: 2.5rem;
     text-align: left;
 }
@@ -24,12 +24,12 @@
     width: 100%;
     padding: 0.625rem 0;
     font-size: 1rem;
-    color: #000000;
+    color:var(--color-primary);
     margin-bottom: 1.875rem;
     border: none;
     outline: none;
     background-color: transparent;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .box .inputBox label{
@@ -38,7 +38,7 @@
     left: 0;
     padding: 0.625rem 0;
     font-size: 1rem;
-    color: #000000;
+    color: var(--color-primary);
     pointer-events: none;
     transition: 0.3s;
 }
@@ -46,15 +46,15 @@
 .box .inputBox input:focus ~ label{
     top: -1.125rem;
     left: 0;
-    color: #000000;
+    color: var(--color-primary);
     font-size: 0.6rem;
 }
 
 .box input[type="submit"]{
     padding: 0.8rem 1rem;
     font-size: 19px;
-    color:#ffffff;
-    background-color: #2b2525;
+    color: var(--bg-secondary);
+    background-color: var(--color-primary);
     border: 2px solid transparent;
     margin-top: 1.5rem;
     cursor: pointer;
