@@ -85,9 +85,11 @@
 }
 
 .hand {    
-    height: 100px;
-    width: 100px;
-    background-image: url("../assets/svgs/hand-1.svg");    
+    height: 250px;
+    width: 130px;
+    background-image: url("@/assets/imgs/0dx.png");
+    background-size: cover;
+    background-position: center;    
 }
 
 .player.left {
@@ -102,8 +104,8 @@
 }
 
 .opponent {
-    height: 80px;
-    width: 80px;
+    height: 230px;
+    width: 130px;
     transform: rotate(180deg);
 
 }

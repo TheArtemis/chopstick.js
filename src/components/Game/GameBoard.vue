@@ -67,7 +67,9 @@ export default {
       this.currentPiece = this.findCurrentPiece(event);
       if(!this.currentPiece) 
           return; /* If is not a valid piece stops the drag */
-      this.isDragging = true;      
+      this.isDragging = true;
+      
+      this.disableNavbar();
       
       this.startX = ev.clientX;
       this.startY = ev.clientY;         
@@ -143,7 +145,9 @@ export default {
           this.startX = 0;
           this.startY = 0;
           return;  
-        }          
+        }
+        
+        this.enableNavbar();
 
         this.handsPlayer[this.currentPiece].posX = 0;
         this.handsPlayer[this.currentPiece].posY = 0;
@@ -175,7 +179,14 @@ export default {
     },
     mouseclick(){
       /* console.log("clicked") */
-    }         
+    },
+    disableNavbar(){
+      this.$emit('disable-navbar');
+    },
+    enableNavbar(){
+      this.$emit('enable-navbar');
+    },
+                
   },    
 } 
 
@@ -214,14 +225,14 @@ export default {
       :ref = "this.handsPlayer.left.id"
       side="left"
       :style="{
-        transform: `translate(${handsPlayer.left.posX}%, ${handsPlayer.left.posY}%) scale(-1, 1)`,
+        transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
         pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
       <PlayerHand 
       :id="this.handsPlayer.right.id"
       :ref = "this.handsPlayer.right.id" 
       side="right"
       :style="{
-        transform: `translate(${handsPlayer.right.posX}%, ${handsPlayer.right.posY}%)`,
+        transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
         pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
     </div>
     </div>

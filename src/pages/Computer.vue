@@ -15,6 +15,7 @@
     data(){
       return {
         hasGameStarted: false,
+        navbarActive: true,
       }
     },
     methods: {
@@ -25,7 +26,17 @@
       surrenderGame(){
         this.hasGameStarted = false;
         /* console.log("computer -> " + this.hasGameStarted); */
-      }
+      },
+      enableNavbar(){
+        this.navbarActive = true;
+        /* console.log("navbar enabled on computer")
+        console.log(this.navbarActive) */
+      },
+      disableNavbar(){
+        this.navbarActive = false;
+        /* console.log("navbar disabled on computer")
+        console.log(this.navbarActive) */
+      },
     },    
   }
 
@@ -33,9 +44,12 @@
 
 <template>
   <div class="wrapper">
-    <OptionsMenu/>
+    <OptionsMenu
+     :navbarActive="this.navbarActive"/>
     <Game      
-      :hasGameStarted="this.hasGameStarted"/>    
+      :hasGameStarted="this.hasGameStarted"
+      @enable-navbar="this.enableNavbar"
+      @disable-navbar="this.disableNavbar"/>    
     <PlayComputerMenu
       @start-game="this.startGame"
       @surrender-game="this.surrenderGame"

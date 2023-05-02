@@ -1,16 +1,18 @@
-<!-- 
-    LEFT OPTIONS MENU GOES HERE
- -->
-
 <script>
     export default{
         name: 'OptionsMenu',
+        props:{
+            navbarActive: {
+                type: Boolean,
+                default: false,
+            },        
+        },        
     }
 </script>
 
 <template>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
-    <nav class="navbar">
+    <nav class="navbar" :class="{disabled : !this.navbarActive}">
         <ul class="navbar-nav">
             <li class="logo">
                 <a href="/" class="nav-link">

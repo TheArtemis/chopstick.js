@@ -51,7 +51,15 @@ export default {
       },
       endGame(){
         console.log("game ended");
-      }      
+      },
+      disableNavbar(){
+        this.$emit('disable-navbar');
+        /* console.log("navbar disabled") */
+      },
+      enableNavbar(){
+        this.$emit('enable-navbar');
+        /* console.log("navbar enabled"); */
+      },      
     },
     updated(){
       /* console.log("game -> " + this.boardActive); */
@@ -75,7 +83,9 @@ export default {
       :player="opponent"
       ></PlayerBar>
        <GameBoard 
-       @player-attack="playerAttack"       
+       @player-attack="playerAttack"
+       @disable-navbar="disableNavbar"
+       @enable-navbar="enableNavbar"       
        :boardActive="this.boardActive"
        :playerLeft="this.currentPosition.playerLeft"
        :playerRight="this.currentPosition.playerRight"

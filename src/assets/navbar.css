@@ -7,6 +7,10 @@
   width: 4rem;
 }
 
+.navbar.disabled{
+  pointer-events: none;
+}
+
 .navbar:hover .link-text{
   display: block;
   }
@@ -85,6 +89,11 @@
     position: relative;  
       
   }
+
+  .navbar.disabled{
+    pointer-events: none;
+  }
+  
   
   .logo{
     display: none;
@@ -125,6 +134,11 @@
   .navbar:hover{
     width: 16rem;
   }
+
+  .navbar.disabled{
+    pointer-events: none;
+  }
+  
 
 .navbar:hover .link-text{
   display: block;
