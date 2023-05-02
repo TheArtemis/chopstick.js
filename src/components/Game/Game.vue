@@ -42,8 +42,48 @@ export default {
     },
     methods: {
       playerAttack(event){
-        console.log("attacked" + event);
+        console.log(event.source + " is attacking " + event.target);        
+        if (event.target == 'hand-opponent-left'){
+          this.playerAttackLeft(event.source);
+        }
+        else if (event.target == 'hand-opponent-right'){
+          this.playerAttackRight(event.source);
+        }
+        
+        this.gameLoop();
+      },  
+      playerAttackRight(hand) { /* hand is source hand */
+        console.log("player attacking right");
+        var playerVal;
+        if (hand == 'hand-player-left')
+          playerVal = this.currentPosition.playerLeft;
+        else if (hand == 'hand-player-right')
+          playerVal = this.currentPosition.playerRight;
+
+        var sum = playerVal + this.currentPosition.opponentRight;
+        if(sum == 5)
+          this.currentPosition.opponentRight = 0;
+        else if(sum > 5)
+          this.currentPosition.opponentRight = sum - 5;
+        else 
+          this.currentPosition.opponentRight = sum;        
       },
+      playerAttackLeft(hand){
+        console.log("player attacking left");
+        var playerVal;
+        if (hand == 'hand-player-left')
+          playerVal = this.currentPosition.playerLeft;
+        else if (hand == 'hand-player-right')
+          playerVal = this.currentPosition.playerRight;
+
+        var sum = playerVal + this.currentPosition.opponentLeft;
+        if(sum == 5)
+          this.currentPosition.opponentLeft = 0;
+        else if(sum > 5)
+          this.currentPosition.opponentLeft = sum - 5;
+        else 
+          this.currentPosition.opponentLeft = sum; 
+      },    
       hasPlayerLost(){
         if(this.currentPosition.playerLeft == 0 && this.currentPosition.playerRight == 0)
           return true;
@@ -73,8 +113,72 @@ export default {
         if(this.isGameOver())
           this.endGame();
 
-        console.log("E' il turno di " + this.turn);        
+        console.log("E' il turno di " + this.turn);
         
+        if (this.turn == 1)
+          this.computerAction();
+
+        if(this.turn == 0)
+          console.log("player turn");
+        
+      },
+      async computerAction(){        
+        if(this.isGameOver())
+          this.endGame();
+
+        console.log("computer is thinking");
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        console.log("computer attack");
+
+        let currHand;
+        if(this.currentPosition.opponentLeft == 0)
+          currHand = this.currentPosition.opponentRight;
+        else if(this.currentPosition.opponentRight == 0)
+          currHand = this.currentPosition.opponentLeft;
+        else {
+          const hnd = Math.round(Math.random());
+          if(hnd == 0)
+            currHand = this.currentPosition.opponentLeft;
+          else
+            currHand = this.currentPosition.opponentRight;
+        }
+
+        if(this.currentPosition.playerLeft == 0) /* Se la mano sinistre è morta attacca la destra */
+          this.computerAttackRight(currHand);
+        else if(this.currentPosition.playerRight == 0) /* Se la mano destra è morta attacca la sinistra */
+          this.computerAttackLeft(currHand);
+        else {
+          const hnd = Math.round(Math.random());
+          if(hnd == 0)
+            this.computerAttackLeft(currHand);
+          else
+            this.computerAttackRight(currHand);
+        }    
+      },
+      computerAttackLeft(hand){
+        console.log("attacking left with value " + hand);           
+        
+        var sum = hand + this.currentPosition.playerLeft;
+        if(sum == 5)
+          this.currentPosition.playerLeft = 0;
+        else if(sum > 5)
+          this.currentPosition.playerLeft = sum - 5;
+        else 
+          this.currentPosition.playerLeft = sum;        
+
+        console.log("new value for left is " + this.currentPosition.playerLeft);
+      },
+      computerAttackRight(hand){
+        console.log("attacking right with value " + hand);           
+        
+        var sum = hand + this.currentPosition.playerRight;
+        if(sum == 5)
+          this.currentPosition.playerRight = 0;
+        else if(sum > 5)
+          this.currentPosition.playerRight = sum - 5;
+        else 
+          this.currentPosition.playerRight = sum;
+        console.log("new value for right is " + this.currentPosition.playerRight);  
       },
       endGame(){
         this.turn = -1;

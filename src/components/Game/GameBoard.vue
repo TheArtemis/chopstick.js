@@ -152,15 +152,17 @@ export default {
         this.handsPlayer[this.currentPiece].posX = 0;
         this.handsPlayer[this.currentPiece].posY = 0;
         this.isDragging = false;
+
+        if(this.targetHand != null) {
+          this.$emit('player-attack', {target : this.targetHand.id, source : this.currentPiece.id});          
+        }
+        this.targetHand = null;
         this.currentPiece = null;
         this.startX = 0;
         this.startY = 0;        
         /* console.log("stopped") */
 
-        if(this.targetHand != null) {
-          this.$emit('player-attack', this.targetHand.id);          
-        }
-        this.targetHand = null;
+        
     },
     findCurrentTarget(event){
           return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id); 
@@ -270,7 +272,7 @@ export default {
           class="hand opponent left"
           @mouseenter="enterTarget"
           @mouseleave="leaveTarget" 
-          :class="fingersOpponentRight"         
+          :class="fingersOpponentLeft"         
           ></div>      
     </div>
     <div class="game-player">
