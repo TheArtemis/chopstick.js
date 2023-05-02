@@ -4,7 +4,7 @@
         props:{
             navbarActive: {
                 type: Boolean,
-                default: false,
+                default: true,
             },        
         },        
     }
