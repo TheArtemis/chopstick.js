@@ -28,12 +28,13 @@
     --button-dropdown-hover: #dbb3b3;
     --button-inactive: #a2a3a2;
     --button-border-inactive: #585858;
+    --button-height: 0.5rem;
 
     margin: auto;
     margin-top: 5px;
     cursor: pointer;
 
-    padding: 1.005em 2em;
+    padding: 1em 2em;
     width: 100%;
     min-width: 250px;
     max-width: 300px;
@@ -60,8 +61,8 @@
     bottom: 0;
     background: var(--button-3d);
     border-radius: inherit;
-    box-shadow: 0 0 0 2px var(--button-border), 0 0.625em 0 0 var(--button-shadow);
-    transform: translate3d(0, 0.50em, -1em);
+    box-shadow: 0 0 0 2px var(--button-border), 0 0.5em 0 0 var(--button-shadow);
+    transform: translate3d(0, var(--button-height), -1em);
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
 }
 
@@ -73,12 +74,12 @@
 
 .game-button:hover::before {
     box-shadow: 0 0 0 2px var(--button-border), 0 0.5em 0 0 var(--button-shadow);
-    transform: translate3d(0, 0.3em, -1em);
+    transform: translate3d(0, 0.25em, -1em);
 }
 
 .game-button:active {
     background: var(--button-hover);
-    transform: translate(0em, 0.75em);
+    transform: translate(0em, var(--button-height));
 }
 
 .game-button:active::before {
@@ -95,10 +96,11 @@
     pointer-events: none;
     background: var(--button-inactive);
     border: 2px solid var(--button-border-inactive);    
-    transform: translate(0em, 0.75em);
+    transform: translate(0em, var(--button-height));
 }
 
-.game-button.inactive::before {    
+.game-button.inactive::before {  
+    box-shadow: 0 0 0 2px var(--button-hover), 0 0 var(--button-shadow);  
     transform: translate3d(0, 0, -1em);
 }
 
@@ -171,7 +173,11 @@
 @media (max-width: 768px) {
     .game-button {
       width: 100%;
-      max-width: fit-content;
+      min-width: 10px;
+      margin: 3px 10px;      
+    }
+    .game-button.last {
+        margin: 3px 10px;
     }
     .game-menu {
         width: 100%;
@@ -179,5 +185,10 @@
         order: 2;
         margin-left: 0;        
         padding: 0;
+        flex-direction: row;
+        padding-top: 10px;
+        /* padding-bottom: 4px; */  
+        flex-wrap: nowrap;
+        justify-content: center;         
     }
 }

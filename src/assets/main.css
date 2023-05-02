@@ -11,6 +11,7 @@
     --bg-secondary: #272522;
     --bg-secondary-highlight : #3a3936;
     --background-board: #E47979;
+    --border-board: #ffffffcb;
     --transition-speed: 200ms;
     --color-primary: #E47979;
   }
@@ -50,6 +51,7 @@ body {
 @media screen  and (max-width: 768px) {
     .wrapper {
         flex-direction: column;
+        overflow-x: hidden;         
     }
 }
 

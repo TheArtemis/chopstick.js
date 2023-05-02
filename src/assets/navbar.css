@@ -81,8 +81,9 @@
   .navbar{
     top:0;
     width: 100vw;
-    /* height: 3em; */
-    position: relative;    
+    height: 10em;
+    position: relative;  
+      
   }
   
   .logo{
@@ -118,7 +119,7 @@
   .navbar{
     top:0;
     width: 4rem;
-    height: 100vh;    
+    height: 100vh;     
   }
 
   .navbar:hover{

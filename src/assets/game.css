@@ -50,7 +50,8 @@
     color: var(--text-primary);
 }
 
-.game-board {      
+.game-board {
+    margin-top:7px;      
     height: 100%;
     max-height: 680px;
     width: 100%;
@@ -59,7 +60,9 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-    background-color: var(--background-board);    
+    background-color: var(--background-board);
+    border: 2px solid var(--border-board);
+    border-radius: 0.75em;    
 }
 
 .game-board.inactive {
