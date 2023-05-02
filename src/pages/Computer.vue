@@ -20,11 +20,11 @@
     methods: {
       startGame(){
         this.hasGameStarted = true;
-        console.log("computer -> " + this.hasGameStarted);
+        /* console.log("computer -> " + this.hasGameStarted); */
       },
       surrenderGame(){
         this.hasGameStarted = false;
-        console.log("computer -> " + this.hasGameStarted);
+        /* console.log("computer -> " + this.hasGameStarted); */
       }
     },    
   }

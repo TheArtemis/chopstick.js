@@ -27,6 +27,7 @@ export default {
           opponentRight: 1,
         },        
         boardActive: this.hasGameStarted,
+        turn: null, /* 0 is player 1 is opponent */
         player: {
           name: 'You',
           rating: '1000',
@@ -42,14 +43,26 @@ export default {
     methods: {
       playerAttack(event){
         console.log(event);
-      },      
+      },
+      startGame(){
+        console.log("game started");
+        this.turn = Math.round(Math.random());
+
+      },
+      endGame(){
+        console.log("game ended");
+      }      
     },
     updated(){
-      console.log("game -> " + this.boardActive);
+      /* console.log("game -> " + this.boardActive); */
     },
     watch: {
       hasGameStarted: function (val) {
         this.boardActive = val;
+        if(this.turn == null)
+          this.startGame();
+        else
+          this.endGame();
       }
     }        
 }
