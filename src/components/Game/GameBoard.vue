@@ -185,9 +185,61 @@ export default {
     },
     enableNavbar(){
       this.$emit('enable-navbar');
+    },                    
+  },
+  computed: {
+      fingersPlayerLeft() {
+        return {
+          'zero': this.handsPlayer.left.score == 0,
+          'one': this.handsPlayer.left.score == 1,
+          'two': this.handsPlayer.left.score == 2,
+          'three': this.handsPlayer.left.score == 3,
+          'four': this.handsPlayer.left.score == 4,          
+        }
+      },
+      fingersPlayerRight() {
+        return {
+          'zero': this.handsPlayer.right.score == 0,
+          'one': this.handsPlayer.right.score == 1,
+          'two': this.handsPlayer.right.score == 2,
+          'three': this.handsPlayer.right.score == 3,
+          'four': this.handsPlayer.right.score == 4,          
+        }
+      },
+      fingersOpponentLeft() {
+        return {
+          'zero': this.handsOpponent.left.score == 0,
+          'one': this.handsOpponent.left.score == 1,
+          'two': this.handsOpponent.left.score == 2,
+          'three': this.handsOpponent.left.score == 3,
+          'four': this.handsOpponent.left.score == 4,          
+        }
+      },
+      fingersOpponentRight() {
+        return {
+          'zero': this.handsOpponent.right.score == 0,
+          'one': this.handsOpponent.right.score == 1,
+          'two': this.handsOpponent.right.score == 2,
+          'three': this.handsOpponent.right.score == 3,
+          'four': this.handsOpponent.right.score == 4,          
+        }
+      },
     },
-                
-  },    
+    watch: {
+      playerLeft: function (val) {   
+        this.handsPlayer.left.score = val;        
+      },
+      playerRight: function (val) {   
+        this.handsPlayer.right.score = val;        
+      },
+      opponentLeft: function (val) {   
+        this.handsOpponent.left.score = val;        
+      },
+      opponentRight: function (val) {   
+        this.handsOpponent.right.score = val;        
+      },
+    } 
+
 } 
 
 </script>
@@ -211,12 +263,14 @@ export default {
           @mouseleave="leaveTarget"
           @touchenter="enterTarget"
           @touchend="leaveTarget"
+          :class="fingersOpponentRight"
           ></div>
         <div
           :id = "this.handsOpponent.left.id" 
           class="hand opponent left"
           @mouseenter="enterTarget"
-          @mouseleave="leaveTarget"          
+          @mouseleave="leaveTarget" 
+          :class="fingersOpponentRight"         
           ></div>      
     </div>
     <div class="game-player">
@@ -226,14 +280,18 @@ export default {
       side="left"
       :style="{
         transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
-        pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
+        pointerEvents: isDragging ? 'none': 'auto'}"
+      :class="fingersPlayerLeft"
+      ></PlayerHand>
       <PlayerHand 
       :id="this.handsPlayer.right.id"
       :ref = "this.handsPlayer.right.id" 
       side="right"
       :style="{
         transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
-        pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
+        pointerEvents: isDragging ? 'none': 'auto'}"
+        :class="fingersPlayerRight"
+        ></PlayerHand>
     </div>
     </div>
 </template>

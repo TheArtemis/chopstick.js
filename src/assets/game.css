@@ -92,6 +92,26 @@
     background-position: center;    
 }
 
+.hand.zero {
+    background-image: url("@/assets/imgs/0dx.png");
+}
+
+.hand.one {
+    background-image: url("@/assets/imgs/1dx.png");
+}
+
+.hand.two {
+    background-image: url("@/assets/imgs/2dx.png");
+}
+
+.hand.three {
+    background-image: url("@/assets/imgs/3dx.png");
+}
+
+.hand.four {
+    background-image: url("@/assets/imgs/4dx.png");
+}
+
 .player.left {
     transform: scale(-1, 1);
     position: relative;

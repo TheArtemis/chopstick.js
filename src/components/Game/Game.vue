@@ -21,13 +21,13 @@ export default {
       return {
         pastPositions: [[1, 1, 1, 1]],   
         currentPosition : {
-          playerLeft: 1,
-          playerRight: 1,
-          opponentLeft: 1,
-          opponentRight: 1,
+          playerLeft: 0,
+          playerRight: 0,
+          opponentLeft: 0,
+          opponentRight: 0,
         },        
         boardActive: this.hasGameStarted,
-        turn: null, /* 0 is player 1 is opponent */
+        turn: -1, /* 0 is player 1 is opponent */
         player: {
           name: 'You',
           rating: '1000',
@@ -42,14 +42,48 @@ export default {
     },
     methods: {
       playerAttack(event){
-        console.log(event);
+        console.log("attacked" + event);
+      },
+      hasPlayerLost(){
+        if(this.currentPosition.playerLeft == 0 && this.currentPosition.playerRight == 0)
+          return true;
+      },
+      hasOpponentLost(){
+        if(this.currentPosition.opponentLeft == 0 && this.currentPosition.opponentRight == 0)
+          return true;
+      },
+      isGameOver(){
+        if(this.hasPlayerLost() || this.hasOpponentLost())
+          {console.log("someone lost")
+            return true;}
       },
       startGame(){
         console.log("game started");
-        this.turn = Math.round(Math.random());
+        const initTurn = Math.round(Math.random());
+        this.turn = initTurn;
+        this.currentPosition = {
+          playerLeft: 1,
+          playerRight: 1,
+          opponentLeft: 1,
+          opponentRight: 1,
+        }        
+        this.gameLoop();
+      },
+      gameLoop(){        
+        if(this.isGameOver())
+          this.endGame();
 
+        console.log("E' il turno di " + this.turn);        
+        
       },
       endGame(){
+        this.turn = -1;
+        this.currentPosition = {
+          playerLeft: 0,
+          playerRight: 0,
+          opponentLeft: 0,
+          opponentRight: 0,
+        }
         console.log("game ended");
       },
       disableNavbar(){
@@ -65,9 +99,9 @@ export default {
       /* console.log("game -> " + this.boardActive); */
     },
     watch: {
-      hasGameStarted: function (val) {
-        this.boardActive = val;
-        if(this.turn == null)
+      hasGameStarted: function (val) {   
+        this.boardActive = val;     
+        if(this.turn == -1)
           this.startGame();
         else
           this.endGame();
