@@ -8,7 +8,8 @@ export default {
       playerLeft : Number,
       playerRight : Number,
       opponentLeft : Number,
-      opponentRight : Number,      
+      opponentRight : Number,
+      turn: String,      
     },
     components: {
         PlayerHand,
@@ -34,6 +35,7 @@ export default {
                 score: this.playerRight,
             },
         },
+        targetHand: null,   
         handsOpponent: {
             left:{
                 id: 'hand-opponent-left',                
@@ -44,7 +46,7 @@ export default {
                 score: this.opponentRight,
             },
         },
-        targetHand: null,               
+                    
       }
     },    
     methods: {
@@ -58,11 +60,15 @@ export default {
       if(touch){
         ev = event.touches[0];
       }
+
+      if(this.boardActive == false)
+        return;
       
       this.currentPiece = this.findCurrentPiece(event);
       if(!this.currentPiece) 
           return; /* If is not a valid piece stops the drag */
-      this.isDragging = true;        
+      this.isDragging = true;      
+      
       this.startX = ev.clientX;
       this.startY = ev.clientY;         
       /* console.log(this.currentPiece, this.startX, this.startY)    */     
@@ -72,8 +78,9 @@ export default {
 
       if (this.isDragging == false)
         return; 
-        if(!this.currentPiece) 
-            return;
+      if(!this.currentPiece) 
+          return;
+      /* console.log("dragging"); */
        
             
         var ev = event;
@@ -154,23 +161,22 @@ export default {
     findCurrentTarget(event){
           return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id); 
     },
-    enterTarget(event) {
-      console.log("touched")
+    enterTarget(event) {      
       if(!this.isDragging) 
           return;
-      console.log("enter")
+      /* console.log("enter") */
       this.targetHand = this.findCurrentTarget(event);        
     },
     leaveTarget() {
       if(!this.isDragging) 
           return;
-      console.log("leave")
+      /* console.log("leave") */
       this.targetHand = null;
     },
     mouseclick(){
-      console.log("clicked")
+      /* console.log("clicked") */
     }         
-  },  
+  },    
 } 
 
 </script>
@@ -178,6 +184,7 @@ export default {
 <template>
     <div 
     class="game-board"
+    :class="{inactive: !this.boardActive}"
     @mousedown="startDrag($event, false)"
     @mousemove="doDrag($event, false)"
     @mouseup="stopDrag"
@@ -206,13 +213,16 @@ export default {
       :id = "this.handsPlayer.left.id"
       :ref = "this.handsPlayer.left.id"
       side="left"
-      :style="{transform: `translate(${handsPlayer.left.posX}%, ${handsPlayer.left.posY}%) scale(-1, 1)`,
-              pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
+      :style="{
+        transform: `translate(${handsPlayer.left.posX}%, ${handsPlayer.left.posY}%) scale(-1, 1)`,
+        pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
       <PlayerHand 
       :id="this.handsPlayer.right.id"
       :ref = "this.handsPlayer.right.id" 
       side="right"
-      :style="{transform: `translate(${handsPlayer.right.posX}%, ${handsPlayer.right.posY}%)`}"></PlayerHand>
+      :style="{
+        transform: `translate(${handsPlayer.right.posX}%, ${handsPlayer.right.posY}%)`,
+        pointerEvents: isDragging ? 'none': 'auto'}"></PlayerHand>
     </div>
     </div>
 </template>

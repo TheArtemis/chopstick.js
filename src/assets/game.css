@@ -15,7 +15,6 @@
     /* max-width: 680px; */
     min-width: 300px;
     aspect-ratio: 1 / 1;    
-    
 }
 
 .player-bar {
@@ -60,8 +59,11 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-    background-color: var(--background-board);  
-    
+    background-color: var(--background-board);    
+}
+
+.game-board.inactive {
+    pointer-events: none;    
 }
 
 .game-player {

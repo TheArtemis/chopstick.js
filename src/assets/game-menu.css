@@ -26,6 +26,8 @@
     --button-hover: #d8a0a0;
     --button-dropdown: #b49292;
     --button-dropdown-hover: #dbb3b3;
+    --button-inactive: #a2a3a2;
+    --button-border-inactive: #585858;
 
     margin: auto;
     margin-top: 5px;
@@ -87,6 +89,17 @@
 .game-button.last{
     margin-top: auto;
     margin-bottom: 3px;
+}
+
+.game-button.inactive {
+    pointer-events: none;
+    background: var(--button-inactive);
+    border: 2px solid var(--button-border-inactive);    
+    transform: translate(0em, 0.75em);
+}
+
+.game-button.inactive::before {    
+    transform: translate3d(0, 0, -1em);
 }
 
 
