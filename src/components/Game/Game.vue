@@ -44,9 +44,14 @@ export default {
       playerAttack(event){
         console.log(event.source + " is attacking " + event.target);        
         if (event.target == 'hand-opponent-left'){
+          if(this.currentPosition.opponentLeft == 0)
+            return this.gameLoop();
+          
           this.playerAttackLeft(event.source);
         }
         else if (event.target == 'hand-opponent-right'){
+          if(this.currentPosition.opponentRight == 0)
+            return this.gameLoop();
           this.playerAttackRight(event.source);
         }
         this.turn = 1;

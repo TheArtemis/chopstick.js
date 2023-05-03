@@ -67,6 +67,10 @@ export default {
       this.currentPiece = this.findCurrentPiece(event);
       if(!this.currentPiece) 
           return; /* If is not a valid piece stops the drag */
+      
+      if(this.currentPiece.score == 0)
+        return; /* If the hand is empty stops the drag */
+
       this.isDragging = true;
       
       this.disableNavbar();
