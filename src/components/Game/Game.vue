@@ -9,8 +9,9 @@ export default {
       type: String,
       validator: function (value) {
         return ['computer', 'human'].indexOf(value) !== -1
-      }
+      },
     },
+    mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
   },
   components: {
@@ -252,7 +253,7 @@ export default {
         this.startGame();
       else
         this.endGame();
-    }
+    },
   }
 }
 </script>
@@ -264,7 +265,7 @@ export default {
       <GameBoard @player-attack="playerAttack" @disable-navbar="disableNavbar" @enable-navbar="enableNavbar"
         :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
         :playerRight="this.currentPosition.playerRight" :opponentLeft="this.currentPosition.opponentLeft"
-        :opponentRight="this.currentPosition.opponentRight"></GameBoard>
+        :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"></GameBoard>
       <PlayerBar :player="player"></PlayerBar>
     </div>
   </div>
