@@ -1,157 +1,188 @@
-
 .game-panel {
-    width: 100%;
-    /* overflow: scroll; */
-    padding-left: 8em;
+  display: flex;
+  width: 100%;
+  background-color: var(--bg-primary);
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .game-panel-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;    
-    height: 100%;
-    /* max-height: 680px; */
-    min-height: 300px;
-    width: 100%;    
-    /* max-width: 680px; */
-    min-width: 300px;
-    aspect-ratio: 1 / 1;    
-}
+  margin-left: var(--navbar-size);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: flex-start; */
+  width: 80%;
 
-.player-bar {
-    display: flex;
-    margin-top: 1em;
-    margin-bottom: 0.3em;
-    color: var(--text-secondary);    
-}
-
-.player-bar-picture{
-    border: 2px solid var(--text-primary);
-    border-radius: 4px;
-}
-
-.player-bar-info {
-    display: flex;
-    margin-left: 2px;
-}
-
-.player-bar-picture img{
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;    
-}
-
-.player-bar-name {    
-    font-weight: 600;
-    margin-left: 5px;
-}
-
-.player-bar-rating {    
-    margin-left: 5px;
-    color: var(--text-primary);
+  /* height: 100%;
+  max-height: 680px;
+  min-height: 300px;
+  width: 100%;
+  max-width: 680px;
+  min-width: 300px;
+  aspect-ratio: 1 / 1; */
 }
 
 .game-board {
-    margin-top:7px;      
-    height: 100%;
+  margin-top: 7px;
+  /* height: 100%;
     max-height: 680px;
     width: 100%;
     max-width: 680px;
-    aspect-ratio: 1 / 1;      
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    background-color: var(--background-board);
-    border: 2px solid var(--border-board);
-    border-radius: 0.75em;    
+    aspect-ratio: 1 / 1;    */
+  max-width: 600px;
+  max-height: 600px;
+  width: 100%;
+  height: 100%;
+  min-width: 380px;
+  min-height: 380px;
+  aspect-ratio: 1 /1;
+  /* margin-left: 1rem;
+  margin-right: 1rem; */
+  /* align-self: center; */
+
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  background-color: var(--background-board);
+  border: 2px solid var(--border-board);
+  border-radius: 0.75em;
 }
 
 .game-board.inactive {
-    pointer-events: none;    
+  pointer-events: none;
 }
 
+.player-bar {
+  display: flex;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  color: var(--text-secondary);
+  /* margin-right: auto; */
+  width: 100%;
+  max-width: 680px;
+  /* margin-left: 1rem; */
+}
+
+.player-bar-picture {
+  border: 2px solid var(--text-primary);
+  border-radius: 4px;
+}
+
+.player-bar-info {
+  display: flex;
+  margin-left: 2px;
+}
+
+.player-bar-picture img {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+}
+
+.player-bar-name {
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.player-bar-rating {
+  margin-left: 5px;
+  color: var(--text-primary);
+}
 .game-player {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: auto;
-    padding-bottom: 5%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: auto;
+  padding-bottom: 5%;
 }
 
 .game-opponent {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding-top: 2%;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding-top: 2%;
 }
 
-.hand {    
-    height: 250px;
-    width: 130px;
-    background-image: url("@/assets/imgs/0dx.png");
-    background-size: cover;
-    background-position: center;    
+.hand {
+  height: 250px;
+  width: 130px;
+  background-image: url("@/assets/imgs/0dx.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .hand.zero {
-    background-image: url("@/assets/imgs/0dx.png");
-    pointer-events: none;
+  background-image: url("@/assets/imgs/0dx.png");
+  pointer-events: none;
 }
 
 .hand.one {
-    background-image: url("@/assets/imgs/1dx.png");
+  background-image: url("@/assets/imgs/1dx.png");
 }
 
 .hand.two {
-    background-image: url("@/assets/imgs/2dx.png");
+  background-image: url("@/assets/imgs/2dx.png");
 }
 
 .hand.three {
-    background-image: url("@/assets/imgs/3dx.png");
+  background-image: url("@/assets/imgs/3dx.png");
 }
 
 .hand.four {
-    background-image: url("@/assets/imgs/4dx.png");
+  background-image: url("@/assets/imgs/4dx.png");
 }
 
 .player.left {
-    transform: scale(-1, 1);
-    position: relative;
-    z-index: 1;    
+  transform: scale(-1, 1);
+  position: relative;
+  z-index: 1;
 }
 
 .player.right {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .opponent {
-    height: 230px;
-    width: 130px;
-    transform: rotate(180deg);
-
+  height: 230px;
+  width: 130px;
+  transform: rotate(180deg);
 }
 
 .opponent.left {
-    transform: rotate(180deg) scale(-1, 1)
+  transform: rotate(180deg) scale(-1, 1);
 }
 
 .dragging {
-    border-color: #d1e7bb !important;
+  border-color: #d1e7bb !important;
 }
 
-@media only screen and (max-width:768px){
-    .game-panel {
-        overflow: visible;
-        padding-left: 0;
-    }
-    .game-panel-wrap {
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-top: 5.6em;
-        margin-bottom: 7em;
-        justify-content: center;        
-    }
+@media only screen and (max-height: 768px) {
 }
 
-
-
+@media only screen and (max-width: 768px) {
+  .game-panel {
+    overflow: visible;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .game-panel-wrap {
+    /* margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 5.6em;
+    margin-bottom: 7em; */
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .game-board {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .player-bar {
+    width: auto;
+    margin-right: auto;
+    margin-left: 0;
+  }
+}

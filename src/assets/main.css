@@ -1,32 +1,39 @@
-*{
-    margin:0;
+* {
+  margin: 0;
 }
 
 :root {
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    --text-primary: #b6b6b6;
-    --text-secondary: #ececec;
-    --bg-primary: #312E2B;
-    --bg-secondary: #272522;
-    --bg-secondary-highlight : #3a3936;
-    --background-board: #E47979;
-    --border-board: #ffffffcb;
-    --transition-speed: 200ms;
-    --color-primary: #E47979;
-  }
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #312e2b;
+  --bg-secondary: #272522;
+  --bg-secondary-highlight: #3a3936;
+  --background-board: #e47979;
+  --border-board: #ffffffcb;
+  --transition-speed: 200ms;
+  --color-primary: #e47979;
+
+  --navbar-size: 4rem;
+}
+
+html {
+  overflow-y: auto;
+  max-height: 100%;
+}
 
 body {
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    background-color: var(--bg-primary);    
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+  background-color: var(--bg-primary);
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: row;   
-    height: 100vh;  
-    width: 100%;    
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
 }
 
 /*.options-menu{
@@ -36,27 +43,10 @@ body {
     background-color: #242424;   
 
 }*/
-  
 
-.game-panel { 
-    order:2;
-    display: flex;    
-    width: 100%;    
-    background-color: var(--bg-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+@media screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    overflow-x: hidden;
+  }
 }
-
-@media screen  and (max-width: 768px) {
-    .wrapper {
-        flex-direction: column;
-        overflow-x: hidden;         
-    }
-}
-
-
-
-
-
-
