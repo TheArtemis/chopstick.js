@@ -49,7 +49,7 @@ export default {
         else if (event.target == 'hand-opponent-right'){
           this.playerAttackRight(event.source);
         }
-        
+        this.turn = 1;
         this.gameLoop();
       },  
       playerAttackRight(hand) { /* hand is source hand */
@@ -119,8 +119,7 @@ export default {
           this.computerAction();
 
         if(this.turn == 0)
-          console.log("player turn");
-        
+          console.log("player turn");        
       },
       async computerAction(){        
         if(this.isGameOver())
@@ -182,12 +181,12 @@ export default {
       },
       endGame(){
         this.turn = -1;
-        this.currentPosition = {
+        /* this.currentPosition = {
           playerLeft: 0,
           playerRight: 0,
           opponentLeft: 0,
           opponentRight: 0,
-        }
+        } */
         console.log("game ended");
       },
       disableNavbar(){
