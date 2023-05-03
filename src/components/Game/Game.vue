@@ -19,7 +19,7 @@ export default {
     },
     data() {
       return {        
-        pastPositions: [[1, 1, 1, 1]],   
+        pastPositions: [],   
         currentPosition : {
           playerLeft: 0,
           playerRight: 0,
@@ -110,6 +110,7 @@ export default {
         const initTurn = Math.round(Math.random());
         this.boardActive = true;
         this.turn = initTurn;
+        this.pastPositions = [];
         this.currentPosition = {
           playerLeft: 1,
           playerRight: 1,
@@ -129,6 +130,8 @@ export default {
           this.endGame();
 
         console.log("E' il turno di " + this.turn);
+
+        this.pastPositions.push([this.currentPosition.playerLeft, this.currentPosition.playerRight, this.currentPosition.opponentLeft, this.currentPosition.opponentRight]);
         
         if (this.turn == 1)
           this.computerAction();
@@ -225,6 +228,7 @@ export default {
         this.$emit('game-ended');
 
         console.log("game ended, winner is: " + this.winner);
+        console.log(this.pastPositions);
       },
       disableNavbar(){
         this.$emit('disable-navbar');
