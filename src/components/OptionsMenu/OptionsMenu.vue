@@ -42,9 +42,9 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
-                    <span class="link-text">Recent Games</span>
+                <a href="#popup-box" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+                    <span class="link-text">How to play</span>
                 </a>
             </li>
 
@@ -56,4 +56,17 @@
             </li>
         </ul>
     </nav>
+    <div id="popup-box" class="modal">
+        <div class="content">
+            <h1 style="color: #e47979;">
+                 Rules of Chopsticks
+            </h1>
+            <b>
+                <p style="color : white">Chopsticks is a turn-based game where you can attack or transfer. Every player begins the game with one finger per hand. A hand is considered live if it has at least one finger. To attack, a player uses one of their live hands to strike one of the opponent's live ones. The number of fingers on the struck hand will increase based on the number of the attacking hand. If the total is 5, the hand is considered dead, if it's higher the excess will be the new number. To divide, if a player has a dead hand, they can divide the fingers between their hands by transferring them from one hand to the other. Players are required to attack at least once during the game. First player to have both of their hands killed loses.</p>
+            </b>
+            <a href="#" class="box-close">
+              x
+            </a>
+        </div>
+    </div>
 </template>
