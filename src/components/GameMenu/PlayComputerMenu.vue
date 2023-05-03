@@ -24,7 +24,12 @@
             surrenderGame(){
                 this.$emit('surrender-game');
             }
-        }
+        },
+        /* watch: {
+        hasGameStarted: function (val) {   
+            this.hasGameStarted = val;
+            }
+        }  */
 
     }
 </script>

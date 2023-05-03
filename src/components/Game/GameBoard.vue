@@ -9,7 +9,7 @@ export default {
       playerRight : Number,
       opponentLeft : Number,
       opponentRight : Number,
-      turn: String,      
+      turn: String,         
     },
     components: {
         PlayerHand,
@@ -286,7 +286,7 @@ export default {
       side="left"
       :style="{
         transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
-        pointerEvents: isDragging ? 'none': 'auto'}"
+        pointerEvents: isDragging? 'none': 'auto'}"
       :class="fingersPlayerLeft"
       ></PlayerHand>
       <PlayerHand 
@@ -295,7 +295,8 @@ export default {
       side="right"
       :style="{
         transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
-        pointerEvents: isDragging ? 'none': 'auto'}"
+        pointerEvents: isDragging ? 'none': 'auto',
+        }"
         :class="fingersPlayerRight"
         ></PlayerHand>
     </div>
