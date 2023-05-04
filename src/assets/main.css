@@ -10,10 +10,10 @@
   --bg-primary: #312e2b;
   --bg-secondary: #272522;
   --bg-secondary-highlight: #3a3936;
-  --background-board: #e47979;
+  --background-board: #f1cc53;
   --border-board: #ffffffcb;
   --transition-speed: 200ms;
-  --color-primary: #e47979;
+  --color-primary: rgb(241, 204, 83);
 
   --navbar-size: 4rem;
   --max-breakpoint: 768px;

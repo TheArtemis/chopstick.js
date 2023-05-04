@@ -152,7 +152,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(254, 126, 126, 0.7);
+  background: rgba(241, 204, 83, 0.7);
   transition: all 0.4s;
   visibility: hidden;
   opacity: 0;
@@ -174,7 +174,7 @@
   position: absolute;
   top: 0;
   right: 15px;
-  color: #fe0606;
+  color: #f1cc53;
   text-decoration: none;
   font-size: 30px;
 }

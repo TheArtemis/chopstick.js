@@ -82,7 +82,7 @@ export default {
     </nav>
     <div id="popup-box" class="modal">
         <div class="content">
-            <h1 style="color: #e47979;">
+            <h1 style="color: #f1cc53;;">
                 Rules of Chopsticks
             </h1>
             <b>
