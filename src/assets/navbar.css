@@ -4,6 +4,7 @@
   transition: width var(--transition-speed) ease;
   height: 100%;
   width: var(--navbar-size);
+  z-index: 9999;
 }
 
 .navbar.disabled {

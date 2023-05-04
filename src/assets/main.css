@@ -16,10 +16,20 @@
   --color-primary: #e47979;
 
   --navbar-size: 4rem;
+  --max-breakpoint: 768px;
+
+  --hand-height-big: 230px;
+  --hand-width-big: 120px;
+
+  --hand-height-medium: 200px;
+  --hand-width-medium: 100px;
+
+  --hand-height-small: 180px;
+  --hand-width-small: 90px;
 }
 
 html {
-  overflow-y: auto;
+  overflow-y: hidden;
   max-height: 100%;
 }
 

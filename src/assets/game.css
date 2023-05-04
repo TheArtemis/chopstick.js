@@ -4,14 +4,22 @@
   background-color: var(--bg-primary);
   justify-content: space-around;
   flex-wrap: wrap;
+  align-items: flex-start;
+  overflow-y: scroll;
 }
+
+.game-panel::-webkit-scrollbar {
+  display: none;
+}
+
 .game-panel-wrap {
   margin-left: var(--navbar-size);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: flex-start; */
+  /* justify-content: center; */
+  align-items: flex-start;
   width: 80%;
+  height: 100%;
 
   /* height: 100%;
   max-height: 680px;
@@ -23,26 +31,25 @@
 }
 
 .game-board {
-  margin-top: 7px;
-  /* height: 100%;
-    max-height: 680px;
-    width: 100%;
-    max-width: 680px;
-    aspect-ratio: 1 / 1;    */
+  /* margin-top: 7px;  */
+
   max-width: 600px;
   max-height: 600px;
   width: 100%;
   height: 100%;
-  min-width: 380px;
+  min-width: 330px;
   min-height: 380px;
   aspect-ratio: 1 /1;
-  /* margin-left: 1rem;
-  margin-right: 1rem; */
-  /* align-self: center; */
+
+  /* min-width: min(100%, 600px);
+  min-height: min(100%, 600px);
+  max-width: max(330px, 25vw);
+  max-height: max(330px, 25vw);
+  aspect-ratio: 1 / 1; */
 
   display: flex;
   flex-direction: column;
-  justify-items: center;
+  /* justify-items: center; */
   background-color: var(--background-board);
   border: 2px solid var(--border-board);
   border-radius: 0.75em;
@@ -93,22 +100,25 @@
   justify-content: center;
   gap: 30px;
   margin-top: auto;
-  padding-bottom: 5%;
+  /* padding-bottom: 5%; */
+  margin-bottom: 0.5em;
 }
 
 .game-opponent {
   display: flex;
   justify-content: center;
   gap: 25px;
-  padding-top: 2%;
+  margin-top: 0.5em;
+  /* padding-top: 2%; */
 }
 
 .hand {
-  height: 250px;
-  width: 130px;
+  height: 230px;
+  width: 120px;
   background-image: url("@/assets/imgs/0dx.png");
   background-size: cover;
   background-position: center;
+  /* display: none; */ /* TEST SFONDO VUOTO */
 }
 
 .hand.zero {
@@ -157,9 +167,20 @@
   border-color: #d1e7bb !important;
 }
 
-@media only screen and (max-height: 768px) {
+@media only screen and (max-height: 700px) {
+  .hand {
+    height: var(--hand-height-small);
+    width: var(--hand-width-small);
+  }
 }
 
+/* @media only screen and (max-height: 600px) {
+  .game-panel {
+    overflow-y: scroll;
+  }
+  
+}
+ */
 @media only screen and (max-width: 768px) {
   .game-panel {
     overflow: visible;
@@ -184,5 +205,9 @@
     width: auto;
     margin-right: auto;
     margin-left: 0;
+  }
+  .hand {
+    height: var(--hand-height-small);
+    width: var(--hand-width-small);
   }
 }
