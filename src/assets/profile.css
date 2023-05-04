@@ -126,129 +126,217 @@
     color: var(--color-primary);
     font-size: 2.5rem;
     padding-top: 3%;
-    text-align: center;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 426px) {
+    .navbar {
+        top: 0;
+        width: 100vw;
+        height: 4em;
+        position: relative;
+      }
+
+    .contenitor{
+        flex-direction:column;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-secondary);
+    }
     .profile-sx{
-        width: 10%;
+        flex-direction: row;
+        margin-left: -6%;
+        width: 100%;
+        height: 20vh;
+        padding: 10%;
     }
     .profile-dx{
-        width: 90%;
+        flex-direction: column;
+        margin-left: -6%;
+        width: 100%;
+        height: 100vh;
     }
     .profile-sx label{
         color: var(--color-primary);
-        font-size: 2rem;
-        margin-bottom: 10%;;
+        margin: 0%;
+        font-size: 1.75rem;
+        margin-top: -33%;
+        margin-left: -1%;
     }
     .profile-img {
-      width: 250%;
+      width: 30%;
       aspect-ratio: 1 / 1;
+      margin-left: -21%;
+      margin-top: 10%;
+      margin-right: 5%;
+    }
+    .profile-bio{
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        height: 100%;
+        padding: 5%;
     }
     .profile-bio label{
         color: var(--color-primary);
-        font-size: 1.5rem;
-        margin-top: 80%;
+        font-size: 1.3rem;
+        margin-top: -24%;
+        margin-left: 2%;
     }
     .profile-bio .bio{
-        width: 300%; 
-        height: 50%;
-        margin-top: 200%;
+        width: 80%; 
+        height: 45%;
+        margin-left: -50%;
+        margin-top: 40%;;
         background-color:var(--bg-secondary);   
     }
     .profile-bio .bio label{
         color: var(--color-primary);
-        font-size: 1rem;
-        padding-left: 3px;
+        font-size: 0.75rem;
     }
     .profile-dx label{
         color: var(--color-primary);
         font-size: 2rem;
-        margin-bottom: 5%;
-        margin-left: -15%;
+        margin-top: -5%;
+        margin-bottom: 2%;
+        margin-left: -13%;
     }
     
     .profile-dx .stats {
-        width:120%;
+        width:100%;
         background-color: var(--color-secondary);
-        margin-left: -15%;
+        margin-left: -14%;
+        margin-bottom: 10%;
     }
+    
+    .profile-dx .stats .top-wrapper{
+       width: 80%;
+    }
+    
+    .profile-dx .stats .top-wrapper .top-container{
+        width: 40%;
+        height: 10%;
+        border: 1px solid var(--color-primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+     }
+    
     .profile-dx .recent{
         width:100%;
         height: 60%;
         background-color: var(--color-secondary);
         display: flex;
+        padding: 0;
     }
     
     .profile-dx .recent label{
         color: var(--color-primary);
         font-size: 2rem;
-        padding-top: 10%;
-        padding-left: 13%;
+        margin-left: 0.25%;
     }
     
   }
+  @media screen and (min-width: 426px) and (max-width: 768px) {
+    .navbar {
+        top: 0;
+        width: 100vw;
+        height: 4em;
+        position: relative;
+      }
+      .contenitor{
+        flex-direction:column;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-secondary);
+    }
+    .profile-sx{
+        flex-direction: row;
+        margin-left: -6%;
+        width: 100%;
+        height: 8%;
+        padding: 10%;
+    }
+    .profile-dx{
+        flex-direction: column;
+        margin-left: -6%;
+        padding: 0;
+        width: 100%;
+        height: 92%;
+    }
+    .profile-sx label{
+        color: var(--color-primary);
+        font-size: 1.75rem;
+        margin-top: -20%;
+    }
+    .profile-img {
+      width: 20%;
+      margin-left: -12%;
+      aspect-ratio: 1 / 1;
+    }
+    .profile-bio{
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        height: 100%;
+        padding: 5%;
+        
+    }
+    .profile-bio label{
+        color: var(--color-primary);
+        font-size: 1.3rem;
+        margin-top: -20%;
+        margin-left: 6%;
+    }
+    .profile-bio .bio{
+        width: 90%; 
+        height: 150%;
+        margin-left: -25%;
+        margin-top: 20%;
+        background-color:var(--bg-secondary);   
+    }
+    .profile-bio .bio label{
+        color: var(--color-primary);
+        font-size: 0.75rem;
+    }
+    .profile-dx label{
+        color: var(--color-primary);
+        font-size: 2rem;
+        margin-bottom: 2%;
+    }
+    
+    .profile-dx .stats {
+        width:100%;
+        background-color: var(--color-secondary);
+        margin-bottom: 10%;
+    }
+    
+    .profile-dx .stats .top-wrapper{
+       width: 80%;
+    }
+    
+    .profile-dx .stats .top-wrapper .top-container{
+        width: 40%;
+        height: 10%;
+        border: 1px solid var(--color-primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+     }
+    
+    .profile-dx .recent{
+        width:100%;
+        height: 60%;
+        background-color: var(--color-secondary);
+        display: flex;
+        padding-left: 5%;
 
-/*
-.profile .inputProfile{
-    position: relative;
-}
+    }
+    
+    .profile-dx .recent label{
+        color: var(--color-primary);
+        font-size: 2rem;
+        margin-top:-10%;
 
-.profile .inputProfile input{
-    width: 100%;
-    padding: 0.625rem 0;
-    font-size: 1rem;
-    color:#44e500;
-    margin-bottom: 1.875rem;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-bottom: 1px solid #44e500;
-}
-
-.profile .inputProfile label{
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.625rem 0;
-    font-size: 1rem;
-    color:#44e500;
-    pointer-events: none;
-    transition: 0.3s;
-}
-
-.inputProfile input:focus ~ label,
-.inputProfile input:valid ~ label {
-  transform: translateY(-1rem);
-  font-size: 0.8rem;
-  font-weight: bold;
-  color:#44e500;
-}
-
-.profile input[type="submit"]{
-    position: absolute;
-    top:5%;
-    right: 10%;
-    padding: 0.8rem 1rem;
-    font-size: 19px;
-    color:#000000;
-    background-color:#44e500;
-    border: 2px solid transparent;
-    margin-bottom: 1.5rem;
-    cursor: pointer;
-}
-
-.profile .picture .img input[type="file"]{
-    display: none;
-}
-
-.img .img-upload{
-    position: absolute;
-    top:20%;
-    left:0%;
-    font-size: 50px;
-    opacity: 0;
-}
-
-*/
-
+    }
+    }

@@ -18,10 +18,6 @@
             <div class="profile-sx">
                 <label>Profile</label>
                 <div class="profile-img">
-                    <label class="-label" for="file">
-                    <span>Change image</span>
-                    </label>
-                    <input id="file" type="file">
                 </div>
                 <div class="profile-bio">
                     <label>Username</label>
