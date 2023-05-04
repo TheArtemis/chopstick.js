@@ -158,6 +158,7 @@
   opacity: 0;
 }
 .content {
+  z-index: 20;
   position: absolute;
   top: 35%;
   left: 23%;

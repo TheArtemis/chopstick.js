@@ -44,15 +44,21 @@ export default {
 </script>
 
 <template>  
-  <div>
+  <div class="registerBox">
     <h2>Register</h2>
     <form @submit.prevent="submitRegister">
-      <label>Username</label>
-      <input type="text" v-model="username">
-      <label>Email</label>
-      <input type="mail" v-model="mail">
-      <label>Password</label>
-      <input type="password" v-model="password">
+      <div class="reBox">
+        <input type="text" v-model="username">
+        <label>Username</label>
+      </div>
+      <div class="reBox">
+        <input type="mail" v-model="mail">
+        <label>Email</label>
+      </div>
+      <div class="reBox">
+        <input type="password" v-model="password">
+        <label>Password</label>
+      </div>
       <button type="submit">Register</button>
     </form>
   </div>

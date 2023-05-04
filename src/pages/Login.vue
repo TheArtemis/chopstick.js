@@ -3,7 +3,7 @@
         <h2>Login</h2>
         <form>
             <div class="inputBox">
-                <input type="email" name="email" required value="">
+                <input type="text" name="name" required value="">
                 <label>Username</label>
             </div>
 
