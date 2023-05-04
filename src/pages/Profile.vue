@@ -24,9 +24,9 @@
                     <input id="file" type="file">
                 </div>
                 <div class="profile-bio">
-                    <label>Username:</label>
+                    <label>Username</label>
                     <div class="bio">
-                        <label>Biography:</label>
+                        <label>Biography</label>
                     </div>
                 </div>
             </div>

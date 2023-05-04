@@ -1,19 +1,18 @@
 
 .contenitor{
     display: flex;
-    align-items: left;
     flex-direction: row;
     width: 100%;
     height: 100vh;
+    margin-left: 6%;
 }
 .profile-sx{
     display: flex;
-    align-items: left;
     flex-direction: column;
-    margin-left: 4rem;
+    align-items: center;
     padding: 1.5rem;
     width: 20%;
-    height: 100%;
+    height: 100vh;
     background-color:var(--bg-primary);   
 }
 
@@ -23,61 +22,31 @@
 }
 
 .profile-img{
-    width: 165px; /* Larghezza dell'immagine */
-    height: 165px; /* Altezza dell'immagine */
-    transform: translate(30%, 15%);
+    width:70%;
+    aspect-ratio: 1 / 1;
+    margin-top: 5%;;
     background-color:var(--color-primary);   
-    border-radius: 100px; /* Imposta il bordo circolare */
-    overflow: hidden; /* Nasconde le parti dell'immagine che escono dal bordo circolare */
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    transition: .3s ease;
 }
-
-.profile-img input{ 
-    display: none;
-}
-
-.-label{
-    width: 165px;
-    height: 165px;
-    cursor: pointer;
-}
-
-.-label:hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,.8);
-    color: #fff;
-    transition: background-color .2s ease-in-out;
-    margin-bottom: 0;
-    border-radius: 100px;
-  }
-
-  .profile-img span{
-    font-size: medium;
-    display: inline-flex;
-    padding: .3em;
-    height: 2em;
-  }
 
 .profile-bio{
     display: flex;
-    align-items: left;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height:55vh;
 }
 
 .profile-bio label{
     color: var(--color-primary);
     font-size: 1.75rem;
-    margin-top: 5rem;
+    margin-top: 15%;
 }
 
 .profile-bio .bio{
-    width: 40vh; /* Larghezza dell'immagine */
-    height: 30vh; /* Altezza dell'immagine */
-    transform: translate(0%, 25%);
-    border: 1px solid var(--color-primary);
+    width: 100%; 
+    height: 40%;
+    margin-top: 30%;
     background-color:var(--bg-secondary);   
 }
 
@@ -89,12 +58,13 @@
 
 .profile-dx{
     display: flex;
-    align-items: left;
+    align-items: center;
+    text-align: center;
     flex-direction: column;
     margin-left: 1.5rem;
     padding: 1.5rem;
     width: 80%;
-    height: 100%;
+    height: 100vh;
     background-color:var(--bg-secondary); 
 
 }
@@ -104,18 +74,15 @@
     font-size: 2.5rem;
 }
 
-
 .profile-dx .stats {
     width:100%;
-    height: 40%;
     background-color: var(--color-secondary);
-    display: flex;
 }
 
 .profile-dx .stats .top-wrapper{
    border: 1px solid var(--color-primary);
    width: 80%;
-   align-self: center;
+   align-items: center;
    display: flex;
    margin-left: 10%;
    color: var(--color-primary);
@@ -128,7 +95,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
  }
 
  .profile-dx .stats .top-wrapper .top-container i{
@@ -159,8 +125,69 @@
 .profile-dx .recent label{
     color: var(--color-primary);
     font-size: 2.5rem;
+    padding-top: 3%;
+    text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    .profile-sx{
+        width: 10%;
+    }
+    .profile-dx{
+        width: 90%;
+    }
+    .profile-sx label{
+        color: var(--color-primary);
+        font-size: 2rem;
+        margin-bottom: 10%;;
+    }
+    .profile-img {
+      width: 250%;
+      aspect-ratio: 1 / 1;
+    }
+    .profile-bio label{
+        color: var(--color-primary);
+        font-size: 1.5rem;
+        margin-top: 80%;
+    }
+    .profile-bio .bio{
+        width: 300%; 
+        height: 50%;
+        margin-top: 200%;
+        background-color:var(--bg-secondary);   
+    }
+    .profile-bio .bio label{
+        color: var(--color-primary);
+        font-size: 1rem;
+        padding-left: 3px;
+    }
+    .profile-dx label{
+        color: var(--color-primary);
+        font-size: 2rem;
+        margin-bottom: 5%;
+        margin-left: -15%;
+    }
+    
+    .profile-dx .stats {
+        width:120%;
+        background-color: var(--color-secondary);
+        margin-left: -15%;
+    }
+    .profile-dx .recent{
+        width:100%;
+        height: 60%;
+        background-color: var(--color-secondary);
+        display: flex;
+    }
+    
+    .profile-dx .recent label{
+        color: var(--color-primary);
+        font-size: 2rem;
+        padding-top: 10%;
+        padding-left: 13%;
+    }
+    
+  }
 
 /*
 .profile .inputProfile{
@@ -223,5 +250,5 @@
     opacity: 0;
 }
 
-
 */
+
