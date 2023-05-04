@@ -18,6 +18,7 @@
             <div class="profile-sx">
                 <label>Profile</label>
                 <div class="profile-img">
+                    <input type="file" class="my_file">
                 </div>
                 <div class="profile-bio">
                     <label>Username</label>
