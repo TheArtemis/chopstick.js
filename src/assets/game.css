@@ -121,6 +121,14 @@
   /* display: none; */ /* TEST SFONDO VUOTO */
 }
 
+.hand.player:hover {
+  cursor: grab;
+}
+
+.hand.player.moving {
+  cursor: grabbing;
+} /* TODO */
+
 .hand.zero {
   background-image: url("@/assets/imgs/0dx.png");
   pointer-events: none;
