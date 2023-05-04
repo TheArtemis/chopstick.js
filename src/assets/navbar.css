@@ -83,10 +83,11 @@
 
 .logo-img{
   background-image: url('../assets/imgs/logo.png');
-  width: 35px;
-  height: 35px;
+  width: 85%;
+  height: 85%;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0.28rem;
 }
 
 /*schermo piccolo*/
