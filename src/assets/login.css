@@ -1,6 +1,7 @@
 
 .box{
     width: 80vh;
+    aspect-ratio: 16/9;
     padding: 2.5rem;
     box-sizing: border-box;
     background-color: var(--bg-secondary);
