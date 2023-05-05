@@ -81,15 +81,18 @@ export default {
             <h1 style="color: #f1cc53;;">
                 Rules of Chopsticks
             </h1>
-            <b>
-                <p style="color : white">Chopsticks is a turn-based game where you can attack or transfer. Every player
-                    begins the game with one finger per hand. A hand is considered live if it has at least one finger. To
-                    attack, a player uses one of their live hands to strike one of the opponent's live ones. The number of
-                    fingers on the struck hand will increase based on the number of the attacking hand. If the total is 5,
+            <b style="color: whitesmoke">
+                <p>Chopsticks is a turn-based game where you can attack or transfer. Every player
+                    begins the game with one finger per hand.</p>
+                <p>A hand is considered live if it has at least one finger.</p>
+                <p>To attack, a player uses one of their live hands to strike one of the opponent's live ones. The number of
+                    fingers on the struck hand will increase based on the number of the attacking hand.</p>
+                <p> If the total is 5,
                     the hand is considered dead, if it's higher the excess will be the new number. To divide, if a player
                     has a dead hand, they can divide the fingers between their hands by transferring them from one hand to
                     the other. Players are required to attack at least once during the game. First player to have both of
                     their hands killed loses.</p>
+
             </b>
             <a href="#" class="box-close">
                 x
