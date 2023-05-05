@@ -1,6 +1,6 @@
 <script>
 import Game from '@/components/Game/Game.vue'
-import OptionsMenu from '@/components/OptionsMenu/OptionsMenu.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 import GameMenu from '@/components/GameMenu/GameMenu.vue'
 import PlayComputerMenu from '@/components/GameMenu/PlayComputerMenu.vue'
 
@@ -8,7 +8,7 @@ export default {
   name: 'Computer',
   components: {
     Game,
-    OptionsMenu,
+    Navbar,
     GameMenu,
     PlayComputerMenu,
   },
@@ -54,7 +54,7 @@ export default {
 
 <template>
   <div class="wrapper" @mouseup="noticeMouseUp">
-    <OptionsMenu :navbarActive="this.navbarActive" />
+    <Navbar :navbarActive="this.navbarActive" />
     <Game :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar" @disable-navbar="this.disableNavbar"
       @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag" />
     <PlayComputerMenu @start-game="this.startGame" @surrender-game="this.surrenderGame"

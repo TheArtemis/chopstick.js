@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'OptionsMenu',
+    name: 'Navbar',
     props: {
         navbarActive: {
             type: Boolean,
@@ -87,12 +87,13 @@ export default {
                     attack, a player uses one of their live hands to strike one of the opponent's live ones. The number of
                     fingers on the struck hand will increase based on the number of the attacking hand. If the total is 5,
                     the hand is considered dead, if it's higher the excess will be the new number. To divide, if a player
-                has a dead hand, they can divide the fingers between their hands by transferring them from one hand to
-                the other. Players are required to attack at least once during the game. First player to have both of
-                their hands killed loses.</p>
-        </b>
-        <a href="#" class="box-close">
-            x
-        </a>
+                    has a dead hand, they can divide the fingers between their hands by transferring them from one hand to
+                    the other. Players are required to attack at least once during the game. First player to have both of
+                    their hands killed loses.</p>
+            </b>
+            <a href="#" class="box-close">
+                x
+            </a>
+        </div>
     </div>
-</div></template>
+</template>
