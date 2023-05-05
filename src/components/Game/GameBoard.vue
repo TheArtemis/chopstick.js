@@ -201,6 +201,18 @@ export default {
       if (this.isDragging)
         this.stopDrag();
     },
+    isRightDragging() {
+      console.log(this.isDragging, this.currentPiece);
+      if (this.isDragging && this.currentPiece.id == 'hand-player-right')
+        return true;
+      return false;
+    },
+    isLeftDragging() {
+      console.log(this.isDragging, this.currentPiece);
+      if (this.isDragging && this.currentPiece.id == 'hand-player-left')
+        return true;
+      return false;
+    },
   },
   computed: {
     fingersPlayerLeft() {
@@ -283,13 +295,13 @@ export default {
     </div>
     <div class="game-player">
       <PlayerHand :id="this.handsPlayer.left.id" :ref="this.handsPlayer.left.id" side="left" :style="{
-          transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
-          pointerEvents: isDragging ? 'none' : 'auto'
-        }" :class="fingersPlayerLeft"></PlayerHand>
+        transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
+        pointerEvents: isDragging ? 'none' : 'auto'
+      }" :class="[{ moving: this.isLeftDragging() }, fingersPlayerLeft]"></PlayerHand>
       <PlayerHand :id="this.handsPlayer.right.id" :ref="this.handsPlayer.right.id" side="right" :style="{
-          transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
-          pointerEvents: isDragging ? 'none' : 'auto',
-        }" :class="fingersPlayerRight"></PlayerHand>
+        transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
+        pointerEvents: isDragging ? 'none' : 'auto',
+      }" :class="[{ moving: this.isRightDragging() }, fingersPlayerRight,]"></PlayerHand>
     </div>
   </div>
 </template>

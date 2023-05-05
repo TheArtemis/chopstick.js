@@ -125,9 +125,31 @@
   cursor: grab;
 }
 
-.hand.player.moving {
-  cursor: grabbing;
-} /* TODO */
+.hand.player.left.moving.one {
+  z-index: 100;
+}
+.hand.player.left.moving.two {
+  z-index: 100;
+}
+.hand.player.left.moving.three {
+  z-index: 100;
+}
+.hand.player.left.moving.four {
+  z-index: 100;
+}
+
+.hand.player.right.moving.one {
+  z-index: 100;
+}
+.hand.player.right.moving.tro {
+  z-index: 100;
+}
+.hand.player.right.moving.three {
+  z-index: 100;
+}
+.hand.player.right.moving.four {
+  z-index: 100;
+}
 
 .hand.zero {
   background-image: url("@/assets/imgs/0dx.png");
@@ -151,7 +173,7 @@
 }
 
 .player.left {
-  transform: scale(-1, 1);
+  /* transform: scale(-1, 1); */
   position: relative;
   z-index: 1;
 }
