@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <OptionsMenu />
+    <Navbar />
     <Game />
     <GameMenu />
   </div>
