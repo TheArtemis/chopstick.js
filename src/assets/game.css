@@ -226,6 +226,7 @@
     justify-content: center;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 2rem;
   }
   .game-board {
     margin-left: 0;
@@ -235,6 +236,7 @@
     width: auto;
     margin-right: auto;
     margin-left: 0;
+    margin-bottom: 1rem;
   }
   .hand {
     height: var(--hand-height-small);
