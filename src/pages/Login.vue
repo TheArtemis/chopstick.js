@@ -13,6 +13,7 @@
             </div>
 
             <input type="submit" name="sign-in" value="Sign In">
+            <a href="/register">Don't have an account? Register here</a>
         </form>
     </div>
 </template>
