@@ -41,10 +41,12 @@ export default {
         left: {
           id: 'hand-opponent-left',
           score: this.opponentLeft,
+          pos: null,
         },
         right: {
           id: 'hand-opponent-right',
           score: this.opponentRight,
+          pos: null,
         },
       },
 
@@ -129,9 +131,29 @@ export default {
       this.currentPiece.posY = newY;
       this.startY = ev.clientY
 
-
-
       this.handsPlayer[this.currentPiece] = this.currentPiece;
+
+      if (touch) {
+        console.log("trying to find target");
+
+        this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
+        this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
+
+        if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
+          this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
+          this.targetHand = this.handsOpponent.left;
+          console.log("found target left");
+        }
+        else if (this.handsOpponent.right.pos.x < ev.clientX && ev.clientX < this.handsOpponent.right.pos.x + this.handsOpponent.right.pos.width &&
+          this.handsOpponent.right.pos.y < ev.clientY && ev.clientY < this.handsOpponent.right.pos.y + this.handsOpponent.right.pos.height) {
+          this.targetHand = this.handsOpponent.right;
+          console.log("found target right");
+        }
+        else {
+          this.targetHand = null;
+        }
+
+      }
 
       /* console.log("dragging");
       console.log(this.currentPiece.posX, this.currentPiece.posY)
@@ -175,16 +197,16 @@ export default {
     findCurrentTarget(event) {
       return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id);
     },
-    enterTarget(event) {
-      if (!this.isDragging)
-        return;
-      /* console.log("enter") */
+    enterTarget(event, touch) {
+      /* if (!this.isDragging)
+        return; */
+      console.log("enter")
       this.targetHand = this.findCurrentTarget(event);
     },
-    leaveTarget() {
+    leaveTarget(event, touch) {
       if (!this.isDragging)
         return;
-      /* console.log("leave") */
+      console.log("leave")
       this.targetHand = null;
     },
     mouseclick() {
@@ -202,13 +224,13 @@ export default {
         this.stopDrag();
     },
     isRightDragging() {
-      console.log(this.isDragging, this.currentPiece);
+      /* console.log(this.isDragging, this.currentPiece); */
       if (this.isDragging && this.currentPiece.id == 'hand-player-right')
         return true;
       return false;
     },
     isLeftDragging() {
-      console.log(this.isDragging, this.currentPiece);
+      /* console.log(this.isDragging, this.currentPiece); */
       if (this.isDragging && this.currentPiece.id == 'hand-player-left')
         return true;
       return false;
@@ -266,15 +288,17 @@ export default {
       this.handsOpponent.right.score = val;
     },
     mouseUpFlag: function () {
-      console.log("notice external");
+      /* console.log("notice external"); */
       if (this.isDragging) {
-        console.log("tried to stop dragging");
+        /* console.log("tried to stop dragging"); */
         this.stopDrag();
       }
     },
   },
   mounted() {
     window.addEventListener('mouseleave', this.handleMouseLeave);
+    this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
+    this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
   },
   beforeUnmount() {
     window.removeEventListener('mouseleave', this.handleMouseLeave);
@@ -289,18 +313,21 @@ export default {
     @touchmove="doDrag($event, true)" @touchend="stopDrag" @click="handleClick">
     <div class="game-opponent">
       <div :id="this.handsOpponent.right.id" class="hand opponent right" @mouseenter="enterTarget"
-        @mouseleave="leaveTarget" @touchenter="enterTarget" @touchend="leaveTarget" :class="fingersOpponentRight"></div>
+        @mouseleave="leaveTarget" :class="fingersOpponentRight">
+      </div>
       <div :id="this.handsOpponent.left.id" class="hand opponent left" @mouseenter="enterTarget" @mouseleave="leaveTarget"
         :class="fingersOpponentLeft"></div>
     </div>
     <div class="game-player">
       <PlayerHand :id="this.handsPlayer.left.id" :ref="this.handsPlayer.left.id" side="left" :style="{
         transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
-        pointerEvents: isDragging ? 'none' : 'auto'
+        pointerEvents: isDragging ? 'none' : 'auto',
+        touchAction: isDragging ? 'none' : 'auto',
       }" :class="[{ moving: this.isLeftDragging() }, fingersPlayerLeft]"></PlayerHand>
       <PlayerHand :id="this.handsPlayer.right.id" :ref="this.handsPlayer.right.id" side="right" :style="{
         transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
         pointerEvents: isDragging ? 'none' : 'auto',
+        touchAction: isDragging ? 'none' : 'auto',
       }" :class="[{ moving: this.isRightDragging() }, fingersPlayerRight,]"></PlayerHand>
     </div>
   </div>

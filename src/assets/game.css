@@ -154,6 +154,7 @@
 .hand.zero {
   background-image: url("@/assets/imgs/0dx.png");
   pointer-events: none;
+  cursor: pointer;
 }
 
 .hand.one {
