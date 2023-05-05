@@ -253,6 +253,9 @@ export default {
       this.$emit('enable-navbar');
       /* console.log("navbar enabled"); */
     },
+    closeGameOver() {
+      this.isGameOverHidden = true;
+    },
   },
   updated() {
     /* console.log("game -> " + this.boardActive); */
@@ -314,7 +317,8 @@ export default {
         :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
         :playerRight="this.currentPosition.playerRight" :opponentLeft="this.currentPosition.opponentLeft"
         :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"
-        :isGameOverHidden="this.isGameOverHidden" :player="this.player" :opponent="this.opponent" :winner="this.winner">
+        :isGameOverHidden="this.isGameOverHidden" :player="this.player" :opponent="this.opponent" :winner="this.winner"
+        @close-game-over="this.closeGameOver">
       </GameBoard>
       <PlayerBar :player="player"></PlayerBar>
     </div>

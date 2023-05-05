@@ -245,6 +245,9 @@ export default {
         return true;
       return false;
     },
+    closeGameOver() {
+      this.$emit('close-game-over');
+    },
   },
   computed: {
     fingersPlayerLeft() {
@@ -330,7 +333,7 @@ export default {
     </div>
 
     <GameOver :isHidden="this.isGameOverHidden ? 'hidden' : ''" :player="this.player" :opponent="this.opponent"
-      :winner="this.winner" />
+      :winner="this.winner" @close-game-over="this.closeGameOver" />
 
     <div class="game-player">
       <PlayerHand :id="this.handsPlayer.left.id" :ref="this.handsPlayer.left.id" side="left" :style="{
