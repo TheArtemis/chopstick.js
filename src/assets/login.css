@@ -1,7 +1,6 @@
 
 .box{
     width: 80vh;
-    aspect-ratio: 16/9;
     padding: 2.5rem;
     box-sizing: border-box;
     background-color: var(--bg-secondary);
@@ -59,4 +58,17 @@
     border: 2px solid transparent;
     margin-top: 1.5rem;
     cursor: pointer;
+}
+
+@media screen and (max-width: 460px){
+    .box{
+        width: 60vh;
+        
+    }
+}
+@media screen and (max-width: 437px){
+    .box{
+        width: 50vh;
+        
+    }
 }
