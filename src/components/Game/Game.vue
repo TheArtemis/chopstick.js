@@ -1,6 +1,7 @@
 <script>
 import GameBoard from '@/components/Game/GameBoard.vue'
 import PlayerBar from '@/components/Game/PlayerBar.vue'
+import GameOver from '@/components/Game/GameOver.vue'
 
 export default {
   name: 'Game',
@@ -18,9 +19,11 @@ export default {
   components: {
     GameBoard,
     PlayerBar,
+    GameOver,
   },
   data() {
     return {
+      boardPosition: { top: 0, left: 0, boardWidth: 0, boardHeight: 0, gameOverWidth: 0, gameOverHeight: 0 },
       pastPositions: [],
       currentPosition: {
         playerLeft: 0,
@@ -42,6 +45,7 @@ export default {
       },
       winner: null,
       loser: null,
+      isGameOverHidden: true,
     }
   },
   methods: {
@@ -120,6 +124,7 @@ export default {
         opponentLeft: 1,
         opponentRight: 1,
       };
+      this.isGameOverHidden = true;
       this.winner = null;
       this.loser = null;
     },
@@ -219,9 +224,11 @@ export default {
         opponentRight: 0,
       } */
 
+      this.isGameOverHidden = false;
+
       if (this.playerSurrenderFlag == true) {
-        this.winner = this.player.name;
-        this.loser = this.opponent.name;
+        this.winner = this.opponent.name;
+        this.loser = this.player.name;
       }
 
       else if (this.hasPlayerLost()) {
@@ -268,7 +275,34 @@ export default {
         this.endGame();
       }
     }
-  }
+  },
+  /* computed: {
+    computedStyles() {
+      const left = this.boardPosition.left + (this.boardPosition.boardWidth - this.boardPosition.gameOverWidth) / 2
+      const top = this.boardPosition.top + (this.boardPosition.boardHeight - this.boardPosition.gameOverHeight) / 2
+      console.log(left, top)
+      return {
+        left: left + 'px',
+        top: top + 'px',
+      }
+    }
+  },
+  mounted() {
+    const position = document.getElementById('game-board').getBoundingClientRect();
+
+    console.log(position);
+
+    this.boardPosition = {
+      top: position.top,
+      left: position.left,
+      boardWidth: position.width,
+      boardHeight: position.height,
+      gameOverWidth: document.getElementById('game-over').getBoundingClientRect().width,
+      gameOverHeight: document.getElementById('game-over').getBoundingClientRect().height,
+    };
+
+    console.log(this.boardPosition);
+  }, */
 }
 </script>
 
@@ -279,7 +313,9 @@ export default {
       <GameBoard @player-attack="playerAttack" @disable-navbar="disableNavbar" @enable-navbar="enableNavbar"
         :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
         :playerRight="this.currentPosition.playerRight" :opponentLeft="this.currentPosition.opponentLeft"
-        :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"></GameBoard>
+        :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"
+        :isGameOverHidden="this.isGameOverHidden" :player="this.player" :opponent="this.opponent" :winner="this.winner">
+      </GameBoard>
       <PlayerBar :player="player"></PlayerBar>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <script>
 import PlayerHand from '@/components/Game/PlayerHand.vue'
+import GameOver from '@/components/Game/GameOver.vue'
 
 export default {
   name: 'GameBoard',
@@ -11,9 +12,18 @@ export default {
     opponentRight: Number,
     turn: String,
     mouseUpFlag: Boolean,
+    isGameOverHidden: Boolean,
+    player: {
+      type: Object,
+    },
+    opponent: {
+      type: Object,
+    },
+    winner: String,
   },
   components: {
     PlayerHand,
+    GameOver,
   },
   data() {
     return {
@@ -134,7 +144,7 @@ export default {
       this.handsPlayer[this.currentPiece] = this.currentPiece;
 
       if (touch) {
-        console.log("trying to find target");
+        /* console.log("trying to find target"); */
 
         this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
         this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
@@ -142,12 +152,12 @@ export default {
         if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
           this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
           this.targetHand = this.handsOpponent.left;
-          console.log("found target left");
+          /* console.log("found target left"); */
         }
         else if (this.handsOpponent.right.pos.x < ev.clientX && ev.clientX < this.handsOpponent.right.pos.x + this.handsOpponent.right.pos.width &&
           this.handsOpponent.right.pos.y < ev.clientY && ev.clientY < this.handsOpponent.right.pos.y + this.handsOpponent.right.pos.height) {
           this.targetHand = this.handsOpponent.right;
-          console.log("found target right");
+          /* console.log("found target right"); */
         }
         else {
           this.targetHand = null;
@@ -198,15 +208,15 @@ export default {
       return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id);
     },
     enterTarget(event, touch) {
-      /* if (!this.isDragging)
-        return; */
-      console.log("enter")
+      if (!this.isDragging)
+        return;
+      /* console.log("enter") */
       this.targetHand = this.findCurrentTarget(event);
     },
     leaveTarget(event, touch) {
       if (!this.isDragging)
         return;
-      console.log("leave")
+      /* console.log("leave") */
       this.targetHand = null;
     },
     mouseclick() {
@@ -308,7 +318,7 @@ export default {
 </script>
 
 <template>
-  <div class="game-board" :class="{ inactive: !this.boardActive }" @mousedown="startDrag($event, false)"
+  <div id="game-board" class="game-board" :class="{ inactive: !this.boardActive }" @mousedown="startDrag($event, false)"
     @mousemove="doDrag($event, false)" @mouseup="stopDrag" @touchstart="startDrag($event, true)"
     @touchmove="doDrag($event, true)" @touchend="stopDrag" @click="handleClick">
     <div class="game-opponent">
@@ -318,12 +328,17 @@ export default {
       <div :id="this.handsOpponent.left.id" class="hand opponent left" @mouseenter="enterTarget" @mouseleave="leaveTarget"
         :class="fingersOpponentLeft"></div>
     </div>
+
+    <GameOver :isHidden="this.isGameOverHidden ? 'hidden' : ''" :player="this.player" :opponent="this.opponent"
+      :winner="this.winner" />
+
     <div class="game-player">
       <PlayerHand :id="this.handsPlayer.left.id" :ref="this.handsPlayer.left.id" side="left" :style="{
         transform: `translate(${handsPlayer.left.posX}px, ${handsPlayer.left.posY}px) scale(-1, 1)`,
         pointerEvents: isDragging ? 'none' : 'auto',
         touchAction: isDragging ? 'none' : 'auto',
       }" :class="[{ moving: this.isLeftDragging() }, fingersPlayerLeft]"></PlayerHand>
+
       <PlayerHand :id="this.handsPlayer.right.id" :ref="this.handsPlayer.right.id" side="right" :style="{
         transform: `translate(${handsPlayer.right.posX}px, ${handsPlayer.right.posY}px)`,
         pointerEvents: isDragging ? 'none' : 'auto',

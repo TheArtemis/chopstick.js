@@ -1,0 +1,52 @@
+<script>
+export default {
+    name: 'GameOver',
+    props: {
+        winner: String,
+        position: {
+            type: Object,
+        },
+        isHidden: String,
+        player: {
+            type: Object,
+        },
+        opponent: {
+            type: Object,
+        },
+    },
+    data() {
+        return {}
+    },
+    computed: {
+        computeWinner() {
+            console.log(this.winner);
+            if (this.winner == this.player.name)
+                return "You have won!";
+            else if (this.winner == this.opponent.name)
+                return "You have lost!";
+            else
+                return ""
+        }
+    },
+    /* watch: {
+        winner: function () {
+            this.computeWinner();
+        }
+    } */
+};
+</script>
+
+<template>
+    <div class="game-over" :class="isHidden">
+        <h1 class="game-over-top">Game Over</h1>
+        <div class="game-over-mid">
+            <div class="game-over-pic player-pic" :class="this.winner == `${this.player.name}` ? 'winner' : 'loser'">
+                <img :src="this.player.picture" alt="player picture" />
+            </div>
+            <div class="game-over-pic opponent-pic" :class="this.winner == `${this.player.name}` ? 'loser' : 'winner'">
+                <img :src="this.opponent.picture" alt="opponent picture" />
+            </div>
+        </div>
+        <h2 class="game-over-result">{{ computeWinner }}</h2>
+    </div>
+</template>

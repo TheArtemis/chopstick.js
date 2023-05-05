@@ -20,7 +20,7 @@
   align-items: flex-start;
   width: 80%;
   height: 100%;
-
+  position: relative;
   /* height: 100%;
   max-height: 680px;
   min-height: 300px;
@@ -32,7 +32,7 @@
 
 .game-board {
   /* margin-top: 7px;  */
-
+  position: relative;
   max-width: 600px;
   max-height: 600px;
   width: 100%;
@@ -62,7 +62,7 @@
 .player-bar {
   display: flex;
   margin-top: 1em;
-  margin-bottom: 0.3em;
+  margin-bottom: 1em;
   color: var(--text-secondary);
   /* margin-right: auto; */
   width: 100%;
@@ -194,8 +194,71 @@
   transform: rotate(180deg) scale(-1, 1);
 }
 
-.dragging {
-  border-color: #d1e7bb !important;
+.game-over {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  z-index: 999;
+  border: 2px solid var(--border-board);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  background-color: var(--bg-primary);
+  border-radius: 1em;
+  color: var(--text-secondary);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-over-top {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 0.5em;
+}
+
+.game-over-mid {
+  display: flex;
+}
+
+.game-over-pic {
+  margin-left: 3em;
+  margin-top: 2em;
+}
+
+.game-over-pic img {
+  height: 70px;
+  width: 70px;
+  border-radius: 4px;
+  border: 2px solid var(--text-primary);
+}
+
+.game-over-pic.opponent-pic {
+  margin-left: auto;
+  margin-right: 3em;
+}
+
+.game-over-result {
+  margin-top: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.winner img {
+  border: 2px solid #a1f78b;
+}
+
+.loser img {
+  border: 2px solid #f78b8b;
 }
 
 @media only screen and (max-height: 700px) {
@@ -243,4 +306,16 @@
     height: var(--hand-height-small);
     width: var(--hand-width-small);
   }
+
+  /* .game-over {
+    position: fixed;
+    z-index: 999;
+    border: 2px solid var(--border-board);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 300px;
+    width: 300px;
+  } */
 }

@@ -1,35 +1,34 @@
 <template>
     <div class="game-menu">
-        <button 
-            class="game-button"
-            :class="{inactive: hasGameStarted}"
-            @click="startGame">New Game</button>
-        <button 
-            class="game-button last"
-            :class="{inactive: !hasGameStarted}"
-            @click="surrenderGame">Surrender</button>
+        <button class="game-button" :class="{ inactive: hasGameStarted }" @click="startGame">New Game</button>
+        <button class="game-button last" :class="{ inactive: !hasGameStarted }" @click="surrenderGame">Surrender</button>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'PlayComputerMenu',
-        props:{
-            hasGameStarted: Boolean,
-        },
-        methods: {
-            startGame(){                
-                this.$emit('start-game');
-            },
-            surrenderGame(){
-                this.$emit('surrender-game');
-            }
-        },
-        /* watch: {
-        hasGameStarted: function (val) {   
-            this.hasGameStarted = val;
-            }
-        }  */
+import GameOver from '@/components/Game/GameOver.vue'
 
-    }
+export default {
+    name: 'PlayComputerMenu',
+    props: {
+        hasGameStarted: Boolean,
+    },
+    components: {
+        GameOver
+    },
+    methods: {
+        startGame() {
+            this.$emit('start-game');
+        },
+        surrenderGame() {
+            this.$emit('surrender-game');
+        }
+    },
+    /* watch: {
+    hasGameStarted: function (val) {   
+        this.hasGameStarted = val;
+        }
+    }  */
+
+}
 </script>
