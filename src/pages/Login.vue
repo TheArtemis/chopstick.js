@@ -13,6 +13,7 @@
             </div>
 
             <input type="submit" name="sign-in" value="Sign In">
+            <a href="http://localhost:5173/register" class="reg-redirect">Don't have an account? Register here</a>
         </form>
     </div>
 </template>

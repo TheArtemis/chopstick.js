@@ -60,6 +60,15 @@
     cursor: pointer;
 }
 
+.box a{
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 300;
+    text-decoration: none;
+    position: absolute;
+    right: 7%;
+}
+
 @media screen and (max-width: 460px){
     .box{
         width: 60vh;
