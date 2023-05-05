@@ -18,15 +18,18 @@ export default {
       navbarActive: true,
       buttonSwitch: true, /* When true the NEW GAME button is on and the SURRENDER is of. When it's false is vice-versa */
       mouseUpFlag: false,
+      playerSurrenderFlag: false,
     }
   },
   methods: {
     startGame() {
       this.hasGameStarted = true;
+      this.playerSurrenderFlag = false;
       /* console.log("computer -> " + this.hasGameStarted); */
     },
     surrenderGame() {
       this.hasGameStarted = false;
+      this.playerSurrenderFlag = true;
       /* console.log("computer -> " + this.hasGameStarted); */
     },
     enableNavbar() {
@@ -45,7 +48,7 @@ export default {
     },
     noticeMouseUp() {
       this.mouseUpFlag = !this.mouseUpFlag;
-      console.log("mouse up catched");
+      /* console.log("mouse up catched"); */
     },
   },
 }
@@ -56,7 +59,7 @@ export default {
   <div class="wrapper" @mouseup="noticeMouseUp">
     <Navbar :navbarActive="this.navbarActive" />
     <Game :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar" @disable-navbar="this.disableNavbar"
-      @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag" />
+      @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag" :playerSurrenderFlag="this.playerSurrenderFlag" />
     <PlayComputerMenu @start-game="this.startGame" @surrender-game="this.surrenderGame"
       :hasGameStarted="this.hasGameStarted" />
   </div>

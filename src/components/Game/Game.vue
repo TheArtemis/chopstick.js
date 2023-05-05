@@ -12,6 +12,7 @@ export default {
       },
     },
     mouseUpFlag: Boolean,
+    playerSurrenderFlag: Boolean,
     hasGameStarted: Boolean,
   },
   components: {
@@ -35,8 +36,8 @@ export default {
         picture: 'https://cdn.smehost.net/milesdaviscom-uslegacyprod/wp-content/uploads/2022/04/milesdavis-1.jpg'
       },
       opponent: {
-        name: 'Opponent',
-        rating: '1000',
+        name: 'Computer',
+        rating: '8080',
         picture: 'https://yt3.googleusercontent.com/CCi8_PVD-0cEWApO1xlTJbBaBzcOyG5xMHp0v1_E8UiJsp3fzoYqKZvJkx6SK2zKEab2hNkGcw=s900-c-k-c0x00ffffff-no-rj'
       },
       winner: null,
@@ -218,7 +219,12 @@ export default {
         opponentRight: 0,
       } */
 
-      if (this.hasPlayerLost()) {
+      if (this.playerSurrenderFlag == true) {
+        this.winner = this.player.name;
+        this.loser = this.opponent.name;
+      }
+
+      else if (this.hasPlayerLost()) {
         this.winner = this.opponent.name;
         this.loser = this.player.name;
       }
@@ -247,13 +253,21 @@ export default {
   watch: {
     hasGameStarted: function (val) {
       this.boardActive = val;
-      if (val == false)
+
+      if (val == false) {
         return;
-      if (this.turn == -1)
+      }
+      if (this.turn == -1 && this.playerSurrenderFlag == false)
         this.startGame();
       else
         this.endGame();
     },
+    playerSurrenderFlag: function (val) {
+      if (val == true) {
+        this.turn = -1;
+        this.endGame();
+      }
+    }
   }
 }
 </script>
