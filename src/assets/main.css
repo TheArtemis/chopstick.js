@@ -10,10 +10,26 @@
   --bg-primary: #312e2b;
   --bg-secondary: #272522;
   --bg-secondary-highlight: #3a3936;
-  --background-board: #f1cc53;
-  --border-board: #ffffffcb;
+  --color-primary: #f1cc53;
+  --color-secondary: #fed241;
+  --color-primary-border: #bba252;
+
+  --border-board: var(--color-primary-border);
+  --background-board: var(--color-primary);
+
+  --text-color: var(--bg-secondary);
+  --button-color: var(--color-secondary);
+  --button-3d: #e6c467;
+  --button-border: var(--color-primary-border);
+  --button-shadow: #0f0f0f36;
+  --button-hover: var(--color-primary);
+  --button-dropdown: #fed241;
+  --button-dropdown-hover: var(--bg-secondary);
+  --button-inactive: #a2a3a2;
+  --button-border-inactive: #585858;
+  --button-height: 0.5rem;
+
   --transition-speed: 200ms;
-  --color-primary: rgb(241, 204, 83);
 
   --navbar-size: 4rem;
   --max-breakpoint: 768px;

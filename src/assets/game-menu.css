@@ -18,18 +18,6 @@
 }
 
 .game-button {
-  --text-color: var(--bg-secondary);
-  --button-color: #f1cc53;
-  --button-3d:#ffe592;
-  --button-border: #ecc33d;
-  --button-shadow: #0f0f0f36;
-  --button-hover: #fed241;
-  --button-dropdown: #fed241;
-  --button-dropdown-hover: var(--bg-secondary);
-  --button-inactive: #a2a3a2;
-  --button-border-inactive: #585858;
-  --button-height: 0.5rem;
-
   margin: auto;
   margin-top: 5px;
   cursor: pointer;
@@ -109,7 +97,7 @@
 .game-dropdown-menu {
   display: flex;
   flex-direction: column;
-  color: #f1cc53;;
+  color: #f1cc53;
 }
 
 .game-dropdown-component {
@@ -130,7 +118,7 @@
   margin-top: 5px;
   margin-bottom: 4px;
   background-color: var(--button-dropdown);
-  color: #f1cc53;;
+  color: #f1cc53;
   width: 33%;
   height: 50px;
   border-radius: 10px;
