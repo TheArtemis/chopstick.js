@@ -93,7 +93,7 @@ export default {
     animation-name: rightAttackPlayer;
     animation-duration: 1s;
     z-index: 999;
-    animation-timing-function: cubic-bezier(.18, .91, .83, .28);
+    /* animation-timing-function: cubic-bezier(1, .48, .54, .73) */
     /* border: 2px solid red; */
 }
 
