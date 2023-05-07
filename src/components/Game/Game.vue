@@ -119,6 +119,34 @@ export default {
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log("computer attack");
 
+      if (this.currentPosition.opponentLeft == 0 && this.currentPosition.opponentRight % 2 == 0 || this.currentPosition.opponentRight == 0 && this.currentPosition.opponentLeft % 2 == 0) {
+        const dec = Math.round(Math.random());
+        if (dec == 0)
+          this.computerAttack();
+        else
+          this.computerSplit();
+      }
+      else
+        this.computerAttack();
+
+      /* Activate Player Hands */
+      this.boardActive = true;
+      this.turn = 0;
+      this.gameLoop();
+
+    },
+    computerSplit() {
+      console.log("computer splitting");
+      if (this.currentPosition.opponentLeft == 0) {
+        this.currentPosition.opponentLeft = this.currentPosition.opponentRight / 2;
+        this.currentPosition.opponentRight = this.currentPosition.opponentRight / 2;
+      }
+      else if (this.currentPosition.opponentRight == 0) {
+        this.currentPosition.opponentRight = this.currentPosition.opponentLeft / 2;
+        this.currentPosition.opponentLeft = this.currentPosition.opponentLeft / 2;
+      }
+    },
+    computerAttack() {
       let currHandValue; /* Current value hand for opponent */
       let currHandId; /* Current hand id for opponent */
       if (this.currentPosition.opponentLeft == 0) {
@@ -131,7 +159,7 @@ export default {
       }
       else {
         const hnd = Math.round(Math.random());
-        if (hnd == 0) {
+        if (hnd == 1) {
           currHandValue = this.currentPosition.opponentLeft;
           currHandId = 'hand-opponent-left';
         }
@@ -152,12 +180,6 @@ export default {
         else
           this.computerAttackRight(currHandValue, currHandId);
       }
-
-      /* Activate Player Hands */
-      this.boardActive = true;
-      this.turn = 0;
-      this.gameLoop();
-
     },
     playerAttack(event) {
       console.log(event.source + " is attacking " + event.target);
