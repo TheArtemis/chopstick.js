@@ -159,7 +159,6 @@ export default {
       this.gameLoop();
 
     },
-
     playerAttack(event) {
       console.log(event.source + " is attacking " + event.target);
       if (event.target == 'hand-opponent-left') {
@@ -209,6 +208,38 @@ export default {
         this.currentPosition.opponentLeft = sum;
     },
 
+    playerSplit(event) {
+      console.log("split registered");
+
+      if (event.target == 'hand-player-left')
+        if (this.currentPosition.playerLeft != 0 || this.currentPosition.playerRight % 2 != 0)
+          return this.gameLoop();
+        else
+          this.playerSplitLeft();
+
+      else if (event.target == 'hand-player-right')
+        if (this.currentPosition.playerRight != 0 || this.currentPosition.playerLeft % 2 != 0)
+          return this.gameLoop();
+        else
+          this.playerSplitRight();
+
+      this.turn = 1;
+      this.gameLoop();
+    },
+
+    playerSplitLeft() {
+      this.currentPosition.playerLeft = this.currentPosition.playerRight / 2;
+      this.currentPosition.playerRight = this.currentPosition.playerRight / 2;
+
+    },
+
+    playerSplitRight() {
+
+      this.currentPosition.playerRight = this.currentPosition.playerLeft / 2;
+      this.currentPosition.playerLeft = this.currentPosition.playerLeft / 2;
+
+    },
+
     computerAttackLeft(handValue, handId) {
       console.log("attacking left with value " + handValue);
 
@@ -238,6 +269,9 @@ export default {
         this.currentPosition.playerRight = sum;
       console.log("new value for right is " + this.currentPosition.playerRight);
     },
+
+
+
     playAttackAnimation(opponentHand, playerHand) {
       /* console.log(this.$refs.gameBoard.$refs[opponentHand]); */
 
@@ -349,7 +383,7 @@ export default {
   <div class="game-panel">
     <div class="game-panel-wrap">
       <PlayerBar :player="opponent"></PlayerBar>
-      <GameBoard ref='gameBoard' @player-attack="playerAttack" @disable-navbar="disableNavbar"
+      <GameBoard ref='gameBoard' @player-attack="playerAttack" @player-split="playerSplit" @disable-navbar="disableNavbar"
         @enable-navbar="enableNavbar" :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
         :playerRight="this.currentPosition.playerRight" :opponentLeft="this.currentPosition.opponentLeft"
         :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"

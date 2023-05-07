@@ -151,6 +151,9 @@ export default {
       this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
       this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
 
+      const handsPlayerLeftPosition = document.getElementById(this.handsPlayer.left.id).getBoundingClientRect();
+      const handsPlayerRightPosition = document.getElementById(this.handsPlayer.right.id).getBoundingClientRect();
+
       if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
         this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
         this.targetHand = this.handsOpponent.left;
@@ -161,6 +164,17 @@ export default {
         this.targetHand = this.handsOpponent.right;
         /* console.log("found target right"); */
       }
+      else if (this.currentPiece != null && this.currentPiece == this.handsPlayer.left && handsPlayerRightPosition.x < ev.clientX && ev.clientX < handsPlayerRightPosition.x + handsPlayerRightPosition.width &&
+        handsPlayerRightPosition.y < ev.clientY && ev.clientY < handsPlayerRightPosition.y + handsPlayerRightPosition.height) {
+        this.targetHand = this.handsPlayer.right;
+        /* console.log("found target right"); */
+      }
+      else if (this.currentPiece != null && this.currentPiece == this.handsPlayer.right && handsPlayerLeftPosition.x < ev.clientX && ev.clientX < handsPlayerLeftPosition.x + handsPlayerLeftPosition.width &&
+        handsPlayerLeftPosition.y < ev.clientY && ev.clientY < handsPlayerLeftPosition.y + handsPlayerLeftPosition.height) {
+        this.targetHand = this.handsPlayer.left;
+        /* console.log("found target left"); */
+      }
+
       else {
         this.targetHand = null;
       }
@@ -196,7 +210,10 @@ export default {
       this.isDragging = false;
 
       if (this.targetHand != null) {
-        this.$emit('player-attack', { target: this.targetHand.id, source: this.currentPiece.id });
+        if (this.targetHand.id == 'hand-opponent-left' || this.targetHand.id == 'hand-opponent-right')
+          this.$emit('player-attack', { target: this.targetHand.id, source: this.currentPiece.id });
+        else if (this.targetHand.id == 'hand-player-left' || this.targetHand.id == 'hand-player-right')
+          this.$emit('player-split', { target: this.targetHand.id, source: this.currentPiece.id });
       }
       this.targetHand = null;
       this.currentPiece = null;
