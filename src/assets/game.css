@@ -213,10 +213,12 @@
   color: var(--text-secondary);
   opacity: 1;
   transition: opacity 0.2s ease;
+  transition: 0.3s ease-in-out;
 }
 
 .hidden {
   opacity: 0;
+  top: -200px;
   pointer-events: none;
 }
 
