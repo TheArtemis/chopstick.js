@@ -49,70 +49,31 @@ export default {
     }
   },
   methods: {
-    playerAttack(event) {
-      console.log(event.source + " is attacking " + event.target);
-      if (event.target == 'hand-opponent-left') {
-        if (this.currentPosition.opponentLeft == 0)
-          return this.gameLoop();
 
-        this.playerAttackLeft(event.source);
-      }
-      else if (event.target == 'hand-opponent-right') {
-        if (this.currentPosition.opponentRight == 0)
-          return this.gameLoop();
-        this.playerAttackRight(event.source);
-      }
-      this.turn = 1;
-      this.gameLoop();
-    },
-    playerAttackRight(hand) { /* hand is source hand */
-      console.log("player attacking right");
-      var playerVal;
-      if (hand == 'hand-player-left')
-        playerVal = this.currentPosition.playerLeft;
-      else if (hand == 'hand-player-right')
-        playerVal = this.currentPosition.playerRight;
+    /* Game Over Conditions */
 
-      var sum = playerVal + this.currentPosition.opponentRight;
-      if (sum == 5)
-        this.currentPosition.opponentRight = 0;
-      else if (sum > 5)
-        this.currentPosition.opponentRight = sum - 5;
-      else
-        this.currentPosition.opponentRight = sum;
-    },
-    playerAttackLeft(hand) {
-      console.log("player attacking left");
-      var playerVal;
-      if (hand == 'hand-player-left')
-        playerVal = this.currentPosition.playerLeft;
-      else if (hand == 'hand-player-right')
-        playerVal = this.currentPosition.playerRight;
-
-      var sum = playerVal + this.currentPosition.opponentLeft;
-      if (sum == 5)
-        this.currentPosition.opponentLeft = 0;
-      else if (sum > 5)
-        this.currentPosition.opponentLeft = sum - 5;
-      else
-        this.currentPosition.opponentLeft = sum;
-    },
+    // Checks if the current player has lost by examining if both the player's left and right positions are empty.
     hasPlayerLost() {
       if (this.currentPosition.playerLeft == 0 && this.currentPosition.playerRight == 0)
         return true;
       return false;
     },
+    // Checks if the opponent has lost by examining if both the opponent's left and right positions are empty
     hasOpponentLost() {
       if (this.currentPosition.opponentLeft == 0 && this.currentPosition.opponentRight == 0)
         return true;
       return false;
     },
+    // Determines if the game is over by checking if either the player or the opponent has lost, and logs a message indicating that someone has lost.
     isGameOver() {
       if (this.hasPlayerLost() || this.hasOpponentLost()) {
         console.log("someone lost")
         return true;
       }
     },
+
+    /* Game Initialization and Execution */
+
     initGame() {
       const initTurn = Math.round(Math.random());
       this.boardActive = true;
@@ -198,6 +159,56 @@ export default {
       this.gameLoop();
 
     },
+
+    playerAttack(event) {
+      console.log(event.source + " is attacking " + event.target);
+      if (event.target == 'hand-opponent-left') {
+        if (this.currentPosition.opponentLeft == 0)
+          return this.gameLoop();
+
+        this.playerAttackLeft(event.source);
+      }
+      else if (event.target == 'hand-opponent-right') {
+        if (this.currentPosition.opponentRight == 0)
+          return this.gameLoop();
+        this.playerAttackRight(event.source);
+      }
+      this.turn = 1;
+      this.gameLoop();
+    },
+    playerAttackRight(hand) { /* hand is source hand */
+      console.log("player attacking right");
+      var playerVal;
+      if (hand == 'hand-player-left')
+        playerVal = this.currentPosition.playerLeft;
+      else if (hand == 'hand-player-right')
+        playerVal = this.currentPosition.playerRight;
+
+      var sum = playerVal + this.currentPosition.opponentRight;
+      if (sum == 5)
+        this.currentPosition.opponentRight = 0;
+      else if (sum > 5)
+        this.currentPosition.opponentRight = sum - 5;
+      else
+        this.currentPosition.opponentRight = sum;
+    },
+    playerAttackLeft(hand) {
+      console.log("player attacking left");
+      var playerVal;
+      if (hand == 'hand-player-left')
+        playerVal = this.currentPosition.playerLeft;
+      else if (hand == 'hand-player-right')
+        playerVal = this.currentPosition.playerRight;
+
+      var sum = playerVal + this.currentPosition.opponentLeft;
+      if (sum == 5)
+        this.currentPosition.opponentLeft = 0;
+      else if (sum > 5)
+        this.currentPosition.opponentLeft = sum - 5;
+      else
+        this.currentPosition.opponentLeft = sum;
+    },
+
     computerAttackLeft(handValue, handId) {
       console.log("attacking left with value " + handValue);
 
