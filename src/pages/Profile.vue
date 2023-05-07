@@ -15,21 +15,24 @@ export default {
     <div class="wrapper">
         <Navbar />
         <div class="contenitor">
-            <div class="profile-sx">
-                <label>Profile</label>
-                <div class="profile-img">
-                    <input type="file" class="my_file">
+            <div class="contentsx">
+                <div class="profile">
+                    <label id="Profile">Profile</label>
+                    <div class="img">
+                        <input type="file" class="my_file">
+                    </div>
+                    <label id="Username">Username</label>
                 </div>
-                <div class="profile-bio">
-                    <label>Username</label>
-                    <div class="bio">
-                        <label>Biography</label>
+                <div class="bio">
+                    <label id="User">Username</label>
+                    <div class="areabio">
+                        <label id="Bio">Biography</label>
                     </div>
                 </div>
             </div>
-            <div class="profile-dx">
-                <label>Stats</label>
+            <div class="contentdx">
                 <div class="stats">
+                    <label id="Stats">Stats</label>
                     <div class="top-wrapper">
                         <div class="top-container">
                             <i class="fa-regular fa-thumbs-up"></i>
@@ -49,9 +52,9 @@ export default {
                     </div>
                 </div>
                 <div class="recent">
-                    <label>Recent Games</label>
+                    <label id="Recent">Recent Games</label>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
 </template>
