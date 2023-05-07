@@ -121,9 +121,13 @@
   /* display: none; */ /* TEST SFONDO VUOTO */
 }
 
-.hand.player:hover {
+/* .hand.player:hover {
   cursor: grab;
 }
+
+hand.player:active {
+  cursor: grabbing;
+} */
 
 .hand.player.left.moving.one {
   z-index: 100;
@@ -214,6 +218,7 @@
   opacity: 1;
   transition: opacity 0.2s ease;
   transition: 0.3s ease-in-out;
+  pointer-events: auto;
 }
 
 .hidden {
@@ -269,11 +274,30 @@
   margin-right: 3em;
 }
 
-.game-over-result {
+.game-over-result-wrapper {
   margin-top: 1.5em;
   margin-left: auto;
   margin-right: auto;
 }
+
+/* .game-over-result h2 {
+  animation: grow 2s infinite;
+}
+
+@keyframes grow {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+} */
+
+/* .hidden h2 {
+  opacity: 0;
+} */
 
 .winner img {
   border: 4px solid #ffde49;

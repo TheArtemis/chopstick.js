@@ -53,6 +53,9 @@ export default {
                 <img :src="this.opponent.picture" alt="opponent picture" />
             </div>
         </div>
-        <h2 class="game-over-result">{{ computeWinner }}</h2>
+        <div class="game-over-result-wrapper" :class="isHidden">
+            <h2 class="game-over-result">{{ computeWinner }}</h2>
+        </div>
+
     </div>
 </template>
