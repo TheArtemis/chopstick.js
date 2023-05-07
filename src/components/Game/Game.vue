@@ -158,29 +158,38 @@ export default {
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log("computer attack");
 
-      let currHand;
-      if (this.currentPosition.opponentLeft == 0)
-        currHand = this.currentPosition.opponentRight;
-      else if (this.currentPosition.opponentRight == 0)
-        currHand = this.currentPosition.opponentLeft;
+      let currHandValue; /* Current value hand for opponent */
+      let currHandId; /* Current hand id for opponent */
+      if (this.currentPosition.opponentLeft == 0) {
+        currHandValue = this.currentPosition.opponentRight;
+        currHandId = 'hand-opponent-right';
+      }
+      else if (this.currentPosition.opponentRight == 0) {
+        currHandValue = this.currentPosition.opponentLeft;
+        currHandId = 'hand-opponent-left';
+      }
       else {
         const hnd = Math.round(Math.random());
-        if (hnd == 0)
-          currHand = this.currentPosition.opponentLeft;
-        else
-          currHand = this.currentPosition.opponentRight;
+        if (hnd == 0) {
+          currHandValue = this.currentPosition.opponentLeft;
+          currHandId = 'hand-opponent-left';
+        }
+        else {
+          currHandValue = this.currentPosition.opponentRight;
+          currHandId = 'hand-opponent-right';
+        }
       }
 
       if (this.currentPosition.playerLeft == 0) /* Se la mano sinistre è morta attacca la destra */
-        this.computerAttackRight(currHand);
+        this.computerAttackRight(currHandValue, currHandId);
       else if (this.currentPosition.playerRight == 0) /* Se la mano destra è morta attacca la sinistra */
-        this.computerAttackLeft(currHand);
+        this.computerAttackLeft(currHandValue, currHandId);
       else {
         const hnd = Math.round(Math.random());
         if (hnd == 0)
-          this.computerAttackLeft(currHand);
+          this.computerAttackLeft(currHandValue, currHandId);
         else
-          this.computerAttackRight(currHand);
+          this.computerAttackRight(currHandValue, currHandId);
       }
 
       /* Activate Player Hands */
@@ -189,10 +198,12 @@ export default {
       this.gameLoop();
 
     },
-    computerAttackLeft(hand) {
-      console.log("attacking left with value " + hand);
+    computerAttackLeft(handValue, handId) {
+      console.log("attacking left with value " + handValue);
 
-      var sum = hand + this.currentPosition.playerLeft;
+      this.playAttackAnimation(handId, 'hand-player-left');
+
+      var sum = handValue + this.currentPosition.playerLeft;
       if (sum == 5)
         this.currentPosition.playerLeft = 0;
       else if (sum > 5)
@@ -202,10 +213,12 @@ export default {
 
       console.log("new value for left is " + this.currentPosition.playerLeft);
     },
-    computerAttackRight(hand) {
-      console.log("attacking right with value " + hand);
+    computerAttackRight(handValue, handId) {
+      console.log("attacking right with value " + handValue);
 
-      var sum = hand + this.currentPosition.playerRight;
+      this.playAttackAnimation(handId, 'hand-player-right');
+
+      var sum = handValue + this.currentPosition.playerRight;
       if (sum == 5)
         this.currentPosition.playerRight = 0;
       else if (sum > 5)
@@ -213,6 +226,18 @@ export default {
       else
         this.currentPosition.playerRight = sum;
       console.log("new value for right is " + this.currentPosition.playerRight);
+    },
+    playAttackAnimation(opponentHand, playerHand) {
+      /* console.log(this.$refs.gameBoard.$refs[opponentHand]); */
+
+      const playerHandObject = this.$refs.gameBoard.$refs[playerHand];
+      const playerHandPosition = playerHandObject.$el.getBoundingClientRect();
+      console.log(playerHandObject.$el)
+
+      /* console.log(playerHandPosition); */
+
+      this.$refs.gameBoard.$refs[opponentHand].AttackAnimation(playerHand, playerHandPosition);
+      /* this.$refs.GameBoard[opponentHand].AttackAnimation(playerHand); */
     },
     endGame() {
       this.turn = -1;
@@ -313,8 +338,8 @@ export default {
   <div class="game-panel">
     <div class="game-panel-wrap">
       <PlayerBar :player="opponent"></PlayerBar>
-      <GameBoard @player-attack="playerAttack" @disable-navbar="disableNavbar" @enable-navbar="enableNavbar"
-        :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
+      <GameBoard ref='gameBoard' @player-attack="playerAttack" @disable-navbar="disableNavbar"
+        @enable-navbar="enableNavbar" :boardActive="this.boardActive" :playerLeft="this.currentPosition.playerLeft"
         :playerRight="this.currentPosition.playerRight" :opponentLeft="this.currentPosition.opponentLeft"
         :opponentRight="this.currentPosition.opponentRight" :mouseUpFlag="this.mouseUpFlag"
         :isGameOverHidden="this.isGameOverHidden" :player="this.player" :opponent="this.opponent" :winner="this.winner"

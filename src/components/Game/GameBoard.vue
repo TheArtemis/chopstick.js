@@ -1,5 +1,6 @@
 <script>
 import PlayerHand from '@/components/Game/PlayerHand.vue'
+import OpponentHand from '@/components/Game/OpponentHand.vue'
 import GameOver from '@/components/Game/GameOver.vue'
 
 export default {
@@ -24,6 +25,7 @@ export default {
   components: {
     PlayerHand,
     GameOver,
+    OpponentHand,
   },
   data() {
     return {
@@ -143,27 +145,27 @@ export default {
 
       this.handsPlayer[this.currentPiece] = this.currentPiece;
 
-      if (touch) {
-        /* console.log("trying to find target"); */
+      /* if (touch) { */
+      /* console.log("trying to find target"); */
 
-        this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
-        this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
+      this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
+      this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
 
-        if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
-          this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
-          this.targetHand = this.handsOpponent.left;
-          /* console.log("found target left"); */
-        }
-        else if (this.handsOpponent.right.pos.x < ev.clientX && ev.clientX < this.handsOpponent.right.pos.x + this.handsOpponent.right.pos.width &&
-          this.handsOpponent.right.pos.y < ev.clientY && ev.clientY < this.handsOpponent.right.pos.y + this.handsOpponent.right.pos.height) {
-          this.targetHand = this.handsOpponent.right;
-          /* console.log("found target right"); */
-        }
-        else {
-          this.targetHand = null;
-        }
-
+      if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
+        this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
+        this.targetHand = this.handsOpponent.left;
+        /* console.log("found target left"); */
       }
+      else if (this.handsOpponent.right.pos.x < ev.clientX && ev.clientX < this.handsOpponent.right.pos.x + this.handsOpponent.right.pos.width &&
+        this.handsOpponent.right.pos.y < ev.clientY && ev.clientY < this.handsOpponent.right.pos.y + this.handsOpponent.right.pos.height) {
+        this.targetHand = this.handsOpponent.right;
+        /* console.log("found target right"); */
+      }
+      else {
+        this.targetHand = null;
+      }
+
+      /* } */
 
       /* console.log("dragging");
       console.log(this.currentPiece.posX, this.currentPiece.posY)
@@ -201,24 +203,27 @@ export default {
       this.startX = 0;
       this.startY = 0;
       /* console.log("stopped") */
-
-
     },
-    findCurrentTarget(event) {
+
+    /* Deprecated: target selection is handled in the doDrag function */
+
+    /* findCurrentTarget(event) {
       return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id);
-    },
-    enterTarget(event, touch) {
+    }, */
+
+
+    /* enterTarget(event, touch) {
       if (!this.isDragging)
-        return;
-      /* console.log("enter") */
+        return;      
       this.targetHand = this.findCurrentTarget(event);
     },
     leaveTarget(event, touch) {
       if (!this.isDragging)
-        return;
-      /* console.log("leave") */
+        return;      
       this.targetHand = null;
-    },
+    }, */
+
+
     mouseclick() {
       /* console.log("clicked") */
     },
@@ -325,11 +330,11 @@ export default {
     @mousemove="doDrag($event, false)" @mouseup="stopDrag" @touchstart="startDrag($event, true)"
     @touchmove="doDrag($event, true)" @touchend="stopDrag" @click="handleClick">
     <div class="game-opponent">
-      <div :id="this.handsOpponent.right.id" class="hand opponent right" @mouseenter="enterTarget"
-        @mouseleave="leaveTarget" :class="fingersOpponentRight">
-      </div>
-      <div :id="this.handsOpponent.left.id" class="hand opponent left" @mouseenter="enterTarget" @mouseleave="leaveTarget"
-        :class="fingersOpponentLeft"></div>
+      <OpponentHand :id="this.handsOpponent.right.id" :ref="this.handsOpponent.right.id" side="right"
+        :class="fingersOpponentRight">
+      </OpponentHand>
+      <OpponentHand :id="this.handsOpponent.left.id" :ref="this.handsOpponent.left.id" side="left"
+        :class="fingersOpponentLeft"></OpponentHand>
     </div>
 
     <GameOver :isHidden="this.isGameOverHidden ? 'hidden' : ''" :player="this.player" :opponent="this.opponent"
