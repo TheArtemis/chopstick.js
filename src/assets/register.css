@@ -59,14 +59,14 @@
     margin-top: 1.5rem;
     cursor: pointer;
 }
-@media screen and (max-width: 460px){
+@media screen and (min-width: 501px){
     .registerBox{
         width: 60vh;
         
     }
 }
-@media screen and (max-width: 437px){
-    .resgosterBox{
+@media screen and (max-width: 500px){
+    .registerBox{
         width: 30vh;
         
     }
