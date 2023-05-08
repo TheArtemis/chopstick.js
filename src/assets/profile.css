@@ -81,13 +81,17 @@
 }
 
 .areabio{
-    width:80%;
-    margin: auto;
+    color:#b6b6b6;
+    resize: none;
+    width: 80%;
+    height: 60%;
     aspect-ratio: 2 / 1;
     background-color:var(--bg-secondary);   
+    border: 1px solid var(--color-primary);
+    
 }
-.areabio label#Bio{
-    color: var(--color-primary);
+.labelbio{
+    color: black;
     font-size: 1.5rem;
 }
 

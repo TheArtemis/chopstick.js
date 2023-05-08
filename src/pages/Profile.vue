@@ -25,9 +25,8 @@ export default {
                 </div>
                 <div class="bio">
                     <label id="User">Username</label>
-                    <div class="areabio">
-                        <label id="Bio">Biography</label>
-                    </div>
+                    <textarea class="areabio"></textarea>
+                    <label for="areabio" class="labelbio">Bio</label>
                 </div>
             </div>
             <div class="contentdx">
