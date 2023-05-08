@@ -57,8 +57,6 @@
                     <canvas ref="lineChart"></canvas>
                 </div>
             </div>
-            <div class="under">
-            </div>
         </div>
     </div>
 </template>
