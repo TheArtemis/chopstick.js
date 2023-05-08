@@ -159,10 +159,9 @@
   }
 
   .content{
-    width: 60vw;
-    height: 30vh;
-    top: 25%;
-    left: 20%;
+    width: auto;
+    height: auto;
+    margin: 5rem;
   }
 }
 
