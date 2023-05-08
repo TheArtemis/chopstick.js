@@ -37,7 +37,7 @@ export default {
             <label id="Click">Click to change theme</label>
           </div>
           <div class="butt">
-            <button class="settings-button">Exit from your profile</button>
+            <button class="settings-button">Log Out</button>
             <button class="settings-button">Save</button>
           </div>
         </div>

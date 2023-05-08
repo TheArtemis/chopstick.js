@@ -9,7 +9,7 @@
 .settings {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
   width: 70%;
   height: 90%;
   background-color: var(--bg-secondary);
@@ -19,7 +19,6 @@
   color: var(--color-primary);
   font-size: 3rem;
   margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .topsett {
@@ -55,7 +54,7 @@
 }
 
 input {
-  width: 85%;
+  width: 80%;
   height: 30px;
   padding: 0 16px;
   background: transparent;
@@ -111,7 +110,7 @@ input:valid {
   font-size: 17px;
   position: relative;
   display: inline-block;
-  width: 20em;
+  width: 16em;
   height: 4em;
 }
 
@@ -139,7 +138,7 @@ input:valid {
   display: grid;
   place-content: center;
   height: 3em;
-  width: 19em;
+  width: 15em;
   border-radius: 20px;
   left: 0.5em;
   bottom: 0.5em;
@@ -164,7 +163,6 @@ input:valid {
 }
 .settings-button {
   margin: auto;
-  margin-top: 5px;
   cursor: pointer;
 
   padding: 1em 2em;
@@ -221,10 +219,6 @@ input:valid {
   transform: translate3d(0, 0, -1em);
 }
 
-.settings-button.last {
-  margin-top: auto;
-  margin-bottom: 3px;
-}
 
 .settings-button.inactive {
   pointer-events: none;
@@ -262,6 +256,9 @@ input:valid {
     width: 85%;
     height: 20px;
   }
+  .butt {
+    flex-direction: column;
+  }
 
   .theme label#Click {
     font-size: 0.7rem;
@@ -297,6 +294,9 @@ input:valid {
   input {
     width: 75%;
     height: 15px;
+  }
+  .butt {
+    flex-direction: column;
   }
 
   .theme label#Click {
