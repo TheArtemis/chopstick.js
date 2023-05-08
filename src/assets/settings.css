@@ -149,7 +149,7 @@ input {
     content: "LIGHT THEME";
   }
 
-.chk:checked:active{
+  :root:has(.chk:checked){
     filter:invert(0.9) hue-rotate(300deg);
   }
 

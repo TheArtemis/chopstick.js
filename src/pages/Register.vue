@@ -44,6 +44,7 @@ export default {
 </script>
 
 <template>  
+<div class="rBox">
   <div class="registerBox">
     <h2>Register</h2>
     <form @submit.prevent="submitRegister">
@@ -62,5 +63,6 @@ export default {
       <button type="submit">Register</button>
     </form>
   </div>
+</div>
 </template>
 
