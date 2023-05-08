@@ -1,19 +1,78 @@
-
-.back{
+.total{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100vh;
-    background-color: blue;
 }
 
-.back .box{
-    border: 1px solid white;
-    position:absolute;
-    width: 80vh;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
+.graph{
     display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    margin-left: 3rem;
+    width: 69%;
+    height: 60%;
+    background-color: var(--bg-secondary);
 }
 
+.graph label#Stats{
+    color: var(--color-primary);
+    font-size: 2.5rem;
+}
+
+.line-chart{
+    width: 90%;
+    height: 80%;
+    margin: auto;
+}
+
+.under{
+    display: flex;
+    margin-left: 3rem;
+    width: 69%;
+    height: 40%;
+    background-color: rgb(255, 0, 217);
+}
+
+@media only screen and (max-width: 767px) and (min-width: 497px) {
+    .graph{
+        margin-left: 0;
+        width: 69%;
+        height: 60%;
+    }
+    
+    .graph label#Stats{
+        font-size: 2rem;
+    }
+    
+    .under{
+        margin-left: 0;
+        width: 69%;
+        height: 40%;
+    }
+    
+}
+
+@media only screen and (max-width: 497px) {
+    .graph{
+        margin-left: 0;
+        width: 90%;
+        height: 60%;
+    }
+    
+    .graph label#Stats{
+        font-size: 1.5rem;
+    }
+    
+    .under{
+        margin-left: 0;
+        width: 90%;
+        height: 40%;
+    }
+    
+}
 
 
