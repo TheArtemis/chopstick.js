@@ -45,45 +45,7 @@
 }
 
 :root[data-colors="light"] {
-    font-size: 16px;
-    font-family: "Roboto", sans-serif;
-  --text-primary: #7b2c2c;
-  --text-secondary: #92255d;
-  --bg-primary: #945b23;
-  --bg-secondary: #272522;
-  --bg-secondary-highlight: #3a3936;
-  --color-primary: #135384;
-  --color-secondary: #fed241;
-  --color-primary-border: #bba252;
-
-  --border-board: var(--color-primary-border);
-  --background-board: var(--color-primary);
-
-  --text-color: var(--bg-secondary);
-  --button-color: var(--color-secondary);
-  --button-3d: #e6c467;
-  --button-border: var(--color-primary-border);
-  --button-shadow: #0f0f0f36;
-  --button-hover: var(--color-primary);
-  --button-dropdown: #fed241;
-  --button-dropdown-hover: var(--bg-secondary);
-  --button-inactive: #a2a3a2;
-  --button-border-inactive: #585858;
-  --button-height: 0.5rem;
-
-  --transition-speed: 200ms;
-
-  --navbar-size: 4rem;
-  --max-breakpoint: 768px;
-
-  --hand-height-big: 230px;
-  --hand-width-big: 120px;
-
-  --hand-height-medium: 200px;
-  --hand-width-medium: 100px;
-
-  --hand-height-small: 180px;
-  --hand-width-small: 90px;
+    filter: invert(0.9) hue-rotate(10deg);
 }
 
 html {
