@@ -149,6 +149,10 @@ input {
     content: "LIGHT THEME";
   }
 
+.chk:checked:active{
+    filter:invert(0.9) hue-rotate(300deg);
+  }
+
   .butt{
     display: flex;
     align-items: center;
