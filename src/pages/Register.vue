@@ -14,6 +14,14 @@ export default {
       mail: '',
     }
   },
+  created() {
+    const colors = localStorage.getItem('colors');
+    if (colors === 'true') {
+      document.documentElement.setAttribute('data-colors', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-colors');
+    }
+   },
   methods: {
     async submitRegister() {
       // Make an HTTP request to your server to register the user

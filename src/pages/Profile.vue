@@ -3,6 +3,14 @@ import Navbar from '@/components/Navbar/Navbar.vue'
 
 export default {
     name: 'Profile',
+    created() {
+    const colors = localStorage.getItem('colors');
+    if (colors === 'true') {
+      document.documentElement.setAttribute('data-colors', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-colors');
+    }
+   },
     components: {
         Navbar,
     }

@@ -5,6 +5,27 @@ export default {
   name: 'Settings',
   components: {
     Navbar,
+  },
+  data() {
+    return {
+      clicked: false
+    };
+  },
+  mounted() {
+    if (localStorage.getItem('colors') === 'true') {
+      this.clicked = true;
+    }
+  },
+  methods: {
+    themeSwitch() {
+      if (this.clicked) {
+        document.documentElement.setAttribute('data-colors', 'light');
+        localStorage.setItem('colors', 'true');
+      } else {
+        document.documentElement.removeAttribute('data-colors');
+        localStorage.setItem('colors', 'false');
+      }
+    },
   }
 }
 </script>
@@ -31,7 +52,7 @@ export default {
         <div class="bottomset">
           <div class="theme">
             <label class="switch">
-              <input class="chk" type="checkbox">
+              <input class="chk" type="checkbox" v-model="clicked" @change="themeSwitch">
               <span class="slider"></span>
             </label>
             <label id="Click">Click to change theme</label>
