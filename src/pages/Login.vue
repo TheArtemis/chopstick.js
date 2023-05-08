@@ -16,7 +16,7 @@
                 <label>Password</label>
             </div>
         <div class="boxbottom">
-            <input type="submit" name="sign-in" value="Sign In">
+            <button type="submit" name="sign-in">Sign In</button>
             <a href="/register">Don't have an account? Register here</a>
         </div>
       
