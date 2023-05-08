@@ -43,7 +43,7 @@ export default {
 
 <template>
     <div class="game-over" :class="isHidden">
-        <div class="close-game-over" @click="this.closeGameOver"></div>
+        <div class="close-game-over" @click="this.closeGameOver" @touchend="this.closeGameOver"></div>
         <h1 class="game-over-top">Game Over</h1>
         <div class="game-over-mid">
             <div class="game-over-pic player-pic" :class="this.winner == `${this.player.name}` ? 'winner' : 'loser'">
