@@ -95,7 +95,7 @@ export default {
 
             </b>
             <a href="#" class="box-close">
-                x
+                <div class="close-popup"></div>
             </a>
         </div>
     </div>

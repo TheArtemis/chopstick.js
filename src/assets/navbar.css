@@ -129,6 +129,13 @@
   .navbar:hover .link-text {
     display: none;
   }
+
+  .content{
+    overflow: auto;
+    width: 50vw;
+    height: 80vh;
+    top:15%;
+  }
 }
 
 /*schermo grande*/
@@ -149,6 +156,13 @@
 
   .navbar:hover .link-text {
     display: block;
+  }
+
+  .content{
+    width: 60vw;
+    height: 30vh;
+    top: 25%;
+    left: 20%;
   }
 }
 
@@ -171,10 +185,8 @@
 .content {
   z-index: 20;
   position: absolute;
-  top: 25%;
-  left: 25%;
+  line-height: 1.5;
   background: var(--bg-secondary);
-  width: 50vw;
   padding: 1em 2em;
   border-radius: 1em;
   border: 2px solid var(--border-board);
@@ -185,9 +197,17 @@
 }
 .box-close {
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 15px;
   color: #f1cc53;
   text-decoration: none;
   font-size: 30px;
+}
+.close-popup{
+  background-image: url("../assets/svgs/x-symbol.svg");
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0.28rem
 }
