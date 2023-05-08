@@ -8,6 +8,7 @@ const routes = [
     {path: '/profile', name: 'profile', component: () => import('@/pages/Profile.vue')},
     {path: '/stats', name: 'stats', component: () => import('@/pages/Stats.vue')},
     {path: '/register', name: 'register', component: () => import('@/pages/Register.vue')},
+    {path: '/settings', name: 'settings', component: () => import('@/pages/Settings.vue')},
 ]
 
 const router = createRouter({
