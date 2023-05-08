@@ -52,6 +52,16 @@ export default {
                 </div>
                 <div class="recent">
                     <label id="Recent">Recent Games</label>
+                    <div class="game">
+                         <i class="fa-regular fa-thumbs-down"></i>
+                         <p>opponent 1</p>
+                         <p>12:00</p>
+                    </div>
+                    <div class="game">
+                         <i class="fa-regular fa-thumbs-up"></i>
+                         <p>opponent 2</p>
+                         <p>12:05</p>
+                    </div>
                 </div>
             </div>
         </div>    
