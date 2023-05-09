@@ -11,6 +11,7 @@ import '@/assets/profile.css'
 import '@/assets/stats.css'
 import '@/assets/register.css'
 import '@/assets/settings.css'
+import '@/assets/recentGames.css'
 
 /* We pass into createApp a component App, imported from ./App.vue */
 

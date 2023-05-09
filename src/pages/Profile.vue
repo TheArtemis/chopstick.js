@@ -1,10 +1,11 @@
 <script>
 import Navbar from '@/components/Navbar/Navbar.vue'
+import recentGames from '@/components/RecentGames/recentGames.vue'
 
 export default {
   name: 'Profile',
   components: {
-    Navbar,
+    Navbar, recentGames
   },
   created() {
     const colors = localStorage.getItem('colors');
@@ -109,24 +110,13 @@ export default {
               <span class="wins" data-val="400">000</span>
               <span class="wins-text">Losses</span>
             </div>
-
-
           </div>
         </div>
         <div class="recent">
           <label id="Recent">Recent Games</label>
-          <div class="game">
-            <i class="fa-regular fa-thumbs-down"></i>
-            <p>opponent 1</p>
-            <p>12:00</p>
-          </div>
-          <div class="game">
-            <i class="fa-regular fa-thumbs-up"></i>
-            <p>opponent 2</p>
-            <p>12:05</p>
-          </div>
+          <recentGames :recentGamesList="this.recentGamesList"></recentGames>
+         </div>
         </div>
       </div>
-    </div>
-  </div>
+  </div> 
 </template>
