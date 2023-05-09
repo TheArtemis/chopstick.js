@@ -77,6 +77,7 @@
   background-color: var(--color-primary);
   border: 2px solid transparent;
   cursor: pointer;
+  border-radius: 0.5em;
 }
 .boxbottom a {
   color: var(--color-primary);
@@ -102,6 +103,7 @@
   .box {
     width: 40vh;
     height: 50vh;
+    margin-top: 20px;
   }
   .inputBox label {
     margin-top: -22%;

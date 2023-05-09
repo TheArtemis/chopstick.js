@@ -17,6 +17,7 @@
   min-width: 300px;
   min-height: 300px;
   border-radius: 1em;
+  max-width: 450px;
 }
 
 .registerBox h2 {
@@ -59,16 +60,32 @@
   font-size: 0.6rem;
 }
 
-.registerBox button {
+.register-submit-button {
   padding: 0.8rem 1rem;
   font-size: 19px;
   color: var(--bg-secondary);
   background-color: var(--color-primary);
   border: 2px solid transparent;
-  margin-top: 1.5rem;
   cursor: pointer;
+  border-radius: 0.5em;
 }
-@media screen and (min-width: 501px) {
+
+.register-footer {
+  margin-top: 2em;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-decoration: none;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.register-login-link {
+  margin-left: auto;
+  text-decorations: none;
+}
+
+@media screen and (min-width: 768px) {
   .rBox {
     align-items: center;
   }
@@ -76,8 +93,11 @@
     width: 50%;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .registerBox {
     width: 70%;
+    /* position: relative; */
+    margin-top: 30px;
+    height: 130px;
   }
 }

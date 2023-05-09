@@ -1,17 +1,24 @@
 <script>
 import axios from 'axios';
+import ErrorBox from '@/components/ErrorBox.vue';
 
 const API_URL = 'http://localhost:3000';
 const axiosInstance = axios.create({
-  baseURL: API_URL,  
+  baseURL: API_URL,
 });
 
 export default {
+  name: 'Register',
+  components: {
+    ErrorBox
+  },
   data() {
     return {
       username: '',
       password: '',
       mail: '',
+      error: null,
+      showError: false,
     }
   },
   created() {
@@ -21,56 +28,75 @@ export default {
     } else {
       document.documentElement.removeAttribute('data-colors');
     }
-   },
+  },
   methods: {
     async submitRegister() {
       // Make an HTTP request to your server to register the user
       // with the entered username and password
 
-      console.log('Registering user...');
+      try {
+        console.log('Registering user...');
 
-      /* const test = await axiosInstance.get('/test')
-      .then((response) => {
-        console.log(response);
-      }) */
+        /* const test = await axiosInstance.get('/test')
+        .then((response) => {
+          console.log(response);
+        }) */
 
-      const response = await axiosInstance.post('/register', {
-        username: this.username,
-        password: this.password,
-        mail: this.mail,
-      });
-      
-      // Handle the response from the server here
-      console.log(response.data);
-      console.log(this.username);
-      console.log(this.password);
-      console.log(this.mail);
+        const response = await axiosInstance.post('/register', {
+          username: this.username,
+          password: this.password,
+          mail: this.mail,
+        });
+
+        // Handle the response from the server here
+        console.log(response.data);
+        console.log(this.username);
+        console.log(this.password);
+        console.log(this.mail);
+
+      } catch (error) {
+        this.error = error.response.data;
+        console.log(error);
+        this.showError = true;
+      } finally {
+        this.username = '';
+        this.mail = '';
+        this.password = '';
+      }
+
+
 
     }
   }
 }
 </script>
 
-<template>  
-<div class="rBox">
-  <div class="registerBox">
-    <h2>Register</h2>
-    <form @submit.prevent="submitRegister">
-      <div class="reBox">
-        <input type="text" v-model="username">
-        <label>Username</label>
-      </div>
-      <div class="reBox">
-        <input type="mail" v-model="mail">
-        <label>Email</label>
-      </div>
-      <div class="reBox">
-        <input type="password" v-model="password">
-        <label>Password</label>
-      </div>
-      <button type="submit">Register</button>
-    </form>
+<template>
+  <div class="rBox">
+    <ErrorBox :error="this.error" :showError="this.showError"
+      @close-error="() => { this.showError = false, this.error = null }" />
+    <div class="registerBox">
+      <h2>Register</h2>
+      <form @submit.prevent="submitRegister">
+        <div class="reBox">
+          <input type="text" v-model="username">
+          <label>Username</label>
+        </div>
+        <div class="reBox">
+          <input type="mail" v-model="mail">
+          <label>Email</label>
+        </div>
+        <div class="reBox">
+          <input type="password" v-model="password">
+          <label>Password</label>
+        </div>
+        <div class="register-footer">
+          <button class="register-submit-button" type="submit">Register</button>
+          <p class="register-login-link"><router-link :to="{ path: '/login' }">Already have an account?
+              Register</router-link></p>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 

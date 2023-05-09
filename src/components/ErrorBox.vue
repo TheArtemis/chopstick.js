@@ -2,7 +2,7 @@
     <transition name="slide">
         <div v-if="this.error" class="errorBox" :class="{ 'error-show': this.showError }">
             {{ error }}
-            <button class="closeBox" @click="closeErrorBox">&#10006;</button>
+            <button class="close-box-error" @click="closeErrorBox">&#10006;</button>
         </div>
     </transition>
 </template>
@@ -39,6 +39,7 @@ export default {
 
     opacity: 0;
     transform: translateY(-100px);
+    z-index: 999;
 }
 
 .error-show {
@@ -60,7 +61,7 @@ export default {
     transform: translateY(0%);
 }
 
-.closeBox {
+.close-box-error {
     position: absolute;
     right: 5px;
     top: 5px;
@@ -68,5 +69,12 @@ export default {
     border: none;
     cursor: pointer;
     color: rgb(187, 103, 103);
+    z-index: 999;
+}
+
+@media screen and (max-width: 768px) {
+    .errorBox {
+        margin-top: 30px
+    }
 }
 </style>

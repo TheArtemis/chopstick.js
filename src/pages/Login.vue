@@ -17,7 +17,7 @@
 					</div>
 					<div class="boxbottom">
 						<button type="submit" name="sign-in">Sign In</button>
-						<router-link to="/register">Don't have an account? Register here</router-link>
+						<router-link :to="{ path: '/register' }">Don't have an account? Register here</router-link>
 					</div>
 				</form>
 			</div>
@@ -44,7 +44,7 @@ export default {
 			username: '',
 			password: '',
 			error: null,
-			showError: false, // Added showError property
+			showError: false,
 		};
 	},
 	methods: {
@@ -65,12 +65,7 @@ export default {
 			} catch (error) {
 				this.error = error.response.data;
 				console.log(error)
-				if (this.error === 'User not found') {
-					console.log('User not found');
-				} else if (this.error === 'Wrong password') {
-					console.log('Wrong password');
-				}
-				this.showError = true; // Show the error message
+				this.showError = true;
 			} finally {
 				this.username = '';
 				this.password = '';
