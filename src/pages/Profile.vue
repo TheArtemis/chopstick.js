@@ -25,11 +25,13 @@ export default {
         'src/assets/imgs/img4.png',
       ],
       selectedImage: null,
+      recentGamesList: [],
     };
   },
+
   methods: {
     openModal() {
-        console.log('ciao');
+      console.log('ciao');
       this.showModal = true;
     },
     hideModal() {
@@ -40,14 +42,35 @@ export default {
       this.hideModal();
     },
   },
+
+  beforeMount() {
+    /* QUERY AL DATABASE PER AVERE LE PARTITE RECENTI */
+    /* RESTITUISCE UN INSIEME DI OGGETTI */
+    /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
+
+    this.recentGamesList.push({
+      player1: 'Miles',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'Miles',
+      date: '2021-10-10',
+    })
+
+    this.recentGamesList.push({
+      player1: 'Steven',
+      rating1: 1200,
+      player2: 'Miles',
+      rating2: 1200,
+      winner: 'Steven',
+      date: '2021-11-10',
+    })
+  },
 };
 </script>
 
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <div class="wrapper">
     <Navbar />
     <div class="contenitor">
@@ -86,24 +109,24 @@ export default {
               <span class="wins" data-val="400">000</span>
               <span class="wins-text">Losses</span>
             </div>
-           
 
-                    </div>
-                </div>
-                <div class="recent">
-                    <label id="Recent">Recent Games</label>
-                    <div class="game">
-                         <i class="fa-regular fa-thumbs-down"></i>
-                         <p>opponent 1</p>
-                         <p>12:00</p>
-                    </div>
-                    <div class="game">
-                         <i class="fa-regular fa-thumbs-up"></i>
-                         <p>opponent 2</p>
-                         <p>12:05</p>
-                    </div>
-                </div>
-            </div>
-        </div>    
+
+          </div>
+        </div>
+        <div class="recent">
+          <label id="Recent">Recent Games</label>
+          <div class="game">
+            <i class="fa-regular fa-thumbs-down"></i>
+            <p>opponent 1</p>
+            <p>12:00</p>
+          </div>
+          <div class="game">
+            <i class="fa-regular fa-thumbs-up"></i>
+            <p>opponent 2</p>
+            <p>12:05</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
