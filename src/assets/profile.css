@@ -63,13 +63,13 @@
   .profile-modal ul {
     list-style: none;
     display: flex;
-    padding:3rem;
+    padding:1rem;
   }
   .profile-modal li {
     display: inline-block;
-    height: 160px;
+    height: 140px;
     aspect-ratio: 1 / 1;
-    margin: 1rem;
+    margin: 0.5rem;
     cursor: pointer;
   }
 .my_file{
@@ -177,7 +177,7 @@
  }
  
 .stats .top-wrapper .top-container{
-     width: 20vw;
+     width: 30vw;
      height: 28vmin;
      border: 1px solid var(--color-primary);
      display: flex;
@@ -259,6 +259,14 @@
         background-color:var(--bg-secondary);   
         overflow: hidden;
     }
+    
+      .profile-modal ul {
+        padding:0.5rem;
+      }
+      .profile-modal li {
+        height: 55px;
+        margin: 0.1rem;
+      }
     .bio{
         width: 70%;
         height: 100%;
