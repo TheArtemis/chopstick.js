@@ -49,7 +49,6 @@ export default {
     }
   },
   methods: {
-
     /* Game Over Conditions */
 
     // Checks if the current player has lost by examining if both the player's left and right positions are empty.

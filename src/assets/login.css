@@ -1,127 +1,109 @@
-
-.container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--bg-primary);
-    overflow: auto;
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  overflow: auto;
 }
 
-.box{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    gap: 1rem;
-    width: 30%;
-    aspect-ratio: 3/2;
-    overflow: hidden;
-    padding: 1.3rem;
-    background-color: var(--bg-secondary);
-    min-width: 300px;
-    min-height: 250px;
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1rem;
+  width: 30%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  padding: 1.3rem;
+  background-color: var(--bg-secondary);
+  min-width: 300px;
+  min-height: 250px;
+  border-radius: 1em;
 }
 
-.box h2{
-    color: var(--color-primary);
-    font-size: 2.5rem;
-    text-align: left;
+.box h2 {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  text-align: left;
 }
 
-.inputBox{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 30%;
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 30%;
 }
-.inputBox input{
-    width: 100%;
-    padding: 0.625rem 0;
-    font-size: 1rem;
-    color:var(--color-primary);
-    margin-bottom: 1.875rem;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-bottom: 1px solid var(--color-primary);
-}
-
-.inputBox label{
-    font-size: 1rem;
-    color: var(--color-primary);
-    pointer-events: none;
-    transition: 0.3s;
+.inputBox input {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: 1.875rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-primary);
 }
 
-.inputBox input:focus ~ label{
-    top: -1.125rem;
-    left: 0;
-    color: var(--color-primary);
-    font-size: 0.6rem;
+.inputBox label {
+  font-size: 1rem;
+  color: var(--color-primary);
+  pointer-events: none;
+  transition: 0.3s;
 }
 
-.boxbottom{
-    width: 90%;
-    height: 40%;
-    gap: 5%;
-    display: flex;
-    flex-direction: row;
-    padding: 5%;
+.inputBox input:focus ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: var(--color-primary);
+  font-size: 0.6rem;
+}
+
+.boxbottom {
+  width: 90%;
+  height: 40%;
+  gap: 5%;
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+  align-items: center;
+}
+
+.boxbottom button {
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  color: var(--bg-secondary);
+  background-color: var(--color-primary);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.boxbottom a {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-decoration: none;
+  margin: auto;
+}
+
+@media screen and (min-width: 501px) {
+  .container {
     align-items: center;
+  }
+  .box {
+    width: 60vh;
+  }
+  .inputBox label {
+    padding: 0.625rem 0;
+    margin-top: -19%;
+  }
 }
-
-.boxbottom button{
-    padding: 0.5rem 1rem;
-    font-size: 14px;
-    color: var(--bg-secondary);
-    background-color: var(--color-primary);
-    border: 2px solid transparent;
-    cursor: pointer;
+@media screen and (max-width: 500px) {
+  .box {
+    width: 40vh;
+    height: 50vh;
+  }
+  .inputBox label {
+    margin-top: -22%;
+  }
 }
-.boxbottom a{
-    color: var(--color-primary);
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-decoration: none;
-    margin: auto;
-}
-
-@media screen and (min-width: 501px){
-    .container{
-        align-items: center;
-    }
-    .box{
-        width: 60vh;
-    }
-    .inputBox label{
-        padding: 0.625rem 0;
-        margin-top: -19%;
-    }
-}
-@media screen and (max-width: 500px){
-    .box{
-        width: 40vh;
-        height: 50vh;
-    }
-    .inputBox label{
-        margin-top: -22%;
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,33 +1,83 @@
-<script>
-    export default {
-        name: 'Login',
-        created() {
-    const colors = localStorage.getItem('colors');
-    if (colors === 'true') {
-      document.documentElement.setAttribute('data-colors', 'light');
-    } else {
-      document.documentElement.removeAttribute('data-colors');
-    }
-   },
-    }
-</script>
 <template>
-<div class="container">
-    <div class="box">
-        <h2>Login</h2>
-        <div class="inputBox">
-            <input type="text" name="name" required value="">
-                <label>Username</label>
-        </div>
-        <div class="inputBox">
-                <input type="password" name="password" required value="">
-                <label>Password</label>
-            </div>
-        <div class="boxbottom">
-            <button type="submit" name="sign-in">Sign In</button>
-            <a href="/register">Don't have an account? Register here</a>
-        </div>
-      
-    </div>
-</div>
+	<div>
+		<div class="container">
+			<!-- <p v-if="error" class="error" :class="{ 'error-show': showError }">{{ error }}</p> -->
+			<ErrorBox :error="this.error" :showError="this.showError"
+				@close-error="() => { this.showError = false, this.error = null }" />
+			<div class="box">
+				<h2>Login</h2>
+				<form @submit.prevent="submitLogin">
+					<div class="inputBox">
+						<input type="text" v-model="username" name="username" required>
+						<label>Username</label>
+					</div>
+					<div class="inputBox">
+						<input type="password" v-model="password" name="password" required>
+						<label>Password</label>
+					</div>
+					<div class="boxbottom">
+						<button type="submit" name="sign-in">Sign In</button>
+						<router-link to="/register">Don't have an account? Register here</router-link>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </template>
+
+<script>
+import axios from 'axios';
+import ErrorBox from '@/components/ErrorBox.vue';
+
+const API_URL = 'http://localhost:3000';
+const axiosInstance = axios.create({
+	baseURL: API_URL,
+});
+
+export default {
+	name: 'Login',
+	components: {
+		ErrorBox,
+	},
+	data() {
+		return {
+			username: '',
+			password: '',
+			error: null,
+			showError: false, // Added showError property
+		};
+	},
+	methods: {
+		async submitLogin() {
+			try {
+				console.log('Logging in user...');
+				console.log(this.username);
+				console.log(this.password);
+
+				const response = await axiosInstance.post('/login', {
+					username: this.username,
+					password: this.password,
+				});
+
+				const token = response.data.token;
+				localStorage.setItem('sessionToken', token);
+				console.log(localStorage.getItem('sessionToken'));
+			} catch (error) {
+				this.error = error.response.data;
+				console.log(error)
+				if (this.error === 'User not found') {
+					console.log('User not found');
+				} else if (this.error === 'Wrong password') {
+					console.log('Wrong password');
+				}
+				this.showError = true; // Show the error message
+			} finally {
+				this.username = '';
+				this.password = '';
+			}
+		},
+	},
+};
+</script>
+
+
