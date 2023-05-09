@@ -14,7 +14,7 @@
     align-items: center;
     width: 25%;
     height: 100vh;
-    background-color: var(--color-primary);
+    background-color: var(--bg-primary);
 }
 
 .profile{
@@ -29,12 +29,12 @@
 }
 
 .profile label#Profile{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 2.5rem;
 }
 
 .profile label#Username{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 1.5rem;
 }
 .click-area{
@@ -42,37 +42,38 @@
     aspect-ratio: 1 / 1;
     margin-top: 5%;
     margin-bottom: 10%;
-    background-color:var(--bg-secondary);   
+    background-color:var(--color-primary);   
     overflow: hidden;
+    background-size: contain;
+    border: 3px solid var(--color-primary);
 }
+
 .click-area img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
   .profile-modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid black;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--color-primary);
   }
   .profile-modal ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    padding:3rem;
   }
   .profile-modal li {
     display: inline-block;
-    margin-right: 10px;
+    height: 160px;
+    aspect-ratio: 1 / 1;
+    margin: 1rem;
     cursor: pointer;
   }
 .my_file{
     outline: none;
-    color: transparent;
-    width: 100%;
     box-sizing: border-box;
     padding: 50% 30%;
     cursor: pointer;
@@ -80,14 +81,35 @@
     opacity: 0;
 }
 
+.my_file img{
+    background-position: center center;
+}
+
 .my_file::-webkit-file-upload-button{
     visibility: hidden;
 }
 
 .my_file:hover{
-    opacity: 1;
-    background: #9e873e;;
+    opacity: 0.3;
+    background: var(--color-primary);
 }
+
+.img-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 30px;
+  }
+  .close{
+    background-image: url("../assets/svgs/x-symbol.svg");
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0.28rem
+  }
 
 .bio{
     display: flex;
@@ -99,7 +121,7 @@
     /*background-color: rgb(255, 115, 0);*/
 }
 .bio label#User{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 0rem;
 }
 
@@ -111,11 +133,11 @@
     height: 50%;
     aspect-ratio: 2 / 1;
     background-color:var(--bg-secondary);   
-    border: 1px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
     
 }
 .labelbio{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 1.3rem;
 }
 
