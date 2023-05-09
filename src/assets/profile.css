@@ -45,6 +45,28 @@
     background-color:var(--bg-secondary);   
     overflow: hidden;
 }
+.pic-box {
+    display: none;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    background-color: lightgray;
+  }
+.pic-box img#img0{
+    background-image: url("../assets/imgs/img0.png");
+}
+.pic-box img#img1{
+    background-image: url("../assets/imgs/img1.png");
+}
+.pic-box img#img2{
+    background-image: url("../assets/imgs/img2.png");
+}
+.pic-box img#img3{
+    background-image: url("../assets/imgs/img3.png");
+}
+.pic-box img#img4{
+    background-image: url("../assets/imgs/img4.png");
+}
 
 .my_file{
     outline: none;

@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar/Navbar.vue'
 
 export default {
+    
     name: 'Profile',
     created() {
     const colors = localStorage.getItem('colors');
@@ -11,9 +12,14 @@ export default {
       document.documentElement.removeAttribute('data-colors');
     }
    },
+   openClass() { 
+    var picBox = document.querySelector('.pic-box'); 
+    picBox.style.display = 'block'; 
+   },
+
     components: {
         Navbar,
-    }
+    },
 }
 </script>
 
@@ -27,7 +33,14 @@ export default {
                 <div class="profile">
                     <label id="Profile">Profile</label>
                     <div class="img">
-                        <input type="file" class="my_file">
+                        <button onclick="openClass()" class="my_file"></button>
+                    </div>
+                    <div class="pic-box">
+                             <div class="pic-box" id="img0"></div>
+                             <div class="pic-box" id="img1"></div>
+                             <div class="pic-box" id="img2"></div>
+                             <div class="pic-box" id="img3"></div>
+                             <div class="pic-box" id="img4"></div>
                     </div>
                     <label id="Username">Username</label>
                 </div>
