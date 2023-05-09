@@ -8,12 +8,10 @@
 				<h2>Login</h2>
 				<form @submit.prevent="submitLogin">
 					<div class="inputBox">
-						<input type="text" v-model="username" name="username" required>
-						<label>Username</label>
+						<input required="" type="text" placeholder="Username">
 					</div>
 					<div class="inputBox">
-						<input type="password" v-model="password" name="password" required>
-						<label>Password</label>
+						<input required="" type="text" placeholder="Password">
 					</div>
 					<div class="boxbottom">
 						<button type="submit" name="sign-in">Sign In</button>

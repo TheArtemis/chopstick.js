@@ -44,7 +44,7 @@ export default {
             <label>Password:</label>
           </div>
           <div class="topsettcont">
-            <input required="" type="text" placeholder="Your E-mail">
+            <input required="" type="mail" placeholder="Your E-mail">
             <input required="" type="text" placeholder="Your Username">
             <input required="" type="text" placeholder="Your Password">
           </div>
