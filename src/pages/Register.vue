@@ -16,6 +16,7 @@ export default {
     return {
       username: '',
       password: '',
+      confirmPassword: '',
       mail: '',
       error: null,
       showError: false,
@@ -33,6 +34,12 @@ export default {
     async submitRegister() {
       // Make an HTTP request to your server to register the user
       // with the entered username and password
+
+      if (this.password !== this.confirmPassword) {
+        this.error = "Passwords don't match";
+        this.showError = true;
+        return;
+      }
 
       try {
         console.log('Registering user...');
@@ -62,6 +69,7 @@ export default {
         this.username = '';
         this.mail = '';
         this.password = '';
+        this.confirmPassword = '';
       }
 
 
@@ -79,13 +87,16 @@ export default {
       <h2>Register</h2>
       <form @submit.prevent="submitRegister">
         <div class="reBox">
-          <input required="" type="text" placeholder="Username">
+          <input required="" type="text" placeholder="Username" v-model="username">
         </div>
         <div class="reBox">
-          <input required="" type="mail" placeholder="E-mail">
+          <input required="" type="mail" placeholder="E-mail" v-model="mail">
         </div>
         <div class="reBox">
-          <input required="" type="passsword" placeholder="Password">
+          <input required="" type="password" placeholder="Password" v-model="password">
+        </div>
+        <div class="reBox">
+          <input required="" type="password" placeholder="Confirm Password" v-model="confirmPassword">
         </div>
         <div class="register-footer">
           <button class="register-submit-button" type="submit">Register</button>
