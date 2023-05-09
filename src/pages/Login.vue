@@ -58,17 +58,42 @@ export default {
 				});
 
 				const token = response.data.token;
-				localStorage.setItem('sessionToken', token);
-				console.log(localStorage.getItem('sessionToken'));
+				localStorage.setItem('chopsticks_sessionToken', token);
+				console.log(localStorage.getItem('chopsticks_sessionToken'));
+
+				this.getSessionData();
+
 			} catch (error) {
-				this.error = error.response.data;
 				console.log(error)
+				this.error = error.response.data;
 				this.showError = true;
 			} finally {
 				this.username = '';
 				this.password = '';
 			}
 		},
+		getSessionData() {
+			const token = localStorage.getItem('chopsticks_sessionToken');
+			if (token) {
+				this.getUserInfo(token);
+				this.$router.push('/');
+			}
+		},
+		async getUserInfo(token) {
+			try {
+				console.log('Getting user info...');
+				const response = await axiosInstance.get('/users', {
+					headers: {
+						Authorization: `${token}`,
+					},
+				});
+				console.log(response.data);
+				localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
+				console.log(localStorage.getItem('chopsticks_userInfo'));
+			} catch (error) {
+				console.log(error);
+			}
+		}
 	},
 };
 </script>

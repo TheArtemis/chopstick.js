@@ -61,6 +61,8 @@ export default {
         console.log(this.password);
         console.log(this.mail);
 
+        this.$router.push('/login');
+
       } catch (error) {
         this.error = error.response.data;
         console.log(error);

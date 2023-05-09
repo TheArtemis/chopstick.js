@@ -18,7 +18,7 @@ export default {
             const sourcePosition = sourceHand.getBoundingClientRect();
             this.targetPosX = targetPosition.left - sourcePosition.left;
             this.targetPosY = targetPosition.top - sourcePosition.top - targetPosition.height / 2;
-            console.log("Attack animation" + targetHand + " " + targetPosition);
+            /* console.log("Attack animation" + targetHand + " " + targetPosition); */
             this.isAttacking = true; // Start the animation
             setTimeout(() => {
                 this.isAttacking = false; // Stop the animation after a certain duration
@@ -30,7 +30,7 @@ export default {
     },
     computed: {
         attackStyle() {
-            console.log("Attack style" + this.targetPosX + " " + this.targetPosY);
+            /* console.log("Attack style" + this.targetPosX + " " + this.targetPosY); */
             return {
                 '--target-pos-x': `${this.targetPosX}px`,
                 '--target-pos-y': `${this.targetPosY}px`,
