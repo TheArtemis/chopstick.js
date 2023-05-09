@@ -47,7 +47,7 @@ export default {
     selectImage(image) {
       this.selectedImage = image;
       this.hideModal();
-      localStorage.setItem('selectedImage', image);
+      
     },
   },
 
