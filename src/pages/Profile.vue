@@ -18,17 +18,18 @@ export default {
     return {
       showModal: false,
       images: [
-        '../assets/imgs/img0.png',
-        '../assets/imgs/img1.png',
-        '../assets/imgs/img2.png',
-        '../assets/imgs/img3.png',
-        '../assets/imgs/img4.png',
+        'src/assets/imgs/img0.png',
+        'src/assets/imgs/img1.png',
+        'src/assets/imgs/img2.png',
+        'src/assets/imgs/img3.png',
+        'src/assets/imgs/img4.png',
       ],
       selectedImage: null,
     };
   },
   methods: {
     openModal() {
+        console.log('ciao');
       this.showModal = true;
     },
     hideModal() {
@@ -47,16 +48,15 @@ export default {
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
-  <link rel="stylesheet" href="style.css" />
   <div class="wrapper">
     <Navbar />
     <div class="contenitor">
       <div class="contentsx">
         <div class="profile">
           <label id="Profile">Profile</label>
-          <div class="click-area" @click="openModal">
+          <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})` }">
             <img class="my_file" :src="selectedImage" alt="" />
-            <div v-if="showModal" class="click-area-modal">
+            <div v-if="showModal" class="profile-modal">
               <ul>
                 <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
                   <img :src="image" alt="" />
