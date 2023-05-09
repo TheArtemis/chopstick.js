@@ -26,6 +26,11 @@ export default {
         localStorage.setItem('colors', 'false');
       }
     },
+    logOut() {
+      localStorage.removeItem('chopsticks_authToken');
+      localStorage.removeItem('chopsticks_userInfo');
+      this.$router.push('/login');
+    }
   }
 }
 </script>
@@ -58,7 +63,7 @@ export default {
             <label id="Click">Click to change theme</label>
           </div>
           <div class="butt">
-            <button class="settings-button">Log Out</button>
+            <button class="settings-button" @click="this.logOut">Log Out</button>
             <button class="settings-button">Save</button>
           </div>
         </div>
