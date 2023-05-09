@@ -206,7 +206,7 @@
 .recent{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     text-align: center;
     width: 100%;
     height: 60%;
@@ -222,7 +222,8 @@
 }
 
 .recent .recent-game-container {
-    width: 100%;
+    width: 78%;
+    margin: auto;
   }
 
 @media only screen and (max-width: 767px) {
@@ -278,7 +279,7 @@
         background-color:var(--bg-secondary);   
     }
     .labelbio{
-        color: var(--bg-secondary);
+        color: var(--color-primary);
         font-size: 0.5rem;
     }
     
@@ -288,7 +289,7 @@
     }
 
     .bio label#User{
-        color: var(--bg-secondary);
+        color: var(--color-primary);
         font-size: 1.5rem;
         margin-top: 5%;
         margin-bottom: 5%;
@@ -333,7 +334,6 @@
          font-size: 1em;
       }
     .recent label#Recent{
-        color: var(--color-primary);
         font-size: 1.5rem;
         margin-top: 5%;
         margin-bottom: 1%;
