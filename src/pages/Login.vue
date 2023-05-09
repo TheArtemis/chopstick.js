@@ -58,8 +58,8 @@ export default {
 				});
 
 				const token = response.data.token;
-				localStorage.setItem('chopsticks_sessionToken', token);
-				console.log(localStorage.getItem('chopsticks_sessionToken'));
+				localStorage.setItem('chopsticks_authToken', token);
+				console.log(localStorage.getItem('chopsticks_authToken'));
 
 				this.getSessionData();
 
@@ -73,7 +73,7 @@ export default {
 			}
 		},
 		getSessionData() {
-			const token = localStorage.getItem('chopsticks_sessionToken');
+			const token = localStorage.getItem('chopsticks_authToken');
 			if (token) {
 				this.getUserInfo(token);
 				this.$router.push('/');
