@@ -80,9 +80,12 @@
   align-items: center;
 }
 
+.register-login-link a{
+  color: var(--color-primary);
+  text-decoration: none;
+}
 .register-login-link {
   margin-left: auto;
-  text-decorations: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -99,5 +102,11 @@
     /* position: relative; */
     margin-top: 30px;
     height: 130px;
+    margin-left: 2em;
+    margin-right: 2em;
   }
+  .rBox {
+    align-items: center;
+  }
+  
 }

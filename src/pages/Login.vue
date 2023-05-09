@@ -11,7 +11,7 @@
 						<input required="" type="text" placeholder="Username">
 					</div>
 					<div class="inputBox">
-						<input required="" type="text" placeholder="Password">
+						<input required="" type="password" placeholder="Password">
 					</div>
 					<div class="boxbottom">
 						<button type="submit" name="sign-in">Sign In</button>

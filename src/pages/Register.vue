@@ -79,21 +79,18 @@ export default {
       <h2>Register</h2>
       <form @submit.prevent="submitRegister">
         <div class="reBox">
-          <input type="text" v-model="username">
-          <label>Username</label>
+          <input required="" type="text" placeholder="Username">
         </div>
         <div class="reBox">
-          <input type="mail" v-model="mail">
-          <label>Email</label>
+          <input required="" type="mail" placeholder="E-mail">
         </div>
         <div class="reBox">
-          <input type="password" v-model="password">
-          <label>Password</label>
+          <input required="" type="passsword" placeholder="Password">
         </div>
         <div class="register-footer">
           <button class="register-submit-button" type="submit">Register</button>
-          <p class="register-login-link"><router-link :to="{ path: '/login' }">Already have an account?
-              Register</router-link></p>
+          <a class="register-login-link"><router-link :to="{ path: '/login' }">Already have an account?
+              Login</router-link></a>
         </div>
       </form>
     </div>
