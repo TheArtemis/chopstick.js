@@ -115,7 +115,7 @@
 .hand {
   height: 230px;
   width: 120px;
-  background-image: url("@/assets/imgs/0dx.png");
+  background-image: var(--hand0-path);
   background-size: cover;
   background-position: center;
   /* display: none; */ /* TEST SFONDO VUOTO */
@@ -156,25 +156,25 @@ hand.player:active {
 }
 
 .hand.zero {
-  background-image: url("@/assets/imgs/0dx.png");
+  background-image: var(--hand0-path);
   pointer-events: none;
   cursor: pointer;
 }
 
 .hand.one {
-  background-image: url("@/assets/imgs/1dx.png");
+  background-image: var(--hand1-path);
 }
 
 .hand.two {
-  background-image: url("@/assets/imgs/2dx.png");
+  background-image: var(--hand2-path);
 }
 
 .hand.three {
-  background-image: url("@/assets/imgs/3dx.png");
+  background-image: var(--hand3-path);
 }
 
 .hand.four {
-  background-image: url("@/assets/imgs/4dx.png");
+  background-image: var(--hand4-path);
 }
 
 .player.left {
