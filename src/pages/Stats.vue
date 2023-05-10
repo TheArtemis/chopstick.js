@@ -28,7 +28,7 @@
           {
             label: '1 = win; -1 = losses; 0 = ties',
             data: [0, -1, 1, 1, 0],
-            borderColor: '#f1cc53',
+            borderColor: 'black',
           },
         ],
       };
