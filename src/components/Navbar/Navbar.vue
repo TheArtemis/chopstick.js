@@ -87,10 +87,10 @@ export default {
     </nav>
     <div id="popup-box" class="modal">
         <div class="content">
-            <h1 style="color: #f1cc53;;">
+            <h1 style="color: var(--color-primary);">
                 Rules of Chopsticks
             </h1>
-            <b style="color: whitesmoke">
+            <b style="color: var(--text-primary)">
                 <p>Chopsticks is a turn-based game where you can attack or transfer. Every player
                     begins the game with one finger per hand.</p>
                 <p>A hand is considered live if it has at least one finger.</p>
@@ -110,10 +110,10 @@ export default {
     </div>
     <div id="popup-box2" class="modal">
         <div class="content">
-            <h1 style="color: #f1cc53;;">
+            <h1 style="color: var(--color-primary);">
                 About us
             </h1>
-            <b style="color: whitesmoke">
+            <b style="color: var(--text-primary)">
                 <p>Hi, we are Lorenzo Deflorian, Maria Chiara Ierovante and Enrico Ianni Ficorilli.</p>
                 <p>We are computer and automatic engineering students at Sapienza University of Rome.</p>
                 <p>This game was created for a university project in "Languages and Technologies for Web".</p>

@@ -82,7 +82,7 @@
 }
 
 .logo-img {
-  background-image: url("../assets/imgs/logo.png");
+  background-image: var(--logo-path);
   width: 85%;
   height: 85%;
   background-repeat: no-repeat;
