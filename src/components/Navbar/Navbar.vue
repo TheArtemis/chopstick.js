@@ -20,8 +20,8 @@ export default {
 
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
-    <nav class="chopticks-navbar" :class="{ disabled: !this.navbarActive }">
-        <ul class="chopticks-navbar-nav">
+    <nav class="navbar" :class="{ disabled: !this.navbarActive }">
+        <ul class="navbar-nav">
             <li class="logo">
                 <a href="/" class="nav-link">
                     <span class="link-text">Chopsticks</span>
