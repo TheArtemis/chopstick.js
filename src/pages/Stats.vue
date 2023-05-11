@@ -1,33 +1,64 @@
 <script>
-    import Navbar from '@/components/Navbar/Navbar.vue'
-    import { Chart } from 'chart.js/auto';
-    
-    export default {
-        name: 'Stats',
-        components: {
-        Navbar,
-    },
-    created() {
-    const colors = localStorage.getItem('colors');
-    if (colors === 'true') {
-      document.documentElement.setAttribute('data-colors', 'light');
-    } else {
-      document.documentElement.removeAttribute('data-colors');
-    }
-   },
+import Navbar from '@/components/Navbar/Navbar.vue';
+import { Chart } from 'chart.js/auto';
+import recentGames from '@/components/RecentGames/recentGames.vue';
 
-    mounted() {
-        this.createLineChart();
-        this.createPolarAreaChart();
+export default {
+  name: 'Stats',
+  components: {
+    Navbar,
+    recentGames,
+  },
+  data() {
+    return {
+      recentGamesList: [],
+      chartInstance: null, // new data property to hold chart instance
+    };
+  },
+  beforeMount() {
+    /* QUERY AL DATABASE PER AVERE LE PARTITE RECENTI */
+    /* RESTITUISCE UN INSIEME DI OGGETTI */
+    /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
+
+    this.recentGamesList.push({
+      player1: 'Miles',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'Miles',
+      date: '2021-10-10',
+    })
+
+    this.recentGamesList.push({
+      player1: 'Miles',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'Peter',
+      date: '2021-11-10',
+    })
+  },
+  mounted() {
+    this.createLineChart(this.recentGamesList);
+  },
+  watch: {
+    recentGamesList() {
+      this.chartInstance && this.chartInstance.destroy(); // destroy previous chart instance
+      this.createLineChart(this.recentGamesList); // create new chart instance with updated data
     },
-    methods: {
-    createLineChart() {
+  },
+  methods: {
+    createLineChart(recentGames) {
+      const labels = recentGames.map(game => game.date);
       const data = {
-        labels: ['1', '2', '3', '4', '5'],
+        labels,
         datasets: [
           {
             label: '1 = win; -1 = losses; 0 = ties',
-            data: [0, -1, 1, 1, 0],
+            data: recentGames.map(game => {
+              const result = game.winner === game.player1 ? 1 : -1;
+              return result;
+            }),
             borderColor: 'black',
           },
         ],
@@ -37,14 +68,14 @@
         maintainAspectRatio: false,
       };
 
-      this.$refs.lineChart = new Chart(this.$refs.lineChart, {
+      this.chartInstance = new Chart(this.$refs.lineChart, {
         type: 'line',
         data,
         options,
       });
     },
   },
-}
+};
 </script>
 
 <template>
