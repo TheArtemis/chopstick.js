@@ -12,7 +12,7 @@ import '@/assets/stats.css'
 import '@/assets/register.css'
 import '@/assets/settings.css'
 import '@/assets/recentGames.css'
-/* import 'bootstrap/dist/css/bootstrap.css' */ /* <----- THIS LINE */
+import 'bootstrap/dist/css/bootstrap.css' 
 
 /* We pass into createApp a component App, imported from ./App.vue */
 
