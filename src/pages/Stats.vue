@@ -1,6 +1,8 @@
 <script>
 import Navbar from '@/components/Navbar/Navbar.vue';
 import { Chart } from 'chart.js/auto';
+import { Bar } from 'vue-chartjs';
+import { Pie } from 'vue-chartjs';
 import recentGames from '@/components/RecentGames/recentGames.vue';
 
 export default {
@@ -9,10 +11,23 @@ export default {
     Navbar,
     recentGames,
   },
+  props: {
+    wins: {
+      type: Number,
+      required: true,
+    },
+    losses: {
+      type: Number,
+      required: true,
+    },
+  },
+ 
   data() {
     return {
       recentGamesList: [],
-      chartInstance: null, // new data property to hold chart instance
+      chartInstance: null, 
+      lineChartInstance: null, 
+      pieChartInstance: null, 
     };
   },
   beforeMount() {
@@ -37,14 +52,33 @@ export default {
       winner: 'Peter',
       date: '2021-11-10',
     })
+    this.recentGamesList.push({
+      player1: 'Miles',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'Peter',
+      date: '2021-11-10',
+    })
+    this.recentGamesList.push({
+      player1: 'Miles',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'Miles',
+      date: '2021-11-10',
+    })
   },
   mounted() {
     this.createLineChart(this.recentGamesList);
+    this.createPieChart();
   },
   watch: {
     recentGamesList() {
-      this.chartInstance && this.chartInstance.destroy(); // destroy previous chart instance
-      this.createLineChart(this.recentGamesList); // create new chart instance with updated data
+      this.lineChartInstance && this.lineChartInstance.destroy(); 
+      this.pieChartInstance && this.pieChartInstance.destroy(); 
+      this.createLineChart(this.recentGamesList); 
+      this.createPieChart(); 
     },
   },
   methods: {
@@ -68,12 +102,37 @@ export default {
         maintainAspectRatio: false,
       };
 
-      this.chartInstance = new Chart(this.$refs.lineChart, {
+      this.lineChartInstance = new Chart(this.$refs.lineChart, {
         type: 'line',
         data,
         options,
       });
     },
+    createPieChart() {
+    
+      const data = {
+        labels: ['Wins', 'Losses', 'Ties'],
+        datasets: [
+          {
+            data: [3, 1, 2],
+            backgroundColor: ['#8BC34A', '#F44336', '#f1cc53'],
+            borderColor: 'black',
+          },
+        ],
+      };
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+      };
+
+      this.pieChartInstance = new Chart(this.$refs.pieChart, {
+        type: 'pie',
+        data,
+        options,
+      });
+    },
+
+    
   },
 };
 </script>
@@ -88,6 +147,17 @@ export default {
                     <canvas ref="lineChart"></canvas>
                 </div>
             </div>
+            <div class="stats-bottom">
+              <div class="bar">
+                <canvas ref="pieChart"></canvas>
+              </div>
+              <div class="t-wrapper">
+                 <div class="t-container">
+                     <span class="text">Game Time</span>
+                     <span class="count" data-val="400">000</span>
+                 </div>
+             </div>
+             </div>
         </div>
     </div>
 </template>
