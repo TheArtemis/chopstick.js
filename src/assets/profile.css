@@ -14,7 +14,7 @@
     align-items: center;
     width: 25%;
     height: 100vh;
-    background-color: var(--color-primary);
+    background-color: var(--bg-primary);
 }
 
 .profile{
@@ -29,12 +29,12 @@
 }
 
 .profile label#Profile{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 2.5rem;
 }
 
 .profile label#Username{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 1.5rem;
 }
 .click-area{
@@ -42,37 +42,38 @@
     aspect-ratio: 1 / 1;
     margin-top: 5%;
     margin-bottom: 10%;
-    background-color:var(--bg-secondary);   
+    background-color:var(--color-primary);   
     overflow: hidden;
+    background-size: contain;
+    border: 3px solid var(--color-primary);
 }
+
 .click-area img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
   .profile-modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid black;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--color-primary);
   }
   .profile-modal ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    padding:1rem;
   }
   .profile-modal li {
     display: inline-block;
-    margin-right: 10px;
+    height: 140px;
+    aspect-ratio: 1 / 1;
+    margin: 0.5rem;
     cursor: pointer;
   }
 .my_file{
     outline: none;
-    color: transparent;
-    width: 100%;
     box-sizing: border-box;
     padding: 50% 30%;
     cursor: pointer;
@@ -80,14 +81,35 @@
     opacity: 0;
 }
 
+.my_file img{
+    background-position: center center;
+}
+
 .my_file::-webkit-file-upload-button{
     visibility: hidden;
 }
 
 .my_file:hover{
-    opacity: 1;
-    background: #9e873e;;
+    opacity: 0.3;
+    background: var(--color-primary);
 }
+
+.img-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 30px;
+  }
+  .close{
+    background-image: url("../assets/svgs/x-symbol.svg");
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0.28rem
+  }
 
 .bio{
     display: flex;
@@ -99,7 +121,7 @@
     /*background-color: rgb(255, 115, 0);*/
 }
 .bio label#User{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 0rem;
 }
 
@@ -111,11 +133,11 @@
     height: 50%;
     aspect-ratio: 2 / 1;
     background-color:var(--bg-secondary);   
-    border: 1px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
     
 }
 .labelbio{
-    color: var(--bg-secondary);
+    color: var(--color-primary);
     font-size: 1.3rem;
 }
 
@@ -147,19 +169,22 @@
 
 }
 .stats .top-wrapper{
-    border: 1px solid var(--color-primary);
+    border: 1px solid transparent;
     width: 80%;
     align-items: center;
     display: flex;
+    gap: 1rem;
+    border-radius: 30px;
     color: var(--color-primary);
  }
  
 .stats .top-wrapper .top-container{
-     width: 20vw;
+     width: 30vw;
      height: 28vmin;
      border: 1px solid var(--color-primary);
      display: flex;
      flex-direction: column;
+     border-radius: 30px;
      justify-content: space-around;
   }
  
@@ -184,7 +209,7 @@
 .recent{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     text-align: center;
     width: 100%;
     height: 60%;
@@ -200,7 +225,8 @@
 }
 
 .recent .recent-game-container {
-    width: 100%;
+    width: 78%;
+    margin: auto;
   }
 
 @media only screen and (max-width: 767px) {
@@ -237,6 +263,14 @@
         background-color:var(--bg-secondary);   
         overflow: hidden;
     }
+    
+      .profile-modal ul {
+        padding:0.5rem;
+      }
+      .profile-modal li {
+        height: 55px;
+        margin: 0.1rem;
+      }
     .bio{
         width: 70%;
         height: 100%;
@@ -248,7 +282,7 @@
         background-color:var(--bg-secondary);   
     }
     .labelbio{
-        color: var(--bg-secondary);
+        color: var(--color-primary);
         font-size: 0.5rem;
     }
     
@@ -258,7 +292,7 @@
     }
 
     .bio label#User{
-        color: var(--bg-secondary);
+        color: var(--color-primary);
         font-size: 1.5rem;
         margin-top: 5%;
         margin-bottom: 5%;
@@ -281,7 +315,7 @@
     }
     .stats .top-wrapper{
         margin: auto;
-        border: 0.5px solid var(--color-primary);
+        border: 0.5px solid transparent;
         width: 90%;
      }
      
@@ -303,7 +337,6 @@
          font-size: 1em;
       }
     .recent label#Recent{
-        color: var(--color-primary);
         font-size: 1.5rem;
         margin-top: 5%;
         margin-bottom: 1%;

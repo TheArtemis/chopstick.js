@@ -29,6 +29,12 @@ export default {
       recentGamesList: [],
     };
   },
+  mounted() {
+    const selectedImage = localStorage.getItem('selectedImage');
+    if (selectedImage) {
+      this.selectedImage = selectedImage;
+    }
+  },
 
   methods: {
     openModal() {
@@ -41,6 +47,7 @@ export default {
     selectImage(image) {
       this.selectedImage = image;
       this.hideModal();
+      
     },
   },
 
@@ -78,7 +85,7 @@ export default {
       <div class="contentsx">
         <div class="profile">
           <label id="Profile">Profile</label>
-          <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})` }">
+          <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
             <img class="my_file" :src="selectedImage" alt="" />
             <div v-if="showModal" class="profile-modal">
               <ul>
@@ -86,6 +93,9 @@ export default {
                   <img :src="image" alt="" />
                 </li>
               </ul>
+               <a href="/profile" class="img-close">
+                <div class="close"></div>
+            </a>
             </div>
           </div>
           <label id="Username">Username</label>
