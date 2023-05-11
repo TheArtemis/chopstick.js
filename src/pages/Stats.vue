@@ -111,11 +111,11 @@ export default {
     createPieChart() {
     
       const data = {
-        labels: ['Wins', 'Losses', 'Ties'],
+        labels: ['Wins', 'Losses'],
         datasets: [
           {
-            data: [3, 1, 2],
-            backgroundColor: ['#8BC34A', '#F44336', '#f1cc53'],
+            data: [3, 1],
+            backgroundColor: ['#8BC34A', '#F44336'],
             borderColor: 'black',
           },
         ],
@@ -151,12 +151,10 @@ export default {
               <div class="bar">
                 <canvas ref="pieChart"></canvas>
               </div>
-              <div class="t-wrapper">
                  <div class="t-container">
                      <span class="text">Game Time</span>
-                     <span class="count" data-val="400">000</span>
+                     <span class="count" data-val="400">0</span>
                  </div>
-             </div>
              </div>
         </div>
     </div>

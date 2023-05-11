@@ -34,6 +34,7 @@
     flex-direction: row;
     align-content: center;
     text-align: center;
+    gap: 0.5rem;
     margin-left: 3rem;
     width: 80%;
     height: 40%;
@@ -43,29 +44,20 @@
 .bar{
     width:50%;
     height: 90%;
-    margin-left: 3rem;
+
 }
 
-.t-wrapper{
-    border: 1px solid transparent;
-    width: 80%;
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    border-radius: 30px;
-    color: black;
- }
- 
+
 .t-container{
-     width: 30vw;
-     height: 28vmin;
+     width: 20vw;
+     height: 20vmin;
      border: 3px solid black;
      background-color: var(--color-primary);
      margin: auto;
      display: flex;
      flex-direction: column;
-     border-radius: 30px;
-     justify-content: space-around;
+     border-radius: 40px;
+     justify-content: center;
   }
  
 .t-container span.count{
@@ -126,25 +118,28 @@
     }
     .stats-bottom{
         margin-left: 0;
+        justify-content: center;
+        align-items: center;
     }
     .bar{
         width:60%;
         height: 90%;
-        margin-left: 1rem;
+        margin-left:0;
     }
      
     .t-container{
-         width: 35vw;
-         height: 18vmin;
+         width: 30vw;
+         height: 15vmin;
          border: 3px solid black;
+         margin-right: 0.5rem;
       }
      
     .t-container span.count{
-         font-size: 1.5rem;
+         font-size: 1.4em;
       }
      
     .t-container span.text{
-         font-size: 1rem;
+         font-size: 0.78rem;
       }
     
     
