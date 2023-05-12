@@ -371,9 +371,14 @@ export default {
           console.log(this.player.name);
           console.log(this.opponent.name);
           console.log(this.winner);
+
+          this.updateRating();
+
           const response = await axiosInstance.post('/add-game', {
             player1: this.player.name,
             player2: this.opponent.name,
+            rating1: this.player.rating,
+            rating2: this.opponent.rating,
             winner: this.winner,
           }, {
             headers: {
@@ -383,13 +388,35 @@ export default {
           console.log("game ended, winner is: " + this.winner);
           console.log(this.pastPositions);
           console.log(response.data)
+
         } catch (error) {
           console.log(error)
         }
 
 
       }
+    },
+    async updateRating() {
+      if (this.winner == this.player.name) {
+        this.player.rating = this.player.rating + 10;
+      }
+      else if (this.winner == this.opponent.name) {
+        this.player.rating = this.player.rating - 10;
+      }
+      const token = localStorage.getItem('chopsticks_authToken');
+      const response = await axiosInstance.post('/update-rating', {
+        username: this.player.name,
+        rating: this.player.rating,
+      }, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log(response.data)
 
+      const user = JSON.parse(localStorage.getItem('chopsticks_userInfo'));
+      user.rating = this.player.rating;
+      localStorage.setItem('chopsticks_userInfo', JSON.stringify(user));
 
     },
     disableNavbar() {
