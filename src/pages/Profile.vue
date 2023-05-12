@@ -37,6 +37,11 @@ export default {
         console.log(error);
       }
 
+      if (this.picture == null)
+        this.selectedImage = 'src/assets/imgs/img3.png';
+      else
+        this.selectedImage = this.picture;
+
       this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
 
       const bio = JSON.parse(localStorage.getItem('chopsticks_userInfo')).bio;
@@ -64,7 +69,11 @@ export default {
       } catch (error) {
         console.log(error);
       }
-
+    }
+    else {
+      this.selectedImage = 'src/assets/imgs/img3.png';
+      this.username = 'Guest';
+      this.bio = 'Guest';
     }
   },
   data() {
@@ -98,6 +107,8 @@ export default {
     },
     hideModal() {
       this.showModal = false;
+      console.log('dsadkj');
+      /* QUERY QUI */
     },
     selectImage(image) {
       this.selectedImage = image;
@@ -161,16 +172,17 @@ export default {
           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
             <img class="my_file" :src="selectedImage" alt="" />
             <input type="file" ref="fileInput" style="display:none" @change="onFileChange" />
-            <div v-if="showModal" class="profile-modal">
-              <ul>
-                <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
-                  <img :src="image" alt="" />
-                </li>
-                <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
-              </ul>
-              <a href="/profile" class="img-close">
-                <div class="close"></div>
-              </a>
+          </div>
+          <div v-if="showModal" class="profile-modal">
+            <ul>
+              <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
+                <img :src="image" alt="" />
+              </li>
+              <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
+            </ul>
+            <div class="img-close">
+              <button class="close" @click="hideModal"
+                style="z-index: 999; cursor: pointer; background: none; border:none;">x</button>
             </div>
           </div>
           <label id="Username">Username</label>
