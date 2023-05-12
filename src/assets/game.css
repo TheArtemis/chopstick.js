@@ -73,6 +73,8 @@
 .player-bar-picture {
   border: 2px solid var(--text-primary);
   border-radius: 4px;
+  height: 50px;
+  width: 50px;
 }
 
 .player-bar-info {

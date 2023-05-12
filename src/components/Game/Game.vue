@@ -34,9 +34,9 @@ export default {
       boardActive: this.hasGameStarted,
       turn: -1, /* 0 is player 1 is opponent */
       player: {
-        name: 'You',
-        rating: '1000',
-        picture: 'https://cdn.smehost.net/milesdaviscom-uslegacyprod/wp-content/uploads/2022/04/milesdavis-1.jpg'
+        name: '',
+        rating: '',
+        picture: ''
       },
       opponent: {
         name: 'Computer',
@@ -47,6 +47,21 @@ export default {
       loser: null,
       isGameOverHidden: true,
     }
+  },
+  beforeMount() {
+    /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username) */
+
+    if (localStorage.getItem('chopsticks_userInfo') == null) {
+      this.player.name = 'Guest';
+      this.player.rating = '0000';
+      this.player.picture = '/src/assets/imgs/img3.png'
+    }
+    else {
+      this.player.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
+      this.player.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
+      /* this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture; */
+    }
+
   },
   methods: {
     /* Game Over Conditions */
@@ -332,6 +347,8 @@ export default {
       }
 
       this.$emit('game-ended');
+
+      console.log("CALL THE GAME OVER TO DATABASE HERE")
 
       console.log("game ended, winner is: " + this.winner);
       console.log(this.pastPositions);
