@@ -29,7 +29,7 @@ export default {
     logOut() {
       localStorage.removeItem('chopsticks_authToken');
       localStorage.removeItem('chopsticks_userInfo');
-      this.$router.push('/login');
+      window.location.href = '/login'
     }
   }
 }
