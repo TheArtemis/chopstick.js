@@ -36,11 +36,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
-
-      if (this.picture == null)
-        this.selectedImage = 'src/assets/imgs/img3.png';
-      else
-        this.selectedImage = this.picture;
+      this.selectedImage = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
 
       this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
 
@@ -93,26 +89,47 @@ export default {
       bio: '',
     };
   },
-  mounted() {
+  /* mounted() {
     const selectedImage = localStorage.getItem('selectedImage');
-    if (selectedImage) {
+    if (this.selectedImage) {
       this.selectedImage = selectedImage;
     }
-  },
+  }, */
 
   methods: {
+    /* onFileChange(event) {
+      this.selectedImage = event.target.files[0];
+      console.log(this.selectedImage);
+    }, */
     openModal() {
       console.log('ciao');
       this.showModal = true;
     },
-    hideModal() {
+    async hideModal() {
       this.showModal = false;
+      if (this.selectImage == null)
+        return;
       console.log('dsadkj');
       /* QUERY QUI */
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        console.log(this.selectedImage)
+
+        const response = await axiosInstance.post('/update-picture', {
+          picture: this.selectedImage
+        }, {
+          headers: {
+            Authorization: token,
+          }
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
     selectImage(image) {
       this.selectedImage = image;
-      this.hideModal();
+      /* this.hideModal(); */
 
     },
     async submitBio() {
@@ -171,14 +188,14 @@ export default {
           <label id="Profile">Profile</label>
           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
             <img class="my_file" :src="selectedImage" alt="" />
-            <input type="file" ref="fileInput" style="display:none" @change="onFileChange" />
+            <!-- <input id="file-upload" type="file" ref="fileInput" style="display:none" @change="onFileChange" /> -->
           </div>
           <div v-if="showModal" class="profile-modal">
             <ul>
               <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
                 <img :src="image" alt="" />
               </li>
-              <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
+              <!-- <li id="text" @click="$refs.fileInput.click()">Upload from file</li> -->
             </ul>
             <div class="img-close">
               <button class="close" @click="hideModal"
