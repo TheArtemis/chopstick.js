@@ -30,10 +30,14 @@
   height: 80px;
   display: inline-block;
 }
-.nav-item:last-child {
-  /*settings*/
+
+.nav-item-last {
   margin-top: auto;
-  /* margin-bottom: 0; */
+}
+
+#login-item {
+  margin-top: auto;
+  margin-bottom: 0;
 }
 
 .nav-link {
@@ -130,11 +134,11 @@
     display: none;
   }
 
-  .content{
+  .content {
     overflow: auto;
     width: 50vw;
     height: 80vh;
-    top:15%;
+    top: 15%;
   }
 }
 
@@ -158,7 +162,7 @@
     display: block;
   }
 
-  .content{
+  .content {
     width: auto;
     height: auto;
     margin-left: 5rem;
@@ -203,11 +207,11 @@
   text-decoration: none;
   font-size: 30px;
 }
-.close-popup{
+.close-popup {
   background-image: url("../assets/svgs/x-symbol.svg");
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0.28rem
+  margin: 0.28rem;
 }
