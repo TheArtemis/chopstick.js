@@ -99,7 +99,7 @@
   .chopsticks-navbar {
     top: 0;
     width: 100vw;
-    height: 10em;
+    height: 5em;
     position: relative;
   }
 
@@ -135,6 +135,10 @@
     height: 80vh;
     top: 15%;
   }
+  
+#login-item {
+  margin-top: 0;
+}
 }
 
 /*schermo grande*/
