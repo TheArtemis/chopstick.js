@@ -1,18 +1,55 @@
 <script>
 import Navbar from '@/components/Navbar/Navbar.vue'
 import recentGames from '@/components/RecentGames/recentGames.vue'
+import axiosInstance from '@/services/axiosIstance.js';
 
 export default {
+
   name: 'Profile',
   components: {
     Navbar, recentGames
   },
-  created() {
+  async created() {
     const colors = localStorage.getItem('colors');
     if (colors === 'true') {
       document.documentElement.setAttribute('data-colors', 'light');
     } else {
       document.documentElement.removeAttribute('data-colors');
+    }
+
+    if (localStorage.getItem('chopsticks_authToken')) {
+      this.guest = false;
+    }
+
+    if (this.guest == false) {
+      this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
+
+      const bio = JSON.parse(localStorage.getItem('chopsticks_userInfo')).bio;
+      if (bio != null)
+        this.bio = bio;
+
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        const response = await axiosInstance.get('/games', {
+          headers: {
+            Authorization: token,
+          },
+        });
+        console.log(response.data);
+        const data = [].concat(...Object.values(response.data));
+        this.recentGamesList = data.map(item => {
+          const date = new Date(item.date);
+          const formattedDate = date.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+          });
+          return { ...item, date: formattedDate };
+        });
+      } catch (error) {
+        console.log(error);
+      }
+
     }
   },
   data() {
@@ -27,6 +64,9 @@ export default {
       ],
       selectedImage: null,
       recentGamesList: [],
+      guest: true,
+      username: '',
+      bio: '',
     };
   },
   mounted() {
@@ -47,7 +87,7 @@ export default {
     selectImage(image) {
       this.selectedImage = image;
       this.hideModal();
-      
+
     },
   },
 
@@ -85,19 +125,19 @@ export default {
       <div class="contentsx">
         <div class="profile">
           <label id="Profile">Profile</label>
-           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
+          <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
             <img class="my_file" :src="selectedImage" alt="" />
-            <input  type="file" ref="fileInput" style="display:none" @change="onFileChange" />
+            <input type="file" ref="fileInput" style="display:none" @change="onFileChange" />
             <div v-if="showModal" class="profile-modal">
               <ul>
                 <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
                   <img :src="image" alt="" />
                 </li>
-                 <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
+                <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
               </ul>
-               <a href="/profile" class="img-close">
+              <a href="/profile" class="img-close">
                 <div class="close"></div>
-            </a>
+              </a>
             </div>
           </div>
           <label id="Username">Username</label>
@@ -109,10 +149,10 @@ export default {
         </div>-->
         <div class="bio-form">
           <label id="User">Username</label>
-             <form>
-               <textarea class="textarea" name="bio" placeholder="Inserisci la tua biografia qui..."></textarea>
-               <button class="button" type="submit">Salva</button>
-               </form>
+          <form>
+            <textarea class="textarea" name="bio" placeholder="Inserisci la tua biografia qui..."></textarea>
+            <button class="button" type="submit">Salva</button>
+          </form>
         </div>
       </div>
       <div class="contentdx">
@@ -134,8 +174,8 @@ export default {
         <div class="recent">
           <label id="Recent">Recent Games</label>
           <recentGames :recentGamesList="this.recentGamesList"></recentGames>
-         </div>
         </div>
       </div>
-  </div> 
+    </div>
+  </div>
 </template>
