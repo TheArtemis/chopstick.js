@@ -43,20 +43,20 @@
   --hand-height-small: 180px;
   --hand-width-small: 90px;
 
-  --hand0-path: url("src/assets/imgs/0dx.png");
-  --hand1-path: url("src/assets/imgs/1dx.png");
-  --hand2-path: url("src/assets/imgs/2dx.png");
-  --hand3-path: url("src/assets/imgs/3dx.png");
-  --hand4-path: url("src/assets/imgs/4dx.png");
-  --logo-path: url("src/assets/imgs/logo.png");
-  --img0-path: url("src/assets/imgs/img0.png");
-  --img1-path: url("src/assets/imgs/img1.png");
-  --img2-path: url("src/assets/imgs/img2.png");
-  --img3-path: url("src/assets/imgs/img3.png");
-  --img4-path: url("src/assets/imgs/img4.png");
-  --pc-path: url("src/assets/imgs/pc.png");
+  --hand0-path: url("/src/assets/imgs/0dx.png");
+  --hand1-path: url("/src/assets/imgs/1dx.png");
+  --hand2-path: url("/src/assets/imgs/2dx.png");
+  --hand3-path: url("/src/assets/imgs/3dx.png");
+  --hand4-path: url("/src/assets/imgs/4dx.png");
+  --logo-path: url("/src/assets/imgs/logo.png");
+  --img0-path: url("/src/assets/imgs/img0.png");
+  --img1-path: url("/src/assets/imgs/img1.png");
+  --img2-path: url("/src/assets/imgs/img2.png");
+  --img3-path: url("/src/assets/imgs/img3.png");
+  --img4-path: url("/src/assets/imgs/img4.png");
+  --pc-path: url("/src/assets/imgs/pc.png");
 
-  --x-symbol-red-path: url("src/assets/svgs/x-symbol-red.svg");
+  --x-symbol-red-path: url("/src/assets/svgs/x-symbol-red.svg");
 }
 
 :root[data-colors="light"] {

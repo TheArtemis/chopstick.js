@@ -39,9 +39,9 @@ export default {
         picture: ''
       },
       opponent: {
-        name: 'Computer',
+        name: 'Handy',
         rating: '8080',
-        picture: 'https://yt3.googleusercontent.com/CCi8_PVD-0cEWApO1xlTJbBaBzcOyG5xMHp0v1_E8UiJsp3fzoYqKZvJkx6SK2zKEab2hNkGcw=s900-c-k-c0x00ffffff-no-rj'
+        picture: '/src/assets/imgs/pc.png'
       },
       winner: null,
       loser: null,
