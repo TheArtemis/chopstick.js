@@ -58,9 +58,9 @@ export default {
             <label>Password:</label>
           </div>
           <div class="topsettcont">
-            <input required="" type="mail" :placeholder="this.email">
-            <input required="" type="text" :placeholder="this.username">
-            <input required="" type="password" :placeholder="this.password">
+            <input required="" type="mail" :placeholder="this.email" v-model="mail">
+            <input required="" type="text" :placeholder="this.username" >
+            <input required="" type="password" :placeholder="this.password" v-model="password">
           </div>
         </div>
         <div class="bottomset">
