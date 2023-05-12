@@ -3,6 +3,8 @@ import GameBoard from '@/components/Game/GameBoard.vue'
 import PlayerBar from '@/components/Game/PlayerBar.vue'
 import GameOver from '@/components/Game/GameOver.vue'
 
+import axiosInstance from '@/services/axiosIstance.js';
+
 export default {
   name: 'Game',
   props: {
@@ -13,7 +15,6 @@ export default {
       },
     },
     mouseUpFlag: Boolean,
-    playerSurrenderFlag: Boolean,
     hasGameStarted: Boolean,
   },
   components: {
@@ -46,17 +47,19 @@ export default {
       winner: null,
       loser: null,
       isGameOverHidden: true,
+      guest: true,
     }
   },
   created() {
     /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username) */
 
-    if (localStorage.getItem('chopsticks_authToken') == null) {
+    if (localStorage.getItem('chopsticks_authToken') == null || localStorage.getItem('chopsticks_userInfo') == null) {
       this.player.name = 'Guest';
       this.player.rating = '0000';
       this.player.picture = '/src/assets/imgs/img3.png'
     }
     else {
+      this.guest = false;
       this.player.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
       this.player.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
       if (JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture == null)
@@ -113,7 +116,7 @@ export default {
     },
     gameLoop() {
       if (this.isGameOver())
-        this.endGame();
+        return this.endGame();
 
       console.log("E' il turno di " + this.turn);
 
@@ -126,8 +129,9 @@ export default {
         console.log("player turn");
     },
     async computerAction() {
-      if (this.isGameOver())
-        this.endGame();
+      if (this.isGameOver()) {
+        return this.endGame();
+      }
 
       /* Deactivate player hands */
       this.boardActive = false;
@@ -316,14 +320,17 @@ export default {
 
       const playerHandObject = this.$refs.gameBoard.$refs[playerHand];
       const playerHandPosition = playerHandObject.$el.getBoundingClientRect();
-      console.log(playerHandObject.$el)
+      /* console.log(playerHandObject.$el) */
 
       /* console.log(playerHandPosition); */
 
       this.$refs.gameBoard.$refs[opponentHand].AttackAnimation(playerHand, playerHandPosition);
       /* this.$refs.GameBoard[opponentHand].AttackAnimation(playerHand); */
     },
-    endGame() {
+    async endGame() {
+      console.log("game ended");
+      if (this.turn == -1)
+        return;
       this.turn = -1;
       this.boardActive = false;
       /* this.currentPosition = {
@@ -335,12 +342,12 @@ export default {
 
       this.isGameOverHidden = false;
 
-      if (this.playerSurrenderFlag == true) {
+      /* if (this.playerSurrenderFlag == true) {
         this.winner = this.opponent.name;
         this.loser = this.player.name;
-      }
+      } */
 
-      else if (this.hasPlayerLost()) {
+      if (this.hasPlayerLost()) {
         this.winner = this.opponent.name;
         this.loser = this.player.name;
       }
@@ -351,10 +358,30 @@ export default {
 
       this.$emit('game-ended');
 
-      console.log("CALL THE GAME OVER TO DATABASE HERE")
+      if (this.guest == false) {
+        const token = localStorage.getItem('chopsticks_authToken');
+        console.log(token)
+        console.log("CALL THE GAME OVER TO DATABASE HERE")
+        try {
+          const response = await axiosInstance.post('/add-game', {
+            headers: {
+              Authorization: `${token}`,
+            },
+            player1: this.player.name,
+            player2: this.opponent.name,
+            winner: this.winner,
+          });
+          console.log("game ended, winner is: " + this.winner);
+          console.log(this.pastPositions);
+          console.log(response.data)
+        } catch (error) {
+          console.log(error)
+        }
 
-      console.log("game ended, winner is: " + this.winner);
-      console.log(this.pastPositions);
+
+      }
+
+
     },
     disableNavbar() {
       this.$emit('disable-navbar');
@@ -367,28 +394,43 @@ export default {
     closeGameOver() {
       this.isGameOverHidden = true;
     },
+    surrenderGame() {
+      console.log("surrender game catched");
+      /* this.playerSurrenderFlag = true; */
+      this.winner = this.opponent.name;
+      this.loser = this.player.name;
+      this.endGame();
+    }
   },
   updated() {
     /* console.log("game -> " + this.boardActive); */
   },
   watch: {
-    hasGameStarted: function (val) {
+    /* hasGameStarted: function (val) {
       this.boardActive = val;
 
       if (val == false) {
         return;
       }
-      if (this.turn == -1 && this.playerSurrenderFlag == false)
+      else if (this.turn == -1) {
+        console.log("HERE GAME STARTS")
         this.startGame();
-      else
-        this.endGame();
-    },
-    playerSurrenderFlag: function (val) {
+      }
+
+      
+
+    }, */
+    /* else {
+        console.log("HERE GAME ENDS")
+        return this.endGame();
+      } */
+
+    /* playerSurrenderFlag: function (val) {
       if (val == true) {
         this.turn = -1;
-        this.endGame();
+        return this.endGame();
       }
-    }
+    } */
   },
   /* computed: {
     computedStyles() {

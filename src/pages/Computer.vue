@@ -24,12 +24,13 @@ export default {
   methods: {
     startGame() {
       this.hasGameStarted = true;
-      this.playerSurrenderFlag = false;
+      this.$refs.game.startGame();
       /* console.log("computer -> " + this.hasGameStarted); */
     },
     surrenderGame() {
-      this.hasGameStarted = false;
-      this.playerSurrenderFlag = true;
+      /* this.hasGameStarted = false;
+      this.playerSurrenderFlag = true; */
+      this.$refs.game.surrenderGame();
       /* console.log("computer -> " + this.hasGameStarted); */
     },
     enableNavbar() {
@@ -58,8 +59,9 @@ export default {
 <template>
   <div class="wrapper" @mouseup="noticeMouseUp">
     <Navbar :navbarActive="this.navbarActive" />
-    <Game :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar" @disable-navbar="this.disableNavbar"
-      @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag" :playerSurrenderFlag="this.playerSurrenderFlag" />
+    <Game ref="game" :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar"
+      @disable-navbar="this.disableNavbar" @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag"
+      :playerSurrenderFlag="this.playerSurrenderFlag" />
     <PlayComputerMenu @start-game="this.startGame" @surrender-game="this.surrenderGame"
       :hasGameStarted="this.hasGameStarted" />
   </div>
