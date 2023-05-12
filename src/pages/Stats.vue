@@ -11,16 +11,6 @@ export default {
     Navbar,
     recentGames,
   },
-  props: {
-    wins: {
-      type: Number,
-      required: true,
-    },
-    losses: {
-      type: Number,
-      required: true,
-    },
-  },
  
   data() {
     return {
@@ -28,6 +18,8 @@ export default {
       chartInstance: null, 
       lineChartInstance: null, 
       pieChartInstance: null, 
+      wins:0,
+      losses:0,
     };
   },
   beforeMount() {
@@ -71,7 +63,10 @@ export default {
   },
   mounted() {
     this.createLineChart(this.recentGamesList);
-    this.createPieChart();
+    setTimeout(() => {
+        this.createPieChart();
+    }, 100); //wait for the render to finish before creating the chart
+    this.updateWinLossCounts();
   },
   watch: {
     recentGamesList() {
@@ -108,29 +103,41 @@ export default {
         options,
       });
     },
-    createPieChart() {
-    
-      const data = {
-        labels: ['Wins', 'Losses'],
-        datasets: [
-          {
-            data: [3, 1],
-            backgroundColor: ['#8BC34A', '#F44336'],
-            borderColor: 'black',
-          },
-        ],
-      };
-      const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-      };
+    updateWinLossCounts() {
+      this.wins = 0;
+      this.losses = 0;
 
-      this.pieChartInstance = new Chart(this.$refs.pieChart, {
-        type: 'pie',
-        data,
-        options,
-      });
-    },
+      this.recentGamesList.forEach((game) => {
+      if (game.winner === game.player1) {
+        this.wins++;
+      } else if (game.winner === game.player2) {
+        this.losses++;
+      }
+    });
+},
+createPieChart() {
+  const data = {
+    labels: ['Wins', 'Losses'],
+    datasets: [
+      {
+        data: [this.wins, this.losses],
+        backgroundColor: ['#8BC34A', '#F44336'],
+        borderColor: 'black',
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
+  this.pieChartInstance = new Chart(this.$refs.pieChart, {
+    type: 'pie',
+    data,
+    options,
+  });
+},
 
     
   },
