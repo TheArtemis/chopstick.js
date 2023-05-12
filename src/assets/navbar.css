@@ -1,4 +1,4 @@
-.navbar {
+.chopsticks-navbar {
   position: absolute;
   background-color: var(--bg-secondary);
   transition: width var(--transition-speed) ease;
@@ -7,11 +7,11 @@
   z-index: 1000000;
 }
 
-.navbar.disabled {
+.chopsticks-navbar.disabled {
   pointer-events: none;
 }
 
-.navbar:hover.link-text {
+.chopsticks-navbar:hover.link-text {
   display: block;
 }
 
@@ -96,14 +96,14 @@
 
 /*schermo piccolo*/
 @media only screen and (max-width: 767px) {
-  .navbar {
+  .chopsticks-navbar {
     top: 0;
     width: 100vw;
     height: 10em;
     position: relative;
   }
 
-  .navbar.disabled {
+  .chopsticks-navbar.disabled {
     pointer-events: none;
   }
 
@@ -125,12 +125,12 @@
     margin-top: 0;
   }
 
-  .navbar:hover {
+  .chopsticks-navbar:hover {
     width: auto;
     /* height: 3em; */
   }
 
-  .navbar:hover .link-text {
+  .chopsticks-navbar:hover .link-text {
     display: none;
   }
 
@@ -144,21 +144,21 @@
 
 /*schermo grande*/
 @media only screen and (min-width: 768px) {
-  .navbar {
+  .chopsticks-navbar {
     top: 0;
     width: 4rem;
     height: 100vh;
   }
 
-  .navbar:hover {
+  .chopsticks-navbar:hover {
     width: 16rem;
   }
 
-  .navbar.disabled {
+  .chopsticks-navbar.disabled {
     pointer-events: none;
   }
 
-  .navbar:hover .link-text {
+  .chopsticks-navbar:hover .link-text {
     display: block;
   }
 

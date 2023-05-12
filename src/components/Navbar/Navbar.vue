@@ -33,7 +33,7 @@ export default {
 
 <template>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
-    <nav class="navbar" :class="{ disabled: !this.navbarActive }">
+    <nav class="chopsticks-navbar" :class="{ disabled: !this.navbarActive }">
         <ul class="navbar-nav">
             <li class="logo">
                 <a href="/" class="nav-link">
@@ -144,5 +144,6 @@ export default {
             <a href="#" class="box-close">
                 <div class="close-popup"></div>
             </a>
+        </div>
     </div>
-</div></template>
+</template>
