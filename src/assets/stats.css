@@ -73,6 +73,9 @@
 
 
 @media only screen and (max-width: 767px) and (min-width: 497px) {
+    .navbar {
+        height: 4em;
+      }
     .graph{
         margin-left: 0;
     }
@@ -107,6 +110,9 @@
 }
 
 @media only screen and (max-width: 497px) {
+    .navbar {
+        height: 4em;
+      }
     .graph{
         margin-left: 0;
         width: 80%;
