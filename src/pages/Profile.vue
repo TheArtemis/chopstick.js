@@ -22,6 +22,21 @@ export default {
     }
 
     if (this.guest == false) {
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        console.log('Getting user info...');
+        const response = await axiosInstance.get('/users', {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+        console.log(response.data);
+        localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
+        console.log(localStorage.getItem('chopsticks_userInfo'));
+      } catch (error) {
+        console.log(error);
+      }
+
       this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
 
       const bio = JSON.parse(localStorage.getItem('chopsticks_userInfo')).bio;
@@ -89,6 +104,24 @@ export default {
       this.hideModal();
 
     },
+    async submitBio() {
+      if (this.guest == false) {
+        try {
+          const token = localStorage.getItem('chopsticks_authToken');
+          console.log(token);
+          const response = await axiosInstance.post('/update-bio', {
+            bio: this.bio
+          }, {
+            headers: {
+              Authorization: token,
+            }
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
   },
 
   beforeMount() {
@@ -149,8 +182,9 @@ export default {
         </div>-->
         <div class="bio-form">
           <label id="User">Username</label>
-          <form>
-            <textarea class="textarea" name="bio" placeholder="Enter your bio here..."></textarea>
+          <form @submit.prevent="submitBio">
+            <textarea class="textarea" name="bio" :placeholder="bio ? bio : 'Write something about yourself...'"
+              v-model="bio" textarea></textarea>
             <button class="button" type="submit">Save</button>
           </form>
         </div>
