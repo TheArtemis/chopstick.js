@@ -48,10 +48,10 @@ export default {
       isGameOverHidden: true,
     }
   },
-  beforeMount() {
+  created() {
     /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username) */
 
-    if (localStorage.getItem('chopsticks_userInfo') == null) {
+    if (localStorage.getItem('chopsticks_authToken') == null) {
       this.player.name = 'Guest';
       this.player.rating = '0000';
       this.player.picture = '/src/assets/imgs/img3.png'
@@ -59,7 +59,10 @@ export default {
     else {
       this.player.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
       this.player.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
-      /* this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture; */
+      if (JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture == null)
+        this.player.picture = '/src/assets/imgs/img3.png'
+      else
+        this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
     }
 
   },
