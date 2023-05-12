@@ -58,7 +58,7 @@ export default {
 			const token = localStorage.getItem('chopsticks_authToken');
 			if (token) {
 				this.getUserInfo(token);
-				this.$router.push('/');
+				window.location.href = '/'
 			}
 		},
 		async getUserInfo(token) {
@@ -96,14 +96,16 @@ export default {
 								<p class="text-50 mb-5" style="color: #f1cc53;">Please enter your login and password!</p>
 
 								<div class="form-outline form mb-4" style="color: #f1cc53;">
-									<input type="email" id="typeEmailX" class="form-control form-control-lg"
-										style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;" v-model="username" />
+									<input type="username" id="typeEmailX" class="form-control form-control-lg"
+										style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;"
+										v-model="username" />
 									<label class="form-label" for="typetextX" style="color: #f1cc53;">Username</label>
 								</div>
 
 								<div class="form-outline form mb-4" style="color: #f1cc53;">
 									<input type="password" id="typePasswordX" class="form-control form-control-lg"
-										style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;" v-model="password" />
+										style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;"
+										v-model="password" />
 									<label class="form-label" for="typePasswordX" style="color: #f1cc53;">Password</label>
 								</div>
 
