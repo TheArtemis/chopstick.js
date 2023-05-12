@@ -85,13 +85,15 @@ export default {
       <div class="contentsx">
         <div class="profile">
           <label id="Profile">Profile</label>
-          <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
+           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
             <img class="my_file" :src="selectedImage" alt="" />
+            <input  type="file" ref="fileInput" style="display:none" @change="onFileChange" />
             <div v-if="showModal" class="profile-modal">
               <ul>
                 <li v-for="(image, index) in images" :key="index" @click="selectImage(image)">
                   <img :src="image" alt="" />
                 </li>
+                 <li id="text" @click="$refs.fileInput.click()">Upload from file</li>
               </ul>
                <a href="/profile" class="img-close">
                 <div class="close"></div>
@@ -100,10 +102,17 @@ export default {
           </div>
           <label id="Username">Username</label>
         </div>
-        <div class="bio">
+        <!--<div class="bio">
           <label id="User">Username</label>
           <label for="areabio" class="labelbio">Biography</label>
           <textarea class="areabio"></textarea>
+        </div>-->
+        <div class="bio-form">
+          <label id="User">Username</label>
+             <form>
+               <textarea class="textarea" name="bio" placeholder="Inserisci la tua biografia qui..."></textarea>
+               <button class="button" type="submit">Salva</button>
+               </form>
         </div>
       </div>
       <div class="contentdx">

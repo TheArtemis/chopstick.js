@@ -11,7 +11,6 @@
 .contentsx{
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 25%;
     height: 100vh;
     background-color: var(--bg-primary);
@@ -54,6 +53,7 @@
   }
   .profile-modal {
     position: absolute;
+    border-radius: 1em;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -72,6 +72,15 @@
     margin: 0.5rem;
     cursor: pointer;
   }
+  .profile-modal li#text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin: 0.5rem;
+    cursor: pointer;
+  }
+
 .my_file{
     outline: none;
     box-sizing: border-box;
@@ -111,14 +120,14 @@
     margin: 0.28rem
   }
 
-.bio{
+/*.bio{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     width: 100%;
-    height: 40%;
-    /*background-color: rgb(255, 115, 0);*/
+    height: 50%;
+    background-color: rgb(255, 115, 0);
 }
 .bio label#User{
     color: var(--color-primary);
@@ -140,7 +149,48 @@
     color: var(--color-primary);
     font-size: 1.3rem;
 }
+*/
 
+.bio-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    margin-top: 4rem;
+  }
+
+.bio-form label#User{
+    color: var(--color-primary);
+    font-size: 0rem;
+}
+  
+.textarea {
+    color: var(--color-primary);
+    padding: 1rem;
+    resize: none;
+    width: 70%;
+    height: 50%;
+    aspect-ratio: 2 / 1;
+    background-color:var(--bg-secondary);   
+    border: 2px solid var(--color-primary);
+  }
+  
+.button {
+    background-color: var(--color-primary);
+    color: var(--bg-secondary);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+.button:hover {
+    background-color: var(--color-secondary);
+  }
 
 .contentdx{
     display: flex;
@@ -244,8 +294,9 @@
     }
     .profile{
         padding-top: 0;
-        width: 30%;
-        height: 100%;
+        margin: 0;
+        width: 50%;
+        height:100%;
     }
     .profile label#Profile{
         color: var(--bg-secondary);
@@ -257,7 +308,7 @@
         font-size: 0rem;
     }
     .click-area{
-        width:70%;
+        width:50%;
         margin:auto;
         aspect-ratio: 1 / 1;
         background-color:var(--bg-secondary);   
@@ -271,32 +322,49 @@
         height: 55px;
         margin: 0.1rem;
       }
-    .bio{
-        width: 70%;
-        height: 100%;
+    .bio-form{
+        width: 60%;
+        height: 100%; 
+        margin-top: 0;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
-    .areabio{
-        width:70%;
-        height: 15%;
+    .textarea{
+        margin-top:10%;
+        width:80%;
+        height: 20%;
         aspect-ratio: 6 / 1;
+        font-size: 0.5rem;
+        padding: 1rem;
         background-color:var(--bg-secondary);   
     }
-    .labelbio{
+    /*.labelbio{
         color: var(--color-primary);
         font-size: 0.5rem;
-    }
+    }*/
     
-   .areabio label#Bio{
+   /*.areabio label#Bio{
         color: var(--color-primary);
         font-size: 1rem;
-    }
+    }*/
 
-    .bio label#User{
+    .bio-form label#User{
         color: var(--color-primary);
         font-size: 1.5rem;
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin-top: 1rem;
+        margin-bottom: 0;
     }
+    .button {
+        padding: 5px;
+        font-size: 10px;
+        cursor: pointer;
+        margin-top: 1px;
+      }
+      
+    .button:hover {
+        background-color: var(--color-secondary);
+      }
     
     .contentdx{
         width: 100%;
