@@ -354,7 +354,6 @@ hand.player:active {
     height: var(--hand-height-small);
     width: var(--hand-width-small);
   }
-
   /* .game-over {
     position: fixed;
     z-index: 999;
@@ -366,4 +365,20 @@ hand.player:active {
     height: 300px;
     width: 300px;
   } */
+}
+
+@media only screen and (max-width: 400px) {
+  .game-button {
+    font-size: 16px !important;
+  }
+
+  .game-board {
+    min-width: 300px;
+    min-height: 300px;
+  }
+
+  .hand {
+    height: var(--hand-height-very-small);
+    width: var(--hand-width-very-small);
+  }
 }
