@@ -1,7 +1,7 @@
 <template>
     <transition name="slide">
         <div v-if="this.error" class="chopstick-error-box" :class="{ 'error-show': this.showError }">
-            <p class="">{{ error }}</p>
+            {{ error }}
             <button class="close-box-error-icon"
                 @click="closeErrorBox"><!-- <span id="close-icon-s">&#10006;</span> --></button>
         </div>
@@ -79,11 +79,6 @@ export default {
     cursor: pointer;
     color: #bb6767 !important;
     z-index: 999;
-}
-
-#close-icon-s {
-    background-image: none !important;
-    color: red;
 }
 
 @media screen and (max-width: 768px) {
