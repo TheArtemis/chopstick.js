@@ -64,9 +64,15 @@ export default {
         this.$router.push('/login');
 
       } catch (error) {
-        this.error = error.response.data;
-        console.log(error);
-        this.showError = true;
+        if (error.code == 'ERR_NETWORK') {
+          this.error = 'Server is not responding';
+          this.showError = true;
+        }
+        else {
+          this.error = error.response.data;
+          console.log(error);
+          this.showError = true;
+        }
       } finally {
         this.username = '';
         this.mail = '';
