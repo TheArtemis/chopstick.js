@@ -18,4 +18,16 @@ const router = createRouter({
     history: createWebHistory(), 
 })
 
+/* ADD WHEN COMPLETE */
+
+/* router.beforeEach((to, from, next) => {
+    if(localStorage.getItem('chopsticks_authToken') === null && (to.name === 'profile' || to.name === 'stats' || to.name === 'settings')) {        
+        next('/login')        
+        
+    }
+    else {
+        next();
+    }
+}); */
+
 export default router
