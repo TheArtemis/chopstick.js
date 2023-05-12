@@ -8,7 +8,11 @@ export default {
   },
   data() {
     return {
-      clicked: false
+      clicked: false,
+      guest: true,
+      email: '',
+      username: '',
+      password: '12345',
     };
   },
   mounted() {
@@ -31,6 +35,11 @@ export default {
       localStorage.removeItem('chopsticks_userInfo');
       window.location.href = '/login'
     }
+  },
+  created() {
+    if (localStorage.getItem('chopsticks_authToken')) {
+      this.guest = false;
+    }
   }
 }
 </script>
@@ -49,9 +58,9 @@ export default {
             <label>Password:</label>
           </div>
           <div class="topsettcont">
-            <input required="" type="mail" placeholder="Your E-mail">
-            <input required="" type="text" placeholder="Your Username">
-            <input required="" type="text" placeholder="Your Password">
+            <input required="" type="mail" :placeholder="this.email">
+            <input required="" type="text" :placeholder="this.username">
+            <input required="" type="password" :placeholder="this.password">
           </div>
         </div>
         <div class="bottomset">
