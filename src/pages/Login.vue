@@ -93,7 +93,7 @@ export default {
 							<form class="mb-md-5 mt-md-4 pb-5" @submit.prevent="submitLogin">
 
 								<h2 class="fw-bold mb-2 text-uppercase" style="color: #f1cc53;">Login</h2>
-								<p class="text-50 mb-5" style="color: #f1cc53;">Please enter your login and password!</p>
+								<p class="text-50 mb-5" style="color: #f1cc53;">Please enter your username and password!</p>
 
 								<div class="form-outline form mb-4" style="color: #f1cc53;">
 									<input type="username" id="typeEmailX" class="form-control form-control-lg"
