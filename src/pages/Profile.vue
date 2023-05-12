@@ -198,8 +198,7 @@ export default {
               <!-- <li id="text" @click="$refs.fileInput.click()">Upload from file</li> -->
             </ul>
             <div class="img-close">
-              <button class="close" @click="hideModal"
-                style="z-index: 999; cursor: pointer; background: none; border:none;">x</button>
+              <div class="close" @click="hideModal"></div>
             </div>
           </div>
           <label id="Username">Username</label>
