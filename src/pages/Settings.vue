@@ -36,9 +36,26 @@ export default {
       window.location.href = '/login'
     }
   },
-  created() {
+  async created() {
     if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
+    }
+
+    if (this.guest = false) {
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        console.log('Getting user info...');
+        const response = await axiosInstance.get('/users', {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+        console.log(response.data);
+        localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
+        console.log(localStorage.getItem('chopsticks_userInfo'));
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }
@@ -59,7 +76,7 @@ export default {
           </div>
           <div class="topsettcont">
             <input required="" type="mail" :placeholder="this.email" v-model="mail">
-            <input required="" type="text" :placeholder="this.username" >
+            <input required="" type="text" :placeholder="this.username">
             <input required="" type="password" :placeholder="this.password" v-model="password">
           </div>
         </div>
