@@ -48,6 +48,7 @@ export default {
       loser: null,
       isGameOverHidden: true,
       guest: true,
+      surrendered: false,
     }
   },
   created() {
@@ -108,6 +109,7 @@ export default {
       this.isGameOverHidden = true;
       this.winner = null;
       this.loser = null;
+      this.surrendered = false;
     },
     startGame() {
       console.log("game started");
@@ -347,7 +349,9 @@ export default {
         this.loser = this.player.name;
       } */
 
-      if (this.hasPlayerLost()) {
+
+
+      if (this.hasPlayerLost() || this.surrendered) {
         this.winner = this.opponent.name;
         this.loser = this.player.name;
       }
@@ -359,17 +363,22 @@ export default {
       this.$emit('game-ended');
 
       if (this.guest == false) {
-        const token = localStorage.getItem('chopsticks_authToken');
-        console.log(token)
+
         console.log("CALL THE GAME OVER TO DATABASE HERE")
         try {
+          const token = localStorage.getItem('chopsticks_authToken');
+          console.log(token);
+          console.log(this.player.name);
+          console.log(this.opponent.name);
+          console.log(this.winner);
           const response = await axiosInstance.post('/add-game', {
-            headers: {
-              Authorization: `${token}`,
-            },
             player1: this.player.name,
             player2: this.opponent.name,
             winner: this.winner,
+          }, {
+            headers: {
+              Authorization: token,
+            },
           });
           console.log("game ended, winner is: " + this.winner);
           console.log(this.pastPositions);
@@ -397,8 +406,7 @@ export default {
     surrenderGame() {
       console.log("surrender game catched");
       /* this.playerSurrenderFlag = true; */
-      this.winner = this.opponent.name;
-      this.loser = this.player.name;
+      this.surrendered = true;
       this.endGame();
     }
   },
