@@ -30,7 +30,7 @@ export default {
     if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
     }
-    if (this.guest == false) {
+    if (this.guest == true) {
 
       this.player = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
 
@@ -66,8 +66,8 @@ export default {
     /* RESTITUISCE UN INSIEME DI OGGETTI */
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
-    /* this.recentGamesList.push({
-      player1: 'Miles',
+    this.recentGamesList.push({
+      player1: 'guest',
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
@@ -76,7 +76,15 @@ export default {
     })
 
     this.recentGamesList.push({
-      player1: 'Miles',
+      player1: 'guest',
+      rating1: 1200,
+      player2: 'Peter',
+      rating2: 1200,
+      winner: 'guest',
+      date: '2021-11-10',
+    })
+    this.recentGamesList.push({
+      player1: 'guest',
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
@@ -84,30 +92,24 @@ export default {
       date: '2021-11-10',
     })
     this.recentGamesList.push({
-      player1: 'Miles',
+      player1: 'guest',
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
-      winner: 'Peter',
-      date: '2021-11-10',
-    })
-    this.recentGamesList.push({
-      player1: 'Miles',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'Miles',
+      winner: 'guest',
       date: '2021-11-10',
     })
 
-    console.log(this.recentGamesList); */
+    console.log(this.recentGamesList);
   },
   mounted() {
     console.log("mounted");
     this.createLineChart(this.recentGamesList);
     this.$nextTick(() => {
       this.createPieChart();
-    }); // wait for the render to finish before creating the chart    
+    }); // wait for the render to finish before creating the chart
+    this.updateWinLossCounts();
+
   },
   watch: {
     recentGamesList() {
