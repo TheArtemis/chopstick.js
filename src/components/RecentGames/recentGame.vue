@@ -23,8 +23,11 @@ export default {
 
 <template>
   <div class="recent-game-container">
-    <p>{{ player1 }} vs {{ player2 }}</p>
-    <p>Winner: {{ winner }}</p>
-    <p>Date: {{ date }}</p>
+    <div class="player-container">
+      <div class="player-info">{{ player1 }}: {{ rating1 }}</div>
+      <div class="score">{{ winner === player1 ? '1-0' : '0-1' }}</div>
+      <div class="player-info">{{ player2 }}: {{ rating2 }}</div>
+    </div>
+    <div class="date">{{ date }}</div>
   </div>
 </template>
