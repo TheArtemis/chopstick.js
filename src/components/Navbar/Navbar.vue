@@ -137,7 +137,7 @@ export default {
                 <p>We are computer and automatic engineering students at Sapienza University of Rome.</p>
                 <p>This game was created for a university project in "Languages and Technologies for Web".</p>
                 <p>If you would like to take a look at the code please visit our GitHub:
-                    https://github.com/TheArtemis/chopstick.js </p>
+                    <a href="https://github.com/TheArtemis/chopstick.js" style="color: var(--color-primary)" target="_blank">https://github.com/TheArtemis/chopstick.js</a></p>
                 <p>Have fun and watch out for Handy, he looks friendly but it is only appearance!</p>
 
             </b>
