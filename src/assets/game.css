@@ -205,7 +205,7 @@ hand.player:active {
   flex-direction: column;
   flex-wrap: wrap;
   position: absolute;
-  z-index: 10000;
+  z-index: 99999;
   border: 2px solid var(--border-board);
   top: 0;
   left: 0;
