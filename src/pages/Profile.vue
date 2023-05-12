@@ -150,8 +150,8 @@ export default {
         <div class="bio-form">
           <label id="User">Username</label>
           <form>
-            <textarea class="textarea" name="bio" placeholder="Inserisci la tua biografia qui..."></textarea>
-            <button class="button" type="submit">Salva</button>
+            <textarea class="textarea" name="bio" placeholder="Enter your bio here..."></textarea>
+            <button class="button" type="submit">Save</button>
           </form>
         </div>
       </div>
