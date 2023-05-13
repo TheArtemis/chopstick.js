@@ -31,6 +31,7 @@ export default {
       }
     },
     logOut() {
+      console.log('logging out');
       localStorage.removeItem('chopsticks_authToken');
       localStorage.removeItem('chopsticks_userInfo');
       window.location.href = '/login'
@@ -47,6 +48,11 @@ export default {
             Authorization: `${token}`,
           },
         });
+        console.log(response.data);
+        localStorage.removeItem('chopsticks_authToken');
+        localStorage.removeItem('chopsticks_userInfo');
+        window.location.href = '/login'
+        console.log('user info changed');
       } catch (error) {
         console.log(error);
       }
