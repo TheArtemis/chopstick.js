@@ -1,5 +1,6 @@
 <script>
 import Navbar from '@/components/Navbar/Navbar.vue'
+import axiosInstance from '@/services/axiosIstance.js';
 
 export default {
   name: 'Settings',
@@ -12,7 +13,6 @@ export default {
       guest: true,
       email: '',
       username: '',
-      password: '12345',
     };
   },
   mounted() {
@@ -34,14 +34,32 @@ export default {
       localStorage.removeItem('chopsticks_authToken');
       localStorage.removeItem('chopsticks_userInfo');
       window.location.href = '/login'
+    },
+    async submitChange() {
+      console.log('changing user info');
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        const response = await axiosInstance.post('/update-user', {
+          username: this.username,
+          email: this.email,
+        }, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   async created() {
+    console.log('Settings page created');
     if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
     }
+    console.log(this.guest);
 
-    if (this.guest = false) {
+    if (this.guest == false) {
       try {
         const token = localStorage.getItem('chopsticks_authToken');
         console.log('Getting user info...');
@@ -53,6 +71,10 @@ export default {
         console.log(response.data);
         localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
         console.log(localStorage.getItem('chopsticks_userInfo'));
+        console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username);
+        this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
+        console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).email);
+        this.email = JSON.parse(localStorage.getItem('chopsticks_userInfo')).email;
       } catch (error) {
         console.log(error);
       }
@@ -65,19 +87,19 @@ export default {
   <div class="wrapper">
     <Navbar />
     <div class="contenitor">
-      <div class="settings">
+      <form class="settings" @submit.prevent="submitChange">
         <label id="Settings">Settings</label>
         <!--<input required="" type="text" placeholder="Your Name">-->
         <div class="topsett">
           <div class="topsettname">
             <label>E-mail:</label>
             <label>Username:</label>
-            <label>Password:</label>
+            <!-- <label>Password:</label> -->
           </div>
           <div class="topsettcont">
-            <input required="" type="mail" :placeholder="this.email" v-model="mail">
-            <input required="" type="text" :placeholder="this.username">
-            <input required="" type="password" :placeholder="this.password" v-model="password">
+            <input required="" type="mail" :placeholder="this.email" v-model="email">
+            <input required="" type="text" :placeholder="this.username" v-model="username">
+            <!--  <input required="" type="password" :placeholder="this.password" v-model="password"> -->
           </div>
         </div>
         <div class="bottomset">
@@ -90,10 +112,10 @@ export default {
           </div>
           <div class="butt">
             <button class="settings-button" @click="this.logOut">Log Out</button>
-            <button class="settings-button">Save</button>
+            <button class="settings-button" type="submit">Save</button>
           </div>
         </div>
-      </div>
+      </form><!--  -->
     </div>
   </div>
 </template>

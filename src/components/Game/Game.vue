@@ -51,22 +51,40 @@ export default {
       surrendered: false,
     }
   },
-  created() {
+  async created() {
     /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username) */
 
+    try {
+      const token = localStorage.getItem('chopsticks_authToken');
+      console.log('Getting user info...');
+      const response = await axiosInstance.get('/users', {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      console.log(response.data);
+      localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
+      console.log(localStorage.getItem('chopsticks_userInfo'));
+    } catch (error) {
+      console.log(error);
+    }
     if (localStorage.getItem('chopsticks_authToken') == null || localStorage.getItem('chopsticks_userInfo') == null) {
+      console.log("guest");
       this.player.name = 'Guest';
       this.player.rating = '0000';
       this.player.picture = '/src/assets/imgs/img3.png'
     }
     else {
       this.guest = false;
+      console.log("not guest");
       this.player.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
       this.player.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
       if (JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture == null)
         this.player.picture = '/src/assets/imgs/img3.png'
-      else
+      else {
+        console.log("picture is not null");
         this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
+      }
     }
 
   },

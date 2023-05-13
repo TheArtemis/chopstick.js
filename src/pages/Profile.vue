@@ -76,11 +76,11 @@ export default {
     return {
       showModal: false,
       images: [
-        'src/assets/imgs/img0.png',
-        'src/assets/imgs/img1.png',
-        'src/assets/imgs/img2.png',
-        'src/assets/imgs/img3.png',
-        'src/assets/imgs/img4.png',
+        '/src/assets/imgs/img0.png',
+        '/src/assets/imgs/img1.png',
+        '/src/assets/imgs/img2.png',
+        '/src/assets/imgs/img3.png',
+        '/src/assets/imgs/img4.png',
       ],
       selectedImage: null,
       recentGamesList: [],
