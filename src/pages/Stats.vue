@@ -28,7 +28,7 @@ export default {
     };
   },
   async created() {
-    if (localStorage.getItem('chopsticks_authToken')) {
+    /*if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
     }
     if (this.guest == true) {
@@ -109,7 +109,9 @@ export default {
     this.$nextTick(() => {
       this.createPieChart();
     }); // wait for the render to finish before creating the chart
+    this.updateLineChart();
     this.updateWinLossCounts();
+    console.log(this.score);
 
   },
   watch: {
@@ -122,27 +124,29 @@ export default {
   },
   methods: {
     updateLineChart() {
-      this.score = [];
-      this.recentGamesList.forEach((game) => {
-        if (game.player1 == this.player) {
-            this.score.push(this.rating1);
-        }
-        else{
-          this.score.push(this.rating2);
-        }
-      });
-    },
+        this.score = [];
+        let rating;
+             this.recentGamesList.forEach((game) => {
+                 rating = parseFloat(game.rating1);
+                     if (game.player1 === this.player) {
+                           rating = game.rating1;
+                  } else if (game.player2 === this.player) {
+                           rating = parseFloat(game.rating2)
+                  }
+    this.score.push(rating); 
+  });
+},
     createLineChart(recentGames) {
       const labels = recentGames.map((game) => game.date);
       const data = {
         labels,
         datasets: [
           {
-            label: '1 = win; -1 = losses; 0 = ties',
-            data: recentGames.map((game) => (game.winner == this.player ? 1 : -1)),
+            label: 'Rating',
+            data: this.score,
             borderColor: 'black',
           },
-        ],
+        ], 
       };
       const options = {
         responsive: true,
