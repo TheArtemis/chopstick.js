@@ -23,7 +23,8 @@ export default {
       wins: 0,
       losses: 0,
       guest: true,
-      player: 'guest'
+      player: 'guest',
+      score: [],
     };
   },
   async created() {
@@ -54,8 +55,8 @@ export default {
         });
         this.recentGamesList = gamelist;
         console.log(this.recentGamesList);
-        this.updateWinLossCounts();
         this.updateLineChart();
+        this.updateWinLossCounts();
       } catch (error) {
         console.log(error);
       }
@@ -120,6 +121,17 @@ export default {
     },
   },
   methods: {
+    updateLineChart() {
+      this.score = [];
+      this.recentGamesList.forEach((game) => {
+        if (game.player1 == this.player) {
+            this.score.push(this.rating1);
+        }
+        else{
+          this.score.push(this.rating2);
+        }
+      });
+    },
     createLineChart(recentGames) {
       const labels = recentGames.map((game) => game.date);
       const data = {
@@ -147,9 +159,7 @@ export default {
         options,
       });
     },
-    updateLineChart() {
-
-    },
+    
     updateWinLossCounts() {
       this.wins = 0;
       this.losses = 0;
