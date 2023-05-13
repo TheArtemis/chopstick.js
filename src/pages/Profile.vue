@@ -201,7 +201,7 @@ export default {
               <div class="close" @click="hideModal"></div>
             </div>
           </div>
-          <label id="Username">Username</label>
+          <label id="Username">{{ this.username }}</label>
         </div>
         <!--<div class="bio">
           <label id="User">Username</label>
@@ -209,7 +209,7 @@ export default {
           <textarea class="areabio"></textarea>
         </div>-->
         <div class="bio-form">
-          <label id="User">Username</label>
+          <label id="User">{{ this.username }}</label>
           <form @submit.prevent="submitBio">
             <textarea class="textarea" name="bio" :placeholder="bio ? bio : 'Write something about yourself...'"
               v-model="bio" textarea></textarea>
