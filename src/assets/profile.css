@@ -284,10 +284,10 @@
   width: 78%;
   margin: auto;
 }
-@media only screen and (min-width: 768px) {
-  .close {
-    width: 20px;
-    height: 20px;
+@media only screen and (min-width: 768px){
+  .close{
+    width: 15px;
+    height: 15px;
   }
 }
 @media only screen and (max-width: 767px) {
