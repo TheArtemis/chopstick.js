@@ -43,17 +43,19 @@
   width: 60%;
   aspect-ratio: 1 / 1;
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
   background-color: var(--bg-secondary);
   overflow: hidden;
   background-size: contain;
   border: 3px solid var(--color-primary);
   border-radius: 1em;
+  background-repeat: no-repeat;
 }
 
 .click-area img {
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
 }
 .profile-modal {
   position: absolute;
@@ -281,7 +283,7 @@
 .contentdx label#Recent {
   color: var(--color-primary);
   font-size: 2.5rem;
-  margin-top: 2%;
+  margin-top: 5%;
   margin-bottom: 1%;
 }
 
@@ -464,7 +466,7 @@
   }
   .contentdx label#Recent {
     font-size: 1.5rem;
-    margin-top: 5%;
+    margin-top: 9%;
     margin-bottom: 1%;
   }
   .close {

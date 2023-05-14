@@ -24,12 +24,12 @@ export default {
 <template>
   <div class="recent-game-container">
     <div class="player-container">
-      <div class="player-info">{{ player1 }}: {{ rating1 }}</div>
+      <div class="player-info-sx">{{ player1 }}: {{ rating1 }}</div>
       <div class="score-container">
         <div class="score">{{ winner === player1 ? '1-0' : '0-1' }}</div>
         <div class="date">{{ date }}</div>
       </div>
-      <div class="player-info">{{ player2 }}: {{ rating2 }}</div>
+      <div class="player-info-dx">{{ player2 }}: {{ rating2 }}</div>
     </div>
   </div>
 </template>
