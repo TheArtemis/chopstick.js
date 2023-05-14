@@ -40,7 +40,7 @@
   font-size: 1.5rem;
 }
 .click-area {
-  width: 60%;
+  width: 50%;
   aspect-ratio: 1 / 1;
   margin-top: 5%;
   margin-bottom: 10%;
@@ -177,7 +177,7 @@
   color: var(--color-primary);
   display: flex;
   padding: 1rem;
-  margin-left: 2.5%;
+  margin-left: 0.59em;
   resize: none;
   width: 75%;
   aspect-ratio: 2 / 1;
