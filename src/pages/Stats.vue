@@ -72,7 +72,7 @@ export default {
     /* RESTITUISCE UN INSIEME DI OGGETTI */
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
-    /* this.recentGamesList.push({
+     this.recentGamesList.push({
       player1: 'guest',
       rating1: 1200,
       player2: 'Peter',
@@ -104,7 +104,7 @@ export default {
       rating2: 1200,
       winner: 'guest',
       date: '2021-11-10',
-    }) */
+    }) 
 
     console.log(this.recentGamesList);
   },

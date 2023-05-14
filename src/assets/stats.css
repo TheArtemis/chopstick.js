@@ -52,24 +52,27 @@
   border: 3px solid black;
   background-color: var(--color-primary);
   margin: auto;
+  margin-right: 15%;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
   border-radius: 40px;
   justify-content: center;
+  align-items: center;
 }
 
 .t-container span.count {
   display: grid;
   place-items: center;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .t-container span.text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
-@media only screen and (max-width: 767px) and (min-width: 497px) {
+@media only screen and (max-width: 767px) and (min-width: 507px) {
   .navbar {
     height: 4em;
   }
@@ -92,19 +95,21 @@
   .t-container {
     width: 30vw;
     height: 18vmin;
+    margin-right: 10%;
+    padding: 0.5em;
     border: 3px solid black;
   }
 
   .t-container span.count {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .t-container span.text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
-@media only screen and (max-width: 497px) {
+@media only screen and (max-width: 507px) {
   .navbar {
     height: 4em;
   }
@@ -131,12 +136,13 @@
   .t-container {
     width: 30vw;
     height: 15vmin;
+    padding: 0.5em;
     border: 3px solid black;
     margin-right: 0.5rem;
   }
 
   .t-container span.count {
-    font-size: 1.4em;
+    font-size: 1em;
   }
 
   .t-container span.text {
