@@ -134,11 +134,11 @@ export default {
             </h1>
             <b style="color: var(--text-primary)">
                 <p>Hi, we are Lorenzo Deflorian, Maria Chiara Ierovante and Enrico Ianni Ficorilli.</p>
-                <p>We are computer and automatic engineering students at Sapienza University of Rome.</p>
-                <p>This game was created for a university project in "Languages and Technologies for Web".</p>
-                <p>If you would like to take a look at the code please visit our GitHub:
+                <p>We are Informatics and Automation Engineering students at Sapienza, University of Rome.</p>
+                <p>This game was created for a university project in "Languages and Technologies for the Web".</p>
+                <p>If you would like to take a look at our code please visit our GitHub:
                     <a href="https://github.com/TheArtemis/chopstick.js" style="color: var(--color-primary)" target="_blank">https://github.com/TheArtemis/chopstick.js</a></p>
-                <p>Have fun and watch out for Handy, he looks friendly but it is only appearance!</p>
+                <p>Have fun and watch out for Handy, he looks friendly but he will be a tough opponent!</p>
 
             </b>
             <a href="#" class="box-close">
