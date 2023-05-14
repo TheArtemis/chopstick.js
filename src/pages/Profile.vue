@@ -118,12 +118,12 @@ export default {
     updateScore(winner) {
       var wins = this.numWins();
       var losses = this.numLosses();
-  
-  
-     var winsSpan = document.querySelector('span.wins');
-     var lossesSpan = document.querySelector('span.losses');
-     winsSpan.textContent = numWins;
-     lossesSpan.textContent = numLosses;
+
+
+      var winsSpan = document.querySelector('span.wins');
+      var lossesSpan = document.querySelector('span.losses');
+      winsSpan.textContent = numWins;
+      lossesSpan.textContent = numLosses;
     },
     openModal() {
       console.log('ciao');
@@ -182,18 +182,18 @@ export default {
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
     this.recentGamesList.push({
-      player1: 'Miles',
+      player1: 'Guest',
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
-      winner: 'Miles',
+      winner: 'Guest',
       date: '2021-10-10',
     })
 
     this.recentGamesList.push({
       player1: 'Peter',
       rating1: 1200,
-      player2: 'Miles',
+      player2: 'Guest',
       rating2: 1200,
       winner: 'Peter',
       date: '2021-11-10',
