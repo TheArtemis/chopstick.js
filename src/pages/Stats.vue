@@ -28,7 +28,9 @@ export default {
     };
   },
   async created() {
-    /*if (localStorage.getItem('chopsticks_authToken')) {
+    try{
+      console.log("created");
+      if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
     }
     if (this.guest == true) {
@@ -61,6 +63,9 @@ export default {
         console.log(error);
       }
     }
+    } catch (error) {
+      console.error("created error",error);
+    }
   },
   beforeMount() {
     /* QUERY AL DATABASE PER AVERE LE PARTITE RECENTI */
@@ -72,7 +77,7 @@ export default {
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
-      winner: 'Miles',
+      winner: 'Peter',
       date: '2021-10-10',
     })
 
@@ -105,8 +110,8 @@ export default {
   },
   mounted() {
     console.log("mounted");
-    this.createLineChart(this.recentGamesList);
     this.$nextTick(() => {
+      this.createLineChart(this.recentGamesList);
       this.createPieChart();
     }); // wait for the render to finish before creating the chart
     this.updateLineChart();

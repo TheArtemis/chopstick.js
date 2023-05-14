@@ -167,11 +167,11 @@ export default {
     })
 
     this.recentGamesList.push({
-      player1: 'Steven',
+      player1: 'Peter',
       rating1: 1200,
       player2: 'Miles',
       rating2: 1200,
-      winner: 'Steven',
+      winner: 'Peter',
       date: '2021-11-10',
     })
   },
