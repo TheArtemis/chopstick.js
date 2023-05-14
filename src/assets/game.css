@@ -382,3 +382,19 @@ hand.player:active {
     width: var(--hand-width-very-small);
   }
 }
+
+@media only screen and (max-width: 350px) {
+  .game-board {
+    min-width: 250px;
+    min-height: 250px;
+  }
+
+  .game-button {
+    font-size: 14px !important;
+  }
+
+  .hand {
+    height: var(--hand-height-xxs);
+    width: var(--hand-width-xxs);
+  }
+}
