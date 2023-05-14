@@ -1,154 +1,145 @@
-.total{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+.total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 }
 
-.graph{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    text-align: center;
-    margin-left: 3rem;
-    width: 80%;
-    height: 60%;
-    background-color: var(--bg-secondary);
+.graph {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  margin-left: 3rem;
+  width: 80%;
+  height: 60%;
+  background-color: var(--bg-secondary);
 }
 
-.graph label#Stats{
-    color: var(--color-primary);
-    font-size: 2rem;
+.graph label#Stats {
+  color: var(--color-primary);
+  font-size: 2rem;
 }
 
-.line-chart{
-    width:90%;
-    height: 90%;
-    margin: auto;
+.line-chart {
+  width: 90%;
+  height: 90%;
+  margin: auto;
 }
 
-.stats-bottom{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    text-align: center;
-    gap: 0.5rem;
-    margin-left: 3rem;
-    width: 80%;
-    height: 40%;
-    background-color: var(--bg-secondary);  
+.stats-bottom {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  margin-left: 3rem;
+  width: 80%;
+  height: 40%;
+  background-color: var(--bg-secondary);
 }
 
-.bar{
-    width:50%;
-    height: 90%;
-
+.bar {
+  width: 50%;
+  height: 90%;
 }
 
+.t-container {
+  width: 20vw;
+  height: 20vmin;
+  border: 3px solid black;
+  background-color: var(--color-primary);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  justify-content: center;
+}
 
-.t-container{
-     width: 20vw;
-     height: 20vmin;
-     border: 3px solid black;
-     background-color: var(--color-primary);
-     margin: auto;
-     display: flex;
-     flex-direction: column;
-     border-radius: 40px;
-     justify-content: center;
-  }
- 
-.t-container span.count{
-     display: grid;
-     place-items: center;
-     font-size: 4rem;
-  }
- 
-.t-container span.text{
-     text-align: center;
-     font-size: 2rem;
-  }
+.t-container span.count {
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+}
 
+.t-container span.text {
+  text-align: center;
+  font-size: 2rem;
+}
 
 @media only screen and (max-width: 767px) and (min-width: 497px) {
-    .navbar {
-        height: 4em;
-      }
-    .graph{
-        margin-left: 0;
-    }
-    
-    .graph label#Stats{
-        font-size: 1.5rem;
-    }
-    .stats-bottom{
-        margin-left: 0;
-    }
-    .bar{
-        width:50%;
-        height: 90%;
-        margin-left: 1rem;
-    }
-     
-    .t-container{
-         width: 30vw;
-         height: 18vmin;
-         border: 3px solid black;
-      }
-     
-    .t-container span.count{
-         font-size: 2.5rem;
-      }
-     
-    .t-container span.text{
-         font-size: 1.5rem;
-      }
-    
-    
+  .navbar {
+    height: 4em;
+  }
+  .graph {
+    margin-left: 0;
+  }
+
+  .graph label#Stats {
+    font-size: 1.5rem;
+  }
+  .stats-bottom {
+    margin-left: 0;
+  }
+  .bar {
+    width: 50%;
+    height: 90%;
+    margin-left: 1rem;
+  }
+
+  .t-container {
+    width: 30vw;
+    height: 18vmin;
+    border: 3px solid black;
+  }
+
+  .t-container span.count {
+    font-size: 2.5rem;
+  }
+
+  .t-container span.text {
+    font-size: 1.5rem;
+  }
 }
 
 @media only screen and (max-width: 497px) {
-    .navbar {
-        height: 4em;
-      }
-    .graph{
-        margin-left: 0;
-        width: 80%;
-        height: 50%;
-    }
-    
-    .graph label#Stats{
-        font-size: 1rem;
-    }
-    .stats-bottom{
-        margin-left: 0;
-        justify-content: center;
-        align-items: center;
-    }
-    .bar{
-        width:60%;
-        height: 90%;
-        margin-left:0;
-    }
-     
-    .t-container{
-         width: 30vw;
-         height: 15vmin;
-         border: 3px solid black;
-         margin-right: 0.5rem;
-      }
-     
-    .t-container span.count{
-         font-size: 1.4em;
-      }
-     
-    .t-container span.text{
-         font-size: 0.78rem;
-      }
-    
-    
+  .navbar {
+    height: 4em;
+  }
+  .graph {
+    margin-left: 0;
+    width: 80%;
+    height: 50%;
+  }
+
+  .graph label#Stats {
+    font-size: 1rem;
+  }
+  .stats-bottom {
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .bar {
+    width: 60%;
+    height: 90%;
+    margin-left: 0;
+  }
+
+  .t-container {
+    width: 30vw;
+    height: 15vmin;
+    border: 3px solid black;
+    margin-right: 0.5rem;
+  }
+
+  .t-container span.count {
+    font-size: 1.4em;
+  }
+
+  .t-container span.text {
+    font-size: 0.78rem;
+  }
 }
-
-

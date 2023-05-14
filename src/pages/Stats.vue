@@ -28,43 +28,43 @@ export default {
     };
   },
   async created() {
-    try{
+    try {
       console.log("created");
       if (localStorage.getItem('chopsticks_authToken')) {
-      this.guest = false;
-    }
-    if (this.guest == true) {
-
-      this.player = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
-
-      try {
-        const token = localStorage.getItem('chopsticks_authToken');
-        const response = await axiosInstance.get('/games', {
-          headers: {
-            Authorization: token,
-          },
-        });
-        console.log(response.data);
-        const data = [].concat(...Object.values(response.data));
-        var gamelist = data.map(item => {
-          const date = new Date(item.date);
-          const formattedDate = date.toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric"
-          });
-          return { ...item, date: formattedDate };
-        });
-        this.recentGamesList = gamelist;
-        console.log(this.recentGamesList);
-        this.updateLineChart();
-        this.updateWinLossCounts();
-      } catch (error) {
-        console.log(error);
+        this.guest = false;
       }
-    }
+      if (this.guest == false) {
+
+        this.player = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
+
+        try {
+          const token = localStorage.getItem('chopsticks_authToken');
+          const response = await axiosInstance.get('/games', {
+            headers: {
+              Authorization: token,
+            },
+          });
+          console.log(response.data);
+          const data = [].concat(...Object.values(response.data));
+          var gamelist = data.map(item => {
+            const date = new Date(item.date);
+            const formattedDate = date.toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric"
+            });
+            return { ...item, date: formattedDate };
+          });
+          this.recentGamesList = gamelist;
+          console.log(this.recentGamesList);
+          this.updateLineChart();
+          this.updateWinLossCounts();
+        } catch (error) {
+          console.log(error);
+        }
+      }
     } catch (error) {
-      console.error("created error",error);
+      console.error("created error", error);
     }
   },
   beforeMount() {
@@ -72,7 +72,7 @@ export default {
     /* RESTITUISCE UN INSIEME DI OGGETTI */
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
-    this.recentGamesList.push({
+    /* this.recentGamesList.push({
       player1: 'guest',
       rating1: 1200,
       player2: 'Peter',
@@ -104,7 +104,7 @@ export default {
       rating2: 1200,
       winner: 'guest',
       date: '2021-11-10',
-    })
+    }) */
 
     console.log(this.recentGamesList);
   },
@@ -129,18 +129,18 @@ export default {
   },
   methods: {
     updateLineChart() {
-        this.score = [];
-        let rating;
-             this.recentGamesList.forEach((game) => {
-                 rating = parseFloat(game.rating1);
-                     if (game.player1 === this.player) {
-                           rating = game.rating1;
-                  } else if (game.player2 === this.player) {
-                           rating = parseFloat(game.rating2)
-                  }
-    this.score.push(rating); 
-  });
-},
+      this.score = [];
+      let rating;
+      this.recentGamesList.forEach((game) => {
+        rating = parseFloat(game.rating1);
+        if (game.player1 === this.player) {
+          rating = game.rating1;
+        } else if (game.player2 === this.player) {
+          rating = parseFloat(game.rating2)
+        }
+        this.score.push(rating);
+      });
+    },
     createLineChart(recentGames) {
       const labels = recentGames.map((game) => game.date);
       const data = {
@@ -151,7 +151,7 @@ export default {
             data: this.score,
             borderColor: 'black',
           },
-        ], 
+        ],
       };
       const options = {
         responsive: true,
@@ -168,7 +168,7 @@ export default {
         options,
       });
     },
-    
+
     updateWinLossCounts() {
       this.wins = 0;
       this.losses = 0;
