@@ -118,15 +118,15 @@ export default {
                   </div>
 
                   <div class="form-outline form mb-3" style="color: #f1cc53;  margin-top: -15px">
-                    <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                    <input type="password" id="typePassword1" class="form-control form-control-lg"
                       style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;" v-model="password" />
-                    <label class="form-label" for="typePasswordX" style="color: #f1cc53;">Password</label>
+                    <label class="form-label" for="typePassword2" style="color: #f1cc53;">Password</label>
                   </div>
                   <div class="form-outline form mb-3" style="color: #f1cc53;  margin-top: -15px">
-                    <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                    <input type="password" id="typePassword1" class="form-control form-control-lg"
                       style="color: #f1cc53; border-color: #f1cc53; background-color: #272522;"
                       v-model="confirmPassword" />
-                    <label class="form-label" for="typePasswordX" style="color: #f1cc53;">Confirm Password</label>
+                    <label class="form-label" for="typePassword2" style="color: #f1cc53;">Confirm Password</label>
                   </div>
 
                   <button class="btn btn-outline btn-lg px-5" type="submit"
