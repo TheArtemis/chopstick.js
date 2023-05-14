@@ -235,8 +235,8 @@ export default {
           <canvas ref="pieChart"></canvas>
         </div>
         <div class="t-container">
-          <span class="text">Games played</span>
-          <span class="count" data-val="400">0</span>
+          <span class="text">GAMES PLAYED</span>
+          <span class="count" data-val="400">{{ this.wins + this.losses }}</span>
         </div>
       </div>
     </div>
