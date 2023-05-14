@@ -9,6 +9,20 @@ export default {
   components: {
     Navbar, recentGames
   },
+  computed: {
+    numWins() {
+      if (this.guest) {
+        return 0;
+      }
+      return this.recentGamesList.filter((game) => game.winner === this.username).length;
+    },
+    numLosses() {
+      if (this.guest) {
+        return 0;
+      }
+      return this.recentGamesList.filter((game) => game.winner !== this.username).length;
+    },
+  },
   async created() {
     const colors = localStorage.getItem('colors');
     if (colors === 'true') {
@@ -101,6 +115,16 @@ export default {
       this.selectedImage = event.target.files[0];
       console.log(this.selectedImage);
     }, */
+    updateScore(winner) {
+      var wins = this.numWins();
+      var losses = this.numLosses();
+  
+  
+     var winsSpan = document.querySelector('span.wins');
+     var lossesSpan = document.querySelector('span.losses');
+     winsSpan.textContent = numWins;
+     lossesSpan.textContent = numLosses;
+    },
     openModal() {
       console.log('ciao');
       this.showModal = true;
@@ -228,8 +252,8 @@ export default {
             </div>
             <div class="top-container">
               <i class="fa-regular fa-thumbs-down"></i>
-              <span class="wins" data-val="400">000</span>
-              <span class="wins-text">Losses</span>
+              <span class="losses" data-val="400">000</span>
+              <span class="losses-text">Losses</span>
             </div>
           </div>
         </div>

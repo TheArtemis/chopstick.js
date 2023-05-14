@@ -21,13 +21,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   text-align: center;
   margin-bottom: 1rem;
   margin-top: 3rem;
   width: 100%;
-  height: 50%;
+  /* height: 60%; */
   border-radius: 1em;
+  /*background-color: blue;*/
 }
 
 .profile label#Profile {
@@ -41,9 +42,10 @@
 }
 .click-area {
   width: 60%;
+  max-width: 200px;
   aspect-ratio: 1 / 1;
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
   background-color: var(--bg-secondary);
   overflow: hidden;
   background-size: contain;
@@ -160,10 +162,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   text-align: center;
   width: 100%;
-  height: 70%;
+  height: 50%;
 }
 
 .bio-form label#User {
@@ -175,7 +177,7 @@
   color: var(--color-primary);
   padding: 1rem;
   resize: none;
-  width: 70%;
+  width: 65%;
   aspect-ratio: 2 / 1;
   background-color: var(--bg-secondary);
   border: 2px solid var(--color-primary);
@@ -190,12 +192,12 @@
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .button:hover {
   background-color: var(--color-secondary);
 }
-
 
 .contentdx {
   display: flex;
@@ -255,7 +257,18 @@
   font-size: 2em;
 }
 
+.stats .top-wrapper .top-container span.losses {
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 2em;
+}
+
 .stats .top-wrapper .top-container span.wins-text {
+  text-align: center;
+}
+
+.stats .top-wrapper .top-container span.losses-text {
   text-align: center;
 }
 
@@ -265,7 +278,6 @@
   flex-direction: column;
   align-items: left;
   text-align: center;
-  margin-top: 1rem;
   width: 100%;
   height: 60%;
   display: flex;
@@ -307,7 +319,6 @@
     margin: 0;
     width: 50%;
     height: 100%;
-    margin-top: -5%;
   }
   .profile label#Profile {
     color: var(--bg-secondary);
@@ -315,9 +326,8 @@
   }
 
   .profile label#Username {
-    color: var(--color-primary);
-    font-size: 1rem;
-    margin-top: -20%;
+    color: var(--bg-secondary);
+    font-size: 0rem;
   }
   .click-area {
     width: 50%;
@@ -337,13 +347,13 @@
   .bio-form {
     width: 60%;
     height: 100%;
-    margin-top: -0.5rem;
-    align-items:baseline;
+    margin-top: -1.5rem;
+    align-items: center;
     justify-content: center;
     text-align: center;
   }
   .textarea {
-    margin-top: 0%;
+    margin-top: 10%;
     width: 80%;
     height: 50%;
     aspect-ratio: 6 / 1;
@@ -376,16 +386,13 @@
         color: var(--color-primary);
         font-size: 1rem;
     }*/
-    
 
   .bio-form label#User {
     color: var(--color-primary);
-    font-size: 0rem;
-    margin-top: 0rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 0;
   }
-   
-
   .button {
     padding: 5px;
     font-size: 10px;
