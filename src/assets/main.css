@@ -29,6 +29,9 @@
   --button-border-inactive: #585858;
   --button-height: 0.5rem;
 
+  --navbar-icon-color: var(--color-primary);
+  --counter-stats: var(--color-primary);
+
   --transition-speed: 200ms;
 
   --navbar-size: 4rem;
@@ -67,34 +70,37 @@
   font-family: "Roboto", sans-serif;
   --text-primary: #282828;
   --text-secondary: #090909;
-  --bg-primary: #e6eaff;
-  --bg-secondary: #c7d1ff;
-  --bg-secondary-highlight: #3a3936;
-  --color-primary: #6a81f0;
-  --color-secondary: #556de1;
-  --color-primary-border: #657ae3;
+  --bg-primary: #efefef;
+  --bg-secondary: #e2e0e0;
+  --bg-secondary-highlight: #d2d3db;
+  --color-primary: #2a2a2a;
+  --color-secondary: #2a2a2a;
+  --color-primary-border: #2b2b2b;
+
+  --navbar-icon-color: var(--color-primary);
+  --counter-stats: #acabab;
 
   --border-board: var(--color-primary-border);
   --background-board: var(--color-primary);
 
   --text-color: var(--bg-secondary);
   --button-color: var(--color-secondary);
-  --button-3d: #919fe6;
+  --button-3d: #7e7e7e;
   --button-border: var(--color-primary-border);
   --button-shadow: #c7c7c736;
   --button-hover: var(--color-primary);
-  --button-dropdown: #4060ff;
+  --button-dropdown: #616161;
   --button-dropdown-hover: var(--bg-secondary);
   --button-inactive: #767676;
   --button-border-inactive: #3c3c3c;
   --button-height: 0.5rem;
 
-  --hand0-path: url("src/assets/imgs/0dxL.png");
+ /* --hand0-path: url("src/assets/imgs/0dxL.png");
   --hand1-path: url("src/assets/imgs/1dxL.png");
   --hand2-path: url("src/assets/imgs/2dxL.png");
   --hand3-path: url("src/assets/imgs/3dxL.png");
   --hand4-path: url("src/assets/imgs/4dxL.png");
-  --logo-path: url("src/assets/imgs/logoL.png");
+  --logo-path: url("/src/assets/imgs/logo.png");*/
   --img0-path: url("src/assets/imgs/img0L.png");
   --img1-path: url("src/assets/imgs/img1L.png");
   --img2-path: url("src/assets/imgs/img2L.png");

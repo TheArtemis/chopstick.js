@@ -67,7 +67,7 @@
   min-width: 1.5rem;
   margin: 0 1.25rem;
   transition: var(--transition-speed);
-  fill: var(--color-primary);
+  fill: var( --navbar-icon-color);
 }
 
 .logo {
