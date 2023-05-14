@@ -216,7 +216,6 @@ input:valid {
   transform: translate3d(0, 0, -1em);
 }
 
-
 .settings-button.inactive {
   pointer-events: none;
   background: var(--button-inactive);
@@ -247,6 +246,7 @@ input:valid {
   }
   .topsettcont {
     gap: 0.3rem;
+    margin-right: 1.4rem;
   }
 
   input {
@@ -262,6 +262,7 @@ input:valid {
   }
   .settings-button {
     font-size: 13px;
+    height: 60px;
   }
 }
 @media only screen and (max-width: 497px) {
@@ -286,6 +287,7 @@ input:valid {
   }
   .topsettcont {
     gap: 0.3rem;
+    margin-right: 1rem;
   }
 
   input {
