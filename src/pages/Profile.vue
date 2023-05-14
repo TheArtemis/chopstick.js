@@ -257,8 +257,8 @@ export default {
             </div>
           </div>
         </div>
+        <label id="Recent">Recent Games</label>
         <div class="recent">
-          <label id="Recent">Recent Games</label>
           <recentGames :recentGamesList="this.recentGamesList"></recentGames>
         </div>
       </div>
