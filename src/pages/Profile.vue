@@ -10,19 +10,13 @@ export default {
     Navbar, recentGames
   },
   computed: {
-    numWins() {
-      if (this.guest) {
-        return 0;
-      }
-      return this.recentGamesList.filter((game) => game.winner === this.username).length;
-    },
-    numLosses() {
-      if (this.guest) {
-        return 0;
-      }
-      return this.recentGamesList.filter((game) => game.winner !== this.username).length;
-    },
+  totalWins() {
+    return this.recentGamesList.filter(game => game.winner === 'Miles').length;
   },
+  totalLosses() {
+    return this.recentGamesList.filter(game => game.winner === 'Peter').length;
+  }
+ },
   async created() {
     const colors = localStorage.getItem('colors');
     if (colors === 'true') {
@@ -115,16 +109,6 @@ export default {
       this.selectedImage = event.target.files[0];
       console.log(this.selectedImage);
     }, */
-    updateScore(winner) {
-      var wins = this.numWins();
-      var losses = this.numLosses();
-
-
-      var winsSpan = document.querySelector('span.wins');
-      var lossesSpan = document.querySelector('span.losses');
-      winsSpan.textContent = numWins;
-      lossesSpan.textContent = numLosses;
-    },
     openModal() {
       console.log('ciao');
       this.showModal = true;
@@ -182,18 +166,18 @@ export default {
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
     this.recentGamesList.push({
-      player1: 'Guest',
+      player1: 'Miles',
       rating1: 1200,
       player2: 'Peter',
       rating2: 1200,
-      winner: 'Guest',
+      winner: 'Miles',
       date: '2021-10-10',
     })
 
     this.recentGamesList.push({
       player1: 'Peter',
       rating1: 1200,
-      player2: 'Guest',
+      player2: 'Miles',
       rating2: 1200,
       winner: 'Peter',
       date: '2021-11-10',
@@ -247,13 +231,13 @@ export default {
           <div class="top-wrapper">
             <div class="top-container">
               <i class="fa-regular fa-thumbs-up"></i>
-              <span class="wins" data-val="400">000</span>
+              <span class="wins" v-bind:data-val="totalWins">{{ totalWins }}</span>
               <span class="wins-text">Wins</span>
             </div>
             <div class="top-container">
               <i class="fa-regular fa-thumbs-down"></i>
-              <span class="losses" data-val="400">000</span>
-              <span class="losses-text">Losses</span>
+              <span class="losses" v-bind:data-val="totalLosses">{{ totalLosses }}</span>
+              <span class="wins-text">Losses</span>
             </div>
           </div>
         </div>
