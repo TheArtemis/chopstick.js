@@ -9,14 +9,6 @@ export default {
   components: {
     Navbar, recentGames
   },
-  computed: {
-  totalWins() {
-    return this.recentGamesList.filter(game => game.winner === 'Miles').length;
-  },
-  totalLosses() {
-    return this.recentGamesList.filter(game => game.winner === 'Peter').length;
-  }
- },
   async created() {
     const colors = localStorage.getItem('colors');
     if (colors === 'true') {
@@ -95,20 +87,32 @@ export default {
       guest: true,
       username: '',
       bio: '',
+      wins: 0,
+      losses: 0,
+      totalLosses: 0,
+      totalWins: 0,
     };
   },
-  /* mounted() {
-    const selectedImage = localStorage.getItem('selectedImage');
-    if (this.selectedImage) {
-      this.selectedImage = selectedImage;
-    }
-  }, */
+  mounted() {
+    this.updateWinLossCounts();
+  },
 
   methods: {
     /* onFileChange(event) {
       this.selectedImage = event.target.files[0];
       console.log(this.selectedImage);
     }, */
+    updateWinLossCounts() {
+      this.recentGamesList.forEach((game) => {
+        if (game.winner == this.player) {
+          this.wins++;
+        } else {
+          this.losses++;
+        }
+        this.totalWins=this.wins;
+        this.totalLosses=this.losses;
+      });
+    },
     openModal() {
       console.log('ciao');
       this.showModal = true;
