@@ -93,8 +93,14 @@ export default {
       totalWins: 0,
     };
   },
-  mounted() {
-    this.updateWinLossCounts();
+  watch: {
+    recentGamesList: {
+      handler() {
+        this.updateWinLossCounts();
+        console.log(this.username)
+      },
+      deep: true,
+    },
   },
 
   methods: {
@@ -104,13 +110,13 @@ export default {
     }, */
     updateWinLossCounts() {
       this.recentGamesList.forEach((game) => {
-        if (game.winner == this.player) {
+        if (game.winner == this.username) {
           this.wins++;
         } else {
           this.losses++;
         }
-        this.totalWins=this.wins;
-        this.totalLosses=this.losses;
+        this.totalWins = this.wins;
+        this.totalLosses = this.losses;
       });
     },
     openModal() {
