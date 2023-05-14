@@ -338,7 +338,7 @@
   .profile label#Username {
     color: var(--color-primary);
     font-size: 1rem;
-    margin-top: -20%;
+    margin-top: -15%;
   }
   .click-area {
     width: 50%;
@@ -358,23 +358,21 @@
   .bio-form {
     width: 60%;
     height: 100%;
-    margin-top: -0.5rem;
-    align-items:baseline;
+    margin-top: -3%;
+    align-items:start;
     justify-content: center;
     text-align: center;
   }
   .textarea {
-    margin-top: 0%;
-    width: 80%;
-    height: 50%;
-    aspect-ratio: 6 / 1;
-    font-size: 0.5rem;
-    padding: 1rem;
+    width: 90%;
+    aspect-ratio: 3 / 1;
+    font-size: 0.7rem;
+    padding: 0.5rem;
     background-color: var(--bg-secondary);
   }
   .textarea:focus + .button {
-    margin-top: -16%;
-    margin-right: -3%;
+    margin-top: -14%;
+    margin-right: -2%;
   }
 
   .profile-modal {
