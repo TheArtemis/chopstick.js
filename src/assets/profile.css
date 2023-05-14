@@ -107,17 +107,16 @@
 }
 
 .img-close {
+  cursor: pointer;
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 2px;
+  right: 2px;
   color: var(--color-primary);
   text-decoration: none;
   font-size: 30px;
 }
 .close {
   background-image: url("../assets/svgs/x-symbol.svg");
-  width: 20px;
-  height: 20px;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0.28rem;
@@ -281,7 +280,12 @@
   width: 78%;
   margin: auto;
 }
-
+@media only screen and (min-width: 768px){
+  .close{
+    width: 20px;
+    height: 20px;
+  }
+}
 @media only screen and (max-width: 767px) {
   .navbar {
     height: 4em;
@@ -318,8 +322,8 @@
     overflow: hidden;
   }
 
-  .profile-modal ul {
-    padding: 0.5rem;
+  .profile-modal {
+    padding: 0.8rem;
   }
   .profile-modal li {
     height: 55px;
@@ -328,7 +332,7 @@
   .bio-form {
     width: 60%;
     height: 100%;
-    margin-top: 0;
+    margin-top: -1.5rem;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -336,7 +340,7 @@
   .textarea {
     margin-top: 10%;
     width: 80%;
-    height: 20%;
+    height: 50%;
     aspect-ratio: 6 / 1;
     font-size: 0.5rem;
     padding: 1rem;
@@ -426,5 +430,9 @@
     font-size: 1.5rem;
     margin-top: 5%;
     margin-bottom: 1%;
+  }
+  .close{
+     width: 10px;
+     height: 10px;
   }
 }
