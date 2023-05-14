@@ -397,4 +397,15 @@ hand.player:active {
     height: var(--hand-height-xxs);
     width: var(--hand-width-xxs);
   }
+
+  .game-over {
+    height: 250px;
+    width: 250px;
+  }
+
+  .close-game-over {
+    height: 13px;
+    width: 13px;
+    margin-left: 14em;
+  }
 }
