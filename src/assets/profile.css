@@ -105,8 +105,9 @@
 }
 
 .my_file:hover {
-  opacity: 0.3;
-  background: var(--color-primary);
+  opacity: 0.5;
+  background:  #272522;
+  border-radius: 1em;
 }
 
 .img-close {
