@@ -408,4 +408,11 @@ hand.player:active {
     width: 13px;
     margin-left: 14em;
   }
+
+  .game-over-pic img {
+    height: 55px;
+    width: 55px;
+    border-radius: 4px;
+    border: 2px solid var(--text-primary);
+  }
 }
