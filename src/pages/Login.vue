@@ -19,7 +19,13 @@ export default {
 			password: '',
 			error: null,
 			showError: false,
+			theme: 'dark',
 		};
+	},
+	created() {
+		const colors = localStorage.getItem('colors');
+		if (colors === 'true')
+			this.theme = 'light';
 	},
 	methods: {
 		async submitLogin() {
@@ -87,7 +93,8 @@ export default {
 				<div class="col-12 col-md-8 col-lg-8 col-xl-6">
 
 					<div class="card bg-dark text" style="color: #f1cc53; border-radius: 1rem;">
-						<div class="card-body p-5 text-center" style="background-color: #272522; position: relative; border-radius: 1rem;">
+						<div class="card-body p-5 text-center"
+							style="background-color: #272522; position: relative; border-radius: 1rem;">
 							<ErrorBox :error="this.error" :showError="this.showError"
 								@close-error="() => { this.showError = false, this.error = null }" />
 							<form class="mb-md-5 mt-md-4 pb-5" @submit.prevent="submitLogin">
@@ -119,13 +126,13 @@ export default {
 							</div>
 						</div>
 						<li style="position: absolute; top: 25px; right: 50px; cursor: pointer; color:transparent;">
-                            <a href="/">
-                   				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style=" fill: #f1cc53;">
-                       			<path
-                            d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
-                               </svg>
-                            </a>
-                        </li>
+							<a href="/">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style=" fill: #f1cc53;">
+									<path
+										d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+								</svg>
+							</a>
+						</li>
 					</div>
 				</div>
 			</div>
