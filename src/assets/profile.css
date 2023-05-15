@@ -105,8 +105,10 @@
 }
 
 .my_file:hover {
+  height: 100%;
+  width: 100%;
   opacity: 0.5;
-  background:  #272522;
+  background-color:  #272522;
   border-radius: 1em;
 }
 
