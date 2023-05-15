@@ -14,14 +14,17 @@
             goToPlayComputerPage(){
                 this.$router.push('/play/computer');
             }
-        }
+        },
+            goToLocalMatchPage(){
+                this.$router.push('/play/local');
+        },
     }
 </script>
 
 <template>    
     <div class="game-menu">
         <div class="buttons-box">            
-            <button class="game-button">Play Online</button>
+            <button class="game-button" @click="goToLocalMatchPage">Local Match</button>
             <button class="game-button" @click="goToPlayComputerPage">Play Computer</button>
             <SelectMode></SelectMode>
         </div>        
