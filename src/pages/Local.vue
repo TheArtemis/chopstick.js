@@ -21,6 +21,7 @@
       Navbar,
       LocalGameMenu,
       LocalGame,
+      GameMenu,
     },
     data() {
       return {
@@ -34,10 +35,10 @@
     methods: {
       startGame() {
         this.hasGameStarted = true;
-        this.$refs.game.startGame();
+        this.$refs.localGame.startGame();
       },
       surrenderGame() {
-        this.$refs.game.surrenderGame();
+        this.$refs.localGame.surrenderGame();
       },
       enableNavbar() {
         this.navbarActive = true;

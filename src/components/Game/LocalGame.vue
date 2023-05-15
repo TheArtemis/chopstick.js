@@ -1,18 +1,20 @@
 <script>
-import GameBoard from '@/components/Game/GameBoard.vue'
+import LocalGameBoard from '@/components/Game/LocalGameBoard.vue'
 import PlayerBar from '@/components/Game/PlayerBar.vue'
-import GameOver from '@/components/Game/GameOver.vue'
+import LocalGameOver from '@/components/Game/LocalGameOver.vue'
 
 import axiosInstance from '@/services/axiosIstance.js';
 
 export default {
   name: 'LocalGame',  
+  props: {
     mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
+  },
   components: {
-    GameBoard,
+    LocalGameBoard,
     PlayerBar,
-    GameOver,
+    LocalGameOver,
   },
   data() {
     return {
@@ -25,7 +27,7 @@ export default {
         player2Right: 0,
       },
       boardActive: this.hasGameStarted,
-      turn: 0, /* player 2 is opponent */
+      turn: 1, 
       player1: {
         name: '',
         rating: '',
@@ -62,20 +64,20 @@ export default {
     }
     if (localStorage.getItem('chopsticks_authToken') == null || localStorage.getItem('chopsticks_userInfo') == null) {
       console.log("guest");
-      this.player.name = 'Guest';
-      this.player.rating = '0000';
-      this.player.picture = '/src/assets/imgs/img3.png'
+      this.player2.name = 'Guest';
+      this.player2.rating = '000';
+      this.player2.picture = '/src/assets/imgs/img3.png'
     }
     else {
       this.guest = false;
       console.log("not guest");
-      this.player.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
-      this.player.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
+      this.player1.name = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
+      this.player1.rating = JSON.parse(localStorage.getItem('chopsticks_userInfo')).rating;
       if (JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture == null)
-        this.player.picture = '/src/assets/imgs/img3.png'
+        this.player1.picture = '/src/assets/imgs/img3.png'
       else {
         console.log("picture is not null");
-        this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
+        this.player1.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
       }
     }
 
@@ -85,7 +87,7 @@ export default {
 
     // Checks if the current player has lost by examining if both the player's left and right positions are empty.
     hasPlayer1Lost() {
-      if (this.currentPosition.playerLeft == 0 && this.currentPosition.playerRight == 0)
+      if (this.currentPosition.player1Left == 0 && this.currentPosition.player1Right == 0)
         return true;
       return false;
     },
@@ -130,44 +132,43 @@ export default {
       if (this.isGameOver())
         return this.endGame();
 
-      console.log("E' il turno di " + this.turn);
-
       this.pastPositions.push([this.currentPosition.player1Left, this.currentPosition.player1Right, this.currentPosition.player2Left, this.currentPosition.player2Right]);
 
       if (this.turn == 1){
         console.log("player 1 turn");
-        this.turn = 0;
       }
 
-      if (this.turn == 0){
+      else if (this.turn == 2){
         console.log("player 2 turn");
-        this.turn = 1;
       }
     },
     playerAttack(event) {
       console.log(event.source + " is attacking " + event.target);
       if (event.target == 'hand-opponent-left') {
+        this.turn=2;
         if (this.currentPosition.player2Left == 0)
           return this.gameLoop();
 
         this.player1AttackLeft(event.source);
       }
       else if (event.target == 'hand-opponent-right') {
+        this.turn=2;
         if (this.currentPosition.player2Right == 0)
           return this.gameLoop();
         this.player1AttackRight(event.source);
       }
       else if (event.target == 'hand-player-right') {
+        this.turn=1;
         if (this.currentPosition.player1Left == 0)
           return this.gameLoop();
         this.player2AttackRight(event.source);
       }
       else if (event.target == 'hand-player-left') {
+        this.turn=1;
         if (this.currentPosition.player1Right == 0)
           return this.gameLoop();
         this.player2AttackRight(event.source);
       }
-      this.turn = 1;
       this.mouseUpFlag = false;
       this.gameLoop();
     },
@@ -462,9 +463,9 @@ export default {
   <div class="game-panel">
   <div class="game-panel-wrap">
     <PlayerBar :player="player2"></PlayerBar>
-    <GameBoard ref='gameBoard'
-      @player1-attack="player1Attack"
-      @player2-attack="player2Attack"
+    <LocalGameBoard ref='localGameBoard'
+      @player1-attack="playerAttack"
+      @player2-attack="playerAttack"
       @player1-split="player1Split"
       @player2-split="player2Split"
       @disable-navbar="disableNavbar"
@@ -480,7 +481,7 @@ export default {
       :player2="this.player2"
       :winner="this.winner"
       @close-game-over="this.closeGameOver">
-    </GameBoard>
+    </LocalGameBoard>
     <PlayerBar :player="player1"></PlayerBar>
   </div>
 </div>
