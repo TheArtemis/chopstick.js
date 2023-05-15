@@ -35,9 +35,9 @@ export default {
       boardActive: this.hasGameStarted,
       turn: -1, /* 0 is player 1 is opponent */
       player: {
-        name: '',
-        rating: '',
-        picture: ''
+        name: 'Guest',
+        rating: '0000',
+        picture: '/src/assets/imgs/img3.png'
       },
       opponent: {
         name: 'Handy',
