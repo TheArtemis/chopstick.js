@@ -27,7 +27,6 @@
   margin-top: 3rem;
   width: 100%;
   height: 50%;
-  border-radius: 1em;
 }
 
 .profile label#Profile {
@@ -42,11 +41,10 @@
 .click-area {
   width: 50%;
   aspect-ratio: 1 / 1;
-  margin-top: 5%;
   margin-bottom: 10%;
-  background-color: var(--bg-secondary);
-  overflow: hidden;
-  background-size: contain;
+  padding: 0;
+  background-color: #272522;
+  background-size: cover;
   border: 3px solid var(--color-primary);
   border-radius: 1em;
   background-repeat: no-repeat;
@@ -54,7 +52,7 @@
 
 .click-area img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
 }
 .profile-modal {
@@ -344,8 +342,11 @@
     width: 50%;
     margin: auto;
     aspect-ratio: 1 / 1;
-    background-color: var(--bg-secondary);
-    overflow: hidden;
+  }
+  .click-area img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
   }
 
   .profile-modal {
