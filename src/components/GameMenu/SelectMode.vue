@@ -15,7 +15,7 @@
 </script>
 
 <template>    
-    <div class="select-mode">
+    <!-- <div class="select-mode">
         <button class="game-button mode-button" @click="showMenu=!showMenu">Mode</button>
         <Transition name="fade" appear> 
         <div class="game-dropdown-menu" v-if="showMenu">
@@ -24,7 +24,7 @@
             <DropdownComponent mode="Hard" modeIcon=""></DropdownComponent>
         </div>
     </Transition>  
-    </div>
+    </div> -->
 </template>
 
 <style>
