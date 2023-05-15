@@ -3,30 +3,31 @@
  -->
 
 <script>
-    import SelectMode from '@/components/GameMenu/SelectMode.vue';
+import SelectMode from '@/components/GameMenu/SelectMode.vue';
 
-    export default{
-        name: 'GameMenu',
-        components: {
-            SelectMode,
+export default {
+    name: 'GameMenu',
+    components: {
+        SelectMode,
+    },
+    methods: {
+        goToPlayComputerPage() {
+            this.$router.push('/play/computer');
         },
-        methods:{
-            goToPlayComputerPage(){
-                this.$router.push('/play/computer');
-            }
+        goToLocalMatchPage() {
+            this.$router.push('/play/local');
         },
-            goToLocalMatchPage(){
-                this.$router.push('/play/local');
-        },
-    }
+    },
+}
+
 </script>
 
-<template>    
+<template>
     <div class="game-menu">
-        <div class="buttons-box">            
+        <div class="buttons-box">
             <button class="game-button" @click="goToLocalMatchPage">Local Match</button>
             <button class="game-button" @click="goToPlayComputerPage">Play Computer</button>
             <SelectMode></SelectMode>
-        </div>        
+        </div>
     </div>
 </template>
