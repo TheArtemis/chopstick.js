@@ -6,24 +6,9 @@ import GameOver from '@/components/Game/GameOver.vue'
 import axiosInstance from '@/services/axiosIstance.js';
 
 export default {
-  name: 'Game',
-  props: {
-      player1: {
-      type: Object,
-      required: true,
-    },
-    player2: {
-      type: Object,
-      required: true,
-    },
-    currentPlayer: {
-    type: Number,
-    required: true,
-  },
-  },
+  name: 'LocalGame',  
     mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
-  },
   components: {
     GameBoard,
     PlayerBar,
@@ -183,6 +168,7 @@ export default {
         this.player2AttackRight(event.source);
       }
       this.turn = 1;
+      this.mouseUpFlag = false;
       this.gameLoop();
     },
     player1AttackRight(hand) { 

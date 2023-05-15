@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper" @mouseup="noticeMouseUp">
       <Navbar :navbarActive="this.navbarActive" />
-      <Game ref="game" :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar"
+      <LocalGame ref="localGame" :hasGameStarted="this.hasGameStarted" @enable-navbar="this.enableNavbar"
         @disable-navbar="this.disableNavbar" @game-ended="this.endGame" :mouseUpFlag="this.mouseUpFlag"
         :playerSurrenderFlag="this.playerSurrenderFlag" />
       <LocalGameMenu @start-game="this.startGame" @surrender-game="this.surrenderGame"
@@ -10,7 +10,7 @@
   </template>
   
   <script>
-  import Game from '@/components/Game/Game.vue'
+  import LocalGame from '@/components/Game/LocalGame.vue'
   import Navbar from '@/components/Navbar/Navbar.vue'
   import GameMenu from '@/components/GameMenu/GameMenu.vue'
   import LocalGameMenu from '@/components/GameMenu/LocalGameMenu.vue'
@@ -18,9 +18,9 @@
   export default {
     name: 'Local',
     components: {
-      Game,
       Navbar,
       LocalGameMenu,
+      LocalGame,
     },
     data() {
       return {
