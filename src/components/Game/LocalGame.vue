@@ -10,6 +10,10 @@ export default {
   props: {
     mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
+    turn: {
+    type: String,
+    required: true
+  }
   },
   components: {
     LocalGameBoard,
@@ -27,7 +31,6 @@ export default {
         player2Right: 0,
       },
       boardActive: this.hasGameStarted,
-      turn: 1, 
       player1: {
         name: '',
         rating: '',
@@ -83,406 +86,237 @@ export default {
 
   },
   methods: {
-    /* Game Over Conditions */
+  /* Game Over Conditions */
+  hasPlayer1Lost() {
+    if (this.currentPosition.player1Left === 0 && this.currentPosition.player1Right === 0) {
+      return true;
+    }
+    return false;
+  },
+  hasPlayer2Lost() {
+    if (this.currentPosition.player2Left === 0 && this.currentPosition.player2Right === 0) {
+      return true;
+    }
+    return false;
+  },
+  isGameOver() {
+    if (this.hasPlayer1Lost() || this.hasPlayer2Lost()) {
+      console.log("someone lost");
+      return true;
+    }
+    return false;
+  },
 
-    // Checks if the current player has lost by examining if both the player's left and right positions are empty.
-    hasPlayer1Lost() {
-      if (this.currentPosition.player1Left == 0 && this.currentPosition.player1Right == 0)
-        return true;
-      return false;
+  /*Turn management */
+  handleTurnChanged(newTurn) {
+      console.log("turn changed");
+      this.turn = newTurn;
     },
-    // Checks if the opponent has lost by examining if both the opponent's left and right positions are empty
-    hasPlayer2Lost() {
-      if (this.currentPosition.player2Left == 0 && this.currentPosition.player2Right == 0)
-        return true;
-      return false;
-    },
-    // Determines if the game is over by checking if either the player or the opponent has lost, and logs a message indicating that someone has lost.
-    isGameOver() {
-      if (this.hasPlayer1Lost() || this.hasPlayer2Lost()) {
-        console.log("someone lost")
-        return true;
+
+  /* Local Game Initialization and Execution */
+  initLocalGame() {
+    this.boardActive = true;
+    this.pastPositions = [];
+    this.currentPosition = {
+      player1Left: 1,
+      player1Right: 1,
+      player2Left: 1,
+      player2Right: 1,
+    };
+    this.isGameOverHidden = true;
+    this.winner = null;
+    this.loser = null;
+    this.surrendered = false;
+  },
+  startGame() {
+    console.log("game started");
+    this.initLocalGame();
+    this.gameLoop();
+  },
+  gameLoop() {
+  if (this.isGameOver()) {
+    return this.endGame();
+  }
+
+  this.pastPositions.push([
+    this.currentPosition.player1Left,
+    this.currentPosition.player1Right,
+    this.currentPosition.player2Left,
+    this.currentPosition.player2Right,
+  ]);
+
+  this.playerAttack({ source: null, target: null, turn: this.turn });
+
+  setTimeout(() => {
+    this.gameLoop();
+  }, 0);
+},
+
+
+
+  playerAttack(event) {
+    console.log(`${event.source} is attacking ${event.target}`);
+
+    const currentPlayer = (event.turn === 'player1') ? 'player1' : 'player2';
+    const opponent = (event.turn === 'player1') ? 'player2' : 'player1';
+    const sourceHand = event.source;
+    const targetHand = event.target;
+
+    if (targetHand === `hand-${opponent}-left`) {
+      if (this.currentPosition[`${opponent}Left`] === 0) {
+        return this.gameLoop();
       }
-    },
-
-    /* Local Game Initialization and Execution */
-
-    initLocalGame() {
-      const initTurn = Math.round(Math.random());
-      this.boardActive = true;
-      this.turn = initTurn;
-      this.pastPositions = [];
-      this.currentPosition = {
-        player1Left: 1,
-        player1Right: 1,
-        player2Left: 1,
-        player2Right: 1,
-      };
-      this.isGameOverHidden = true;
-      this.winner = null;
-      this.loser = null;
-      this.surrendered = false;
-    },
-    startGame() {
-      console.log("game started");
-      this.initLocalGame();
-      this.gameLoop();
-    },
-    gameLoop() {
-      if (this.isGameOver())
-        return this.endGame();
-
-      this.pastPositions.push([this.currentPosition.player1Left, this.currentPosition.player1Right, this.currentPosition.player2Left, this.currentPosition.player2Right]);
-
-      if (this.turn == 1){
-        console.log("player 1 turn");
+      this.attack(currentPlayer, sourceHand, opponent, 'Left');
+    } else if (targetHand === `hand-${opponent}-right`) {
+      if (this.currentPosition[`${opponent}Right`] === 0) {
+        return this.gameLoop();
       }
+      this.attack(currentPlayer, sourceHand, opponent, 'Right');
+    }
 
-      else if (this.turn == 2){
-        console.log("player 2 turn");
+    this.$emit('update:mouseUpFlag', false);
+    this.gameLoop();
+  },
+
+  attack(attacker, sourceHand, defender, targetHand) {
+    console.log(`${attacker} attacking ${targetHand.toLowerCase()}`);
+    const attackerVal = this.currentPosition[`${attacker}${sourceHand.split('-')[2]}`];
+    const defenderVal = this.currentPosition[`${defender}${targetHand}`];
+
+    const sum = attackerVal + defenderVal;
+    if (sum >= 5) {
+      this.currentPosition[`${defender}${targetHand}`] = sum - 5;
+    } else {
+      this.currentPosition[`${defender}${targetHand}`] = sum;
+    }
+  },
+
+  playerSplit(event) {
+    console.log("split registered");
+
+    const currentPlayer = this.turn;
+    const targetHand = event.target;
+
+    if (targetHand === 'hand-player-left') {
+      if (this.currentPosition.player1Left === 0 || this.currentPosition.player1Right % 2 !== 0) {
+        return this.gameLoop();
       }
-    },
-    playerAttack(event) {
-      console.log(event.source + " is attacking " + event.target);
-      if (event.target == 'hand-opponent-left') {
-        if (this.currentPosition.player2Left == 0)
-          return this.gameLoop();
-
-        this.player1AttackLeft(event.source);
+      this.split(currentPlayer, 'Left');
+    } else if (targetHand === 'hand-player-right') {
+      if (this.currentPosition.player1Right === 0 || this.currentPosition.player1Left % 2 !== 0) {
+        return this.gameLoop();
       }
-      else if (event.target == 'hand-opponent-right') {
-        if (this.currentPosition.player2Right == 0)
-          return this.gameLoop();
-        this.player1AttackRight(event.source);
-      }
-      else if (event.target == 'hand-player-right') {
-        if (this.currentPosition.player1Left == 0)
-          return this.gameLoop();
-        this.player2AttackRight(event.source);
-      }
-      else if (event.target == 'hand-player-left') {
-        if (this.currentPosition.player1Right == 0)
-          return this.gameLoop();
-        this.player2AttackRight(event.source);
-      }
-      this.mouseUpFlag = false;
-      if(this.turn == 1)
-        this.turn = 2;
-      else if(this.turn == 2)
-        this.turn = 1;
-      this.gameLoop();
-    },
-    player1AttackRight(hand) { 
-      console.log("player 1 attacking right");
-      var playerVal;
-      if (hand == 'hand-player-left')
-        playerVal = this.currentPosition.player1Left;
-      else if (hand == 'hand-player-right')
-        playerVal = this.currentPosition.player1Right;
+      this.split(currentPlayer, 'Right');
+    }
+    this.gameLoop();
+  },
 
-      var sum = playerVal + this.currentPosition.player2Right;
-      if (sum == 5)
-        this.currentPosition.player2Right = 0;
-      else if (sum > 5)
-        this.currentPosition.player2Right = sum - 5;
-      else
-        this.currentPosition.player2Right = sum;
-    },
-    player1AttackLeft(hand) {
-      console.log("player 1 attacking left");
-      var playerVal;
-      if (hand == 'hand-player-left')
-        playerVal = this.currentPosition.player1Left;
-      else if (hand == 'hand-player-right')
-        playerVal = this.currentPosition.player1Right;
+  split(player, hand) {
+    console.log(`${player} splitting ${hand.toLowerCase()}`);
+    const handValue = this.currentPosition[`${player}${hand}`];
+    this.currentPosition[`${player}${hand}`] = handValue / 2;
+    this.currentPosition[`${player}${hand === 'Left' ? 'Right' : 'Left'}`] = handValue / 2;
+  },
 
-      var sum = playerVal + this.currentPosition.player2Left;
-      if (sum == 5)
-        this.currentPosition.player2Left = 0;
-      else if (sum > 5)
-        this.currentPosition.player2Left = sum - 5;
-      else
-        this.currentPosition.player2Left = sum;
-    },
+  async endGame() {
+    console.log("game ended");
+    this.boardActive = false;
 
-    player1Split(event) {
-      console.log("split registered");
+    this.isGameOverHidden = false;
 
-      if (event.target == 'hand-player-left')
-        if (this.currentPosition.player1Left != 0 || this.currentPosition.player1Right % 2 != 0)
-          return this.gameLoop();
-        else
-          this.player1SplitLeft();
+    if (this.hasPlayer1Lost() || this.hasPlayer2Lost() || this.surrendered) {
+      this.winner = this.player2.name;
+      this.loser = this.player1.name;
+    } else {
+      this.winner = this.player1.name;
+      this.loser = this.player2.name;
+    }
 
-      else if (event.target == 'hand-player-right')
-        if (this.currentPosition.player1Right != 0 || this.currentPosition.player1Left % 2 != 0)
-          return this.gameLoop();
-        else
-          this.player1SplitRight();
+    this.$emit('game-ended');
 
-      this.turn = 1;
-      this.gameLoop();
-    },
+    if (this.guest === false) {
+      console.log("CALL THE GAME OVER TO DATABASE HERE");
+      try {
+        const token = localStorage.getItem('chopsticks_authToken');
+        console.log(token);
+        console.log(this.player1.name);
+        console.log(this.player2.name);
+        console.log(this.winner);
 
-    player1SplitLeft() {
-      this.currentPosition.player1Left = this.currentPosition.player1Right / 2;
-      this.currentPosition.player1Right = this.currentPosition.player1Right / 2;
-
-    },
-
-    player1SplitRight() {
-
-      this.currentPosition.player1Right = this.currentPosition.player1Left / 2;
-      this.currentPosition.player1Left = this.currentPosition.player1Left / 2;
-
-    },
-
-    //Player 2
-    player2AttackRight(hand) { /* hand is source hand */
-      console.log("player 2 attacking right");
-      var playerVal;
-      if (hand == 'hand-opponent-left')
-        playerVal = this.currentPosition.player2Left;
-      else if (hand == 'hand-opponent-right')
-        playerVal = this.currentPosition.player2Right;
-
-      var sum = playerVal + this.currentPosition.player1Right;
-      if (sum == 5)
-        this.currentPosition.player1Right = 0;
-      else if (sum > 5)
-        this.currentPosition.player1Right = sum - 5;
-      else
-        this.currentPosition.player1Right = sum;
-    },
-    player2AttackLeft(hand) {
-      console.log("player 2 attacking left");
-      var playerVal;
-      if (hand == 'hand-opponent-left')
-        playerVal = this.currentPosition.player2Left;
-      else if (hand == 'hand-opponent-right')
-        playerVal = this.currentPosition.player2Right;
-
-      var sum = playerVal + this.currentPosition.player1Left;
-      if (sum == 5)
-        this.currentPosition.player1Left = 0;
-      else if (sum > 5)
-        this.currentPosition.player1Left = sum - 5;
-      else
-        this.currentPosition.player1Left = sum;
-    },
-
-    player2Split(event) {
-      console.log("split registered");
-
-      if (event.target == 'hand-opponent-left')
-        if (this.currentPosition.player2Left != 0 || this.currentPosition.player2Right % 2 != 0)
-          return this.gameLoop();
-        else
-          this.player2SplitLeft();
-
-      else if (event.target == 'hand-opponent-right')
-        if (this.currentPosition.player2Right != 0 || this.currentPosition.player2Left % 2 != 0)
-          return this.gameLoop();
-        else
-          this.player2SplitRight();
-
-      this.turn = 1;
-      this.gameLoop();
-    },
-
-    player2SplitLeft() {
-      this.currentPosition.player2Left = this.currentPosition.player2Right / 2;
-      this.currentPosition.player2Right = this.currentPosition.player2Right / 2;
-
-    },
-
-    player2SplitRight() {
-
-      this.currentPosition.player2Right = this.currentPosition.player2Left / 2;
-      this.currentPosition.player2Left = this.currentPosition.player2Left / 2;
-
-    },
-
-
-    playAttackAnimation(opponentHand, playerHand) {
-      /* console.log(this.$refs.gameBoard.$refs[opponentHand]); */
-
-      const playerHandObject = this.$refs.gameBoard.$refs[playerHand];
-      const playerHandPosition = playerHandObject.$el.getBoundingClientRect();
-      /* console.log(playerHandObject.$el) */
-
-      /* console.log(playerHandPosition); */
-
-      this.$refs.gameBoard.$refs[opponentHand].AttackAnimation(playerHand, playerHandPosition);
-      /* this.$refs.GameBoard[opponentHand].AttackAnimation(playerHand); */
-    },
-    async endGame() {
-      console.log("game ended");
-      if (this.turn == -1)
-        return;
-      this.turn = -1;
-      this.boardActive = false;
-      /* this.currentPosition = {
-        playerLeft: 0,
-        playerRight: 0,
-        opponentLeft: 0,
-        opponentRight: 0,
-      } */
-
-      this.isGameOverHidden = false;
-
-      /* if (this.playerSurrenderFlag == true) {
-        this.winner = this.opponent.name;
-        this.loser = this.player.name;
-      } */
-
-
-
-      if (this.hasPlayer1Lost() || this.hasPlayer2Lost() ||this.surrendered) {
-        this.winner = this.player2.name;
-        this.loser = this.player1.name;
-      }
-      else {
-        this.winner = this.player1.name;
-        this.loser = this.player2.name;
-      }
-
-      this.$emit('game-ended');
-
-      if (this.guest == false) {
-
-        console.log("CALL THE GAME OVER TO DATABASE HERE")
-        try {
-          const token = localStorage.getItem('chopsticks_authToken');
-          console.log(token);
-          console.log(this.player1.name);
-          console.log(this.player2.name);
-          console.log(this.winner);
-
-          const response = await axiosInstance.post('/add-game', {
+        const response = await axiosInstance.post(
+          '/add-game',
+          {
             player1: this.player1.name,
             player2: this.player2.name,
             rating1: this.player1.rating,
             rating2: this.player2.rating,
             winner: this.winner,
-          }, {
+          },
+          {
             headers: {
               Authorization: token,
             },
-          });
-          console.log("game ended, winner is: " + this.winner);
-          console.log(this.pastPositions);
-          console.log(response.data)
-
-        } catch (error) {
-          console.log(error)
-        }
-
-
-      }
-    },
-    disableNavbar() {
-      this.$emit('disable-navbar');
-      /* console.log("navbar disabled") */
-    },
-    enableNavbar() {
-      this.$emit('enable-navbar');
-      /* console.log("navbar enabled"); */
-    },
-    closeGameOver() {
-      this.isGameOverHidden = true;
-    },
-    surrenderGame() {
-      console.log("surrender game catched");
-      /* this.playerSurrenderFlag = true; */
-      this.surrendered = true;
-      this.endGame();
-    }
-  },
-  updated() {
-    /* console.log("game -> " + this.boardActive); */
-  },
-  watch: {
-    /* hasGameStarted: function (val) {
-      this.boardActive = val;
-
-      if (val == false) {
-        return;
-      }
-      else if (this.turn == -1) {
-        console.log("HERE GAME STARTS")
-        this.startGame();
-      }
-
-      
-
-    }, */
-    /* else {
-        console.log("HERE GAME ENDS")
-        return this.endGame();
-      } */
-
-    /* playerSurrenderFlag: function (val) {
-      if (val == true) {
-        this.turn = -1;
-        return this.endGame();
-      }
-    } */
-  },
-  /* computed: {
-    computedStyles() {
-      const left = this.boardPosition.left + (this.boardPosition.boardWidth - this.boardPosition.gameOverWidth) / 2
-      const top = this.boardPosition.top + (this.boardPosition.boardHeight - this.boardPosition.gameOverHeight) / 2
-      console.log(left, top)
-      return {
-        left: left + 'px',
-        top: top + 'px',
+          }
+        );
+        console.log("game ended, winner is: " + this.winner);
+        console.log(this.pastPositions);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
       }
     }
   },
-  mounted() {
-    const position = document.getElementById('game-board').getBoundingClientRect();
 
-    console.log(position);
+  disableNavbar() {
+    this.$emit('disable-navbar');
+    /* console.log("navbar disabled") */
+  },
 
-    this.boardPosition = {
-      top: position.top,
-      left: position.left,
-      boardWidth: position.width,
-      boardHeight: position.height,
-      gameOverWidth: document.getElementById('game-over').getBoundingClientRect().width,
-      gameOverHeight: document.getElementById('game-over').getBoundingClientRect().height,
-    };
+  enableNavbar() {
+    this.$emit('enable-navbar');
+    /* console.log("navbar enabled"); */
+  },
 
-    console.log(this.boardPosition);
-  }, */
+  closeGameOver() {
+    this.isGameOverHidden = true;
+  },
+
+  surrenderGame() {
+    console.log("surrender game caught");
+    /* this.playerSurrenderFlag = true; */
+    this.surrendered = true;
+    this.endGame();
+  },
+}
+
 }
 </script>
 
 <template>
   <div class="game-panel">
-  <div class="game-panel-wrap">
-    <PlayerBar :player="player2"></PlayerBar>
-    <LocalGameBoard ref='localGameBoard'
-      @player1-attack="playerAttack"
-      @player2-attack="playerAttack"
-      @player1-split="player1Split"
-      @player2-split="player2Split"
-      @disable-navbar="disableNavbar"
-      @enable-navbar="enableNavbar"
-      :boardActive="this.boardActive"
-      :player1Left="this.currentPosition.player1Left"
-      :player1Right="this.currentPosition.player1Right"
-      :player2Left="this.currentPosition.player2Left"
-      :player2Right="this.currentPosition.player2Right"
-      :mouseUpFlag="this.mouseUpFlag"
-      :isGameOverHidden="this.isGameOverHidden"
-      :player1="this.player1"
-      :player2="this.player2"
-      :winner="this.winner"
-      @close-game-over="this.closeGameOver">
-    </LocalGameBoard>
-    <PlayerBar :player="player1"></PlayerBar>
+    <div class="game-panel-wrap">
+      <PlayerBar :player="player2"></PlayerBar>
+      <LocalGameBoard ref="localGameBoard"
+        @player1-attack="playerAttack($event)"
+        @player2-attack="playerAttack($event)"
+        @player1-split="playerSplit"
+        @player2-split="playerSplit"
+        @disable-navbar="disableNavbar"
+        @enable-navbar="enableNavbar"
+        :boardActive="boardActive"
+        :player1Left="currentPosition.player1Left"
+        :player1Right="currentPosition.player1Right"
+        :player2Left="currentPosition.player2Left"
+        :player2Right="currentPosition.player2Right"
+        :mouseUpFlag="mouseUpFlag"
+        :isGameOverHidden="isGameOverHidden"
+        :player1="player1"
+        :player2="player2"
+        :winner="winner"
+        @close-game-over="closeGameOver"
+      ></LocalGameBoard>
+      <PlayerBar :player="player1"></PlayerBar>
+    </div>
   </div>
-</div>
 </template>
+
