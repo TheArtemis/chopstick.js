@@ -145,31 +145,31 @@ export default {
     playerAttack(event) {
       console.log(event.source + " is attacking " + event.target);
       if (event.target == 'hand-opponent-left') {
-        this.turn=2;
         if (this.currentPosition.player2Left == 0)
           return this.gameLoop();
 
         this.player1AttackLeft(event.source);
       }
       else if (event.target == 'hand-opponent-right') {
-        this.turn=2;
         if (this.currentPosition.player2Right == 0)
           return this.gameLoop();
         this.player1AttackRight(event.source);
       }
       else if (event.target == 'hand-player-right') {
-        this.turn=1;
         if (this.currentPosition.player1Left == 0)
           return this.gameLoop();
         this.player2AttackRight(event.source);
       }
       else if (event.target == 'hand-player-left') {
-        this.turn=1;
         if (this.currentPosition.player1Right == 0)
           return this.gameLoop();
         this.player2AttackRight(event.source);
       }
       this.mouseUpFlag = false;
+      if(this.turn == 1)
+        this.turn = 2;
+      else if(this.turn == 2)
+        this.turn = 1;
       this.gameLoop();
     },
     player1AttackRight(hand) { 
