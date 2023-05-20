@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      turn: 'player1',
       boardPosition: { top: 0, left: 0, boardWidth: 0, boardHeight: 0, gameOverWidth: 0, gameOverHeight: 0 },
       pastPositions: [],
       currentPosition: {
@@ -82,6 +83,10 @@ export default {
 
   },
   methods: {
+    switchTurns() {
+    this.turn = this.turn === 'player1' ? 'player2' : 'player1';
+    console.log("now is " + this.turn + " turn");
+  },
   /* Game Over Conditions */
   hasPlayer1Lost() {
     if (this.currentPosition.player1Left === 0 && this.currentPosition.player1Right === 0) {
@@ -156,15 +161,18 @@ export default {
         return this.gameLoop();
       }
       this.attack(currentPlayer, sourceHand, opponent, 'Left');
+      this.$emit('successful-attack');
     } else if (targetHand === `hand-${opponent}-right`) {
       if (this.currentPosition[`${opponent}Right`] === 0) {
         return this.gameLoop();
       }
       this.attack(currentPlayer, sourceHand, opponent, 'Right');
+      this.$emit('successful-attack');
     }
 
     this.$emit('update:mouseUpFlag', false);
-    this.gameLoop();
+    this.switchTurns();
+    this.$emit('turn-switch');
   },
 
   attack(attacker, sourceHand, defender, targetHand) {
@@ -182,8 +190,6 @@ export default {
 
   playerSplit(event) {
     console.log("split registered");
-
-    const currentPlayer = this.turn;
     const targetHand = event.target;
 
     if (targetHand === 'hand-player1-left' || targetHand === 'hand-player1-right') {
@@ -191,13 +197,14 @@ export default {
         return this.gameLoop();
       }
       this.split(currentPlayer, 'Left');
+      this.$emit('successful-split');
     } else if (targetHand === 'hand-player2-left' || targetHand === 'hand-player2-right') {
       if (this.currentPosition.player1Right === 0 || this.currentPosition.player1Left % 2 !== 0) {
         return this.gameLoop();
       }
       this.split(currentPlayer, 'Right');
+      this.$emit('successful-split');
     }
-    this.gameLoop();
   },
 
   split(player, hand) {
@@ -286,10 +293,10 @@ export default {
     <div class="game-panel-wrap">
       <PlayerBar :player="player2"></PlayerBar>
       <LocalGameBoard ref="localGameBoard"
-        @player1-attack="playerAttack($event)"
-        @player2-attack="playerAttack($event)"
-        @player1-split="playerSplit"
-        @player2-split="playerSplit"
+        :turn="turn"
+        v-on:successful-attack="switchTurns" v-on:successful-split="switchTurns"
+        @player-attack="playerAttack"
+        @player-split="playerSplit"
         @disable-navbar="disableNavbar"
         @enable-navbar="enableNavbar"
         :boardActive="boardActive"
@@ -308,4 +315,5 @@ export default {
     </div>
   </div>
 </template>
+
 

@@ -5,6 +5,7 @@ import LocalGameOver from '@/components/Game/LocalGameOver.vue'
 export default {
   name: 'LocalGameBoard',
   props: {
+    turn: String,
     boardActive: Boolean,
     player1Left: Number,
     player1Right: Number,
@@ -26,7 +27,6 @@ export default {
   },
   data() {
   return {
-    turn: 'player1',
     isDragging: false,
     startX: 0,
     startY: 0,
@@ -162,10 +162,6 @@ doDrag(event, touch) {
   this.startY = ev.clientY;
 },
 
-switchPlayer() {
-  this.turn = this.turn === 'player1' ? 'player2' : 'player1';
-},
-
 moveHand(event, hand) {
   if (this.isDragging) {
     return;
@@ -206,56 +202,32 @@ stopDrag() {
   const currentHandPlayer = this.turn === 'player1' ? this.handsPlayer1 : this.handsPlayer2;
   const opponentHandPlayer = this.turn === 'player1' ? this.handsPlayer2 : this.handsPlayer1;
 
-  if (currentHandPlayer && opponentHandPlayer) {
-    if (targetHand && (opponentHandPlayer.left?.id === targetHand || opponentHandPlayer.right?.id === targetHand)) {
-      if (!currentHandPlayer[sourceHand]) {
-        return;
-      }
-
-      const sourceScore = currentHandPlayer[sourceHand].score;
-      const targetScore = opponentHandPlayer[targetHand].score;
-
-      if (sourceScore <= targetScore) {
-        this.targetHand.score = targetScore - sourceScore;
-      } else {
-        this.targetHand.score = 0;
-      }
-      this.currentPiece.score = sourceScore - targetScore;
-
-      currentHandPlayer[sourceHand].score = this.currentPiece.score;
-      opponentHandPlayer[targetHand].score = this.targetHand.score;
-
+  if (currentHandPlayer && opponentHandPlayer && targetHand) {
+    if ((opponentHandPlayer.left?.id === targetHand || opponentHandPlayer.right?.id === targetHand) && currentHandPlayer[sourceHand]) {
       if (opponentHandPlayer.left.score === 0 && opponentHandPlayer.right.score === 0) {
         this.$emit('close-game-over', this.turn);
       }
-    }
 
-    if (this.targetHand != null) {
-        if ((this.currentHandPlayer == this.handsPlayer1 && (this.targetHand.id == 'hand-player2-left' || this.targetHand.id == 'hand-player2-right')) || (this.currentHandPlayer == this.handsPlayer2 && (this.targetHand.id == 'hand-player1-left' || this.targetHand.id == 'hand-player1-right')) )
-          this.$emit('player-attack', { target: this.targetHand.id, source: this.currentPiece.id });
-          if (this.currentHandPlayer == this.handsPlayer1 && (this.targetHand.id == 'hand-player1-left' || this.targetHand.id == 'hand-player1-right') || (this.currentHandPlayer == this.handsPlayer2 && (this.targetHand.id == 'hand-player2-left' || this.targetHand.id == 'hand-player2-right')) )
-          this.$emit('player-split', { target: this.targetHand.id, source: this.currentPiece.id });
+      // Successful attack or split
+      if ((this.currentHandPlayer === this.handsPlayer1 && (this.targetHand.id === 'hand-player2-left' || this.targetHand.id === 'hand-player2-right')) || (this.currentHandPlayer === this.handsPlayer2 && (this.targetHand.id === 'hand-player1-left' || this.targetHand.id === 'hand-player1-right'))) {
+        this.$emit('player-attack', { target: this.targetHand.id, source: this.currentPiece.id });
       }
-
-    // Reset the currentPiece position if there is no target hand
-    if (!this.targetHand) {
-      this.currentPiece.posX = 0;
-      this.currentPiece.posY = 0;
+      if ((this.currentHandPlayer === this.handsPlayer1 && (this.targetHand.id === 'hand-player1-left' || this.targetHand.id === 'hand-player1-right')) || (this.currentHandPlayer === this.handsPlayer2 && (this.targetHand.id === 'hand-player2-left' || this.targetHand.id === 'hand-player2-right'))) {
+        this.$emit('player-split', { target: this.targetHand.id, source: this.currentPiece.id });
+      }
     }
   }
+
+  // Reset the currentPiece position
+  this.currentPiece.posX = 0;
+  this.currentPiece.posY = 0;
 
   // Reset the currentPiece and targetHand after completing the drag
   this.currentPiece = null;
   this.targetHand = null;
   this.isDragging = false;
-
-  // Switch turn after completing the drag
-  this.turn = this.turn === 'player1' ? 'player2' : 'player1';
-  console.log("now is " + this.turn + " turn");
-},
-
-
-
+  },
+  
     disableNavbar() {
       this.$emit('disable-navbar');
     },
