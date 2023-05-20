@@ -164,8 +164,6 @@ doDrag(event, touch) {
 
 switchPlayer() {
   this.turn = this.turn === 'player1' ? 'player2' : 'player1';
-  const newTurnValue = this.turn;
-  this.$emit('turn-changed', newTurnValue);
 },
 
 moveHand(event, hand) {

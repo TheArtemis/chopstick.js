@@ -10,10 +10,6 @@ export default {
   props: {
     mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
-    turn: {
-    type: String,
-    required: true
-  }
   },
   components: {
     LocalGameBoard,
@@ -107,14 +103,9 @@ export default {
     return false;
   },
 
-  /*Turn management */
-  handleTurnChanged(newTurn) {
-      console.log("turn changed");
-      this.turn = newTurn;
-    },
-
   /* Local Game Initialization and Execution */
   initLocalGame() {
+    console.log("now is player1 turn");
     this.boardActive = true;
     this.pastPositions = [];
     this.currentPosition = {
@@ -145,8 +136,6 @@ export default {
     this.currentPosition.player2Right,
   ]);
 
-  this.playerAttack({ source: null, target: null, turn: this.turn });
-
   setTimeout(() => {
     this.gameLoop();
   }, 0);
@@ -157,8 +146,8 @@ export default {
   playerAttack(event) {
     console.log(`${event.source} is attacking ${event.target}`);
 
-    const currentPlayer = (event.turn === 'player1') ? 'player1' : 'player2';
-    const opponent = (event.turn === 'player1') ? 'player2' : 'player1';
+    const currentPlayer = (event.source === 'hand-player1-left') ? 'player1' : 'player2';
+    const opponent = (event.source === 'player1') ? 'player2' : 'player1';
     const sourceHand = event.source;
     const targetHand = event.target;
 
@@ -197,12 +186,12 @@ export default {
     const currentPlayer = this.turn;
     const targetHand = event.target;
 
-    if (targetHand === 'hand-player-left') {
+    if (targetHand === 'hand-player1-left' || targetHand === 'hand-player1-right') {
       if (this.currentPosition.player1Left === 0 || this.currentPosition.player1Right % 2 !== 0) {
         return this.gameLoop();
       }
       this.split(currentPlayer, 'Left');
-    } else if (targetHand === 'hand-player-right') {
+    } else if (targetHand === 'hand-player2-left' || targetHand === 'hand-player2-right') {
       if (this.currentPosition.player1Right === 0 || this.currentPosition.player1Left % 2 !== 0) {
         return this.gameLoop();
       }
