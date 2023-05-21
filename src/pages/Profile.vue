@@ -205,7 +205,7 @@ export default {
         <div class="profile">
           <label id="Profile">Profile</label>
           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
-            <img class="my_file" :src="selectedImage" alt="" />
+            <img class="my_file" :src=none alt="" />
             <!-- <input id="file-upload" type="file" ref="fileInput" style="display:none" @change="onFileChange" /> -->
           </div>
           <div v-if="showModal" class="profile-modal">
