@@ -149,7 +149,7 @@ export default {
           {
             label: 'Rating',
             data: this.score,
-            borderColor: 'black',
+            borderColor:  '#F44336',
           },
         ],
       };
