@@ -262,7 +262,9 @@ input:valid {
   }
   .settings-button {
     font-size: 13px;
-    height: 60px;
+    height: 40px;
+    padding: 0em 0em;
+    
   }
 }
 @media only screen and (max-width: 497px) {
@@ -303,5 +305,8 @@ input:valid {
   }
   .settings-button {
     font-size: 10px;
+    padding: 1em 0em;
+    width: 100%;
   }
+ 
 }
