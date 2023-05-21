@@ -1,15 +1,26 @@
-.gradient-custom  {
+.gradient-custom {
   /* fallback for old browsers */
   background: var(--bg-primary);
- 
-  
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, var(--bg-primary), var(--bg-primary));
-  
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right,  var(--bg-primary), var(--bg-primary));
-  }
 
-  .form-control:focus {
-    border-color: #fff;
-  }
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    var(--bg-primary),
+    var(--bg-primary)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, var(--bg-primary), var(--bg-primary));
+}
+
+.form-control:focus {
+  border-color: #fff;
+}
+
+.btn.btn-outline.btn-lg.px-5:hover {
+  background-color: var(--bg-secondary-highlight) !important;
+}
+
+.btn.btn-outline.btn-lg.px-5:active {
+  background-color: var(--bg-primary) !important;
+}
