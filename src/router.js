@@ -6,7 +6,6 @@ const routes = [
     {path: '/play', name: 'play', component: () => import('@/pages/Play.vue')},
     {path: '/play/computer', name: 'computer', component: () => import('@/pages/Computer.vue')},
     {path: '/login', name: 'login', component: () => import('@/pages/Login.vue')},
-    { path: '/play/local', name: 'local', component: () => import('@/pages/Local.vue') },
     {path: '/profile', name: 'profile', component: () => import('@/pages/Profile.vue')},
     {path: '/stats', name: 'stats', component: () => import('@/pages/Stats.vue')},
     {path: '/register', name: 'register', component: () => import('@/pages/Register.vue')},

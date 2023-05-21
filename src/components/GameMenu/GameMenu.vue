@@ -14,9 +14,6 @@ export default {
         goToPlayComputerPage() {
             this.$router.push('/play/computer');
         },
-        goToLocalMatchPage() {
-            this.$router.push('/play/local');
-        },
     },
 }
 
@@ -25,7 +22,6 @@ export default {
 <template>
     <div class="game-menu">
         <div class="buttons-box">
-            <button class="game-button" @click="goToLocalMatchPage">Local Match</button>
             <button class="game-button" @click="goToPlayComputerPage">Play Computer</button>
             <SelectMode></SelectMode>
         </div>
