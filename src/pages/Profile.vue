@@ -91,23 +91,22 @@ export default {
       losses: 0,
       totalLosses: 0,
       totalWins: 0,
+      displayBioButton: false,
     };
   },
   watch: {
     recentGamesList: {
       handler() {
         this.updateWinLossCounts();
-        console.log(this.username)
       },
       deep: true,
     },
   },
 
   methods: {
-    /* onFileChange(event) {
-      this.selectedImage = event.target.files[0];
-      console.log(this.selectedImage);
-    }, */
+    showButton() {
+      this.displayBioButton = true;
+    },
     updateWinLossCounts() {
       this.recentGamesList.forEach((game) => {
         if (game.winner == this.username) {
@@ -127,8 +126,6 @@ export default {
       this.showModal = false;
       if (this.selectImage == null)
         return;
-      console.log('dsadkj');
-      /* QUERY QUI */
       try {
         const token = localStorage.getItem('chopsticks_authToken');
         console.log(this.selectedImage)
@@ -151,8 +148,11 @@ export default {
 
     },
     async submitBio() {
+      this.displayBioButton = false;
+      console.log("ds")
       if (this.guest == false) {
         try {
+          console.log("ciaoe")
           const token = localStorage.getItem('chopsticks_authToken');
           console.log(token);
           const response = await axiosInstance.post('/update-bio', {
@@ -169,30 +169,6 @@ export default {
       }
     }
   },
-
-  beforeMount() {
-    /* QUERY AL DATABASE PER AVERE LE PARTITE RECENTI */
-    /* RESTITUISCE UN INSIEME DI OGGETTI */
-    /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
-
-    /* this.recentGamesList.push({
-      player1: 'Miles',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'Miles',
-      date: '2021-10-10',
-    })
-
-    this.recentGamesList.push({
-      player1: 'Peter',
-      rating1: 1200,
-      player2: 'Miles',
-      rating2: 1200,
-      winner: 'Peter',
-      date: '2021-11-10',
-    }) */
-  },
 };
 </script>
 
@@ -205,7 +181,7 @@ export default {
         <div class="profile">
           <label id="Profile">Profile</label>
           <div class="click-area" @click="openModal" :style="{ backgroundImage: `url(${selectedImage})`, }">
-            <img class="my_file" :src=none alt="" />
+            <img class="my_file" src="" alt="" />
             <!-- <input id="file-upload" type="file" ref="fileInput" style="display:none" @change="onFileChange" /> -->
           </div>
           <div v-if="showModal" class="profile-modal">
@@ -229,9 +205,9 @@ export default {
         <div class="bio-form">
           <label id="User">{{ this.username }}</label>
           <form @submit.prevent="submitBio">
-            <textarea class="textarea" name="bio" :placeholder="bio ? bio : 'Write something about yourself...'"
-              v-model="bio" textarea></textarea>
-            <button class="button" type="submit">Save</button>
+            <textarea @click="showButton" @select="showButton" class="textarea" name="bio"
+              :placeholder="bio ? bio : 'Write something about yourself...'" v-model="bio" textarea></textarea>
+            <button class="button" type="submit" v-if="displayBioButton">Save</button>
           </form>
         </div>
       </div>
