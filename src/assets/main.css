@@ -64,7 +64,7 @@
   --img3-path: url("/src/assets/imgs/img3.png");
   --img4-path: url("/src/assets/imgs/img4.png");
   --pc-path: url("/src/assets/imgs/pc.png");
-
+  --x-path: url("/src/assets/svgs/x-symbol.svg");
   --x-symbol-red-path: url("/src/assets/svgs/x-symbol-red.svg");
 }
 
@@ -110,6 +110,7 @@
   --img3-path: url("src/assets/imgs/img3L.png");
   --img4-path: url("src/assets/imgs/img4L.png");
   --pc-path: url("src/assets/imgs/pcL.png");
+  --x-path: url("/src/assets/svgs/x-symbolL.svg");
 }
 
 html {

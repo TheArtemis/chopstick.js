@@ -207,7 +207,7 @@
   font-size: 30px;
 }
 .close-popup {
-  background-image: url("../assets/svgs/x-symbol.svg");
+  background-image: var(--x-path);
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;

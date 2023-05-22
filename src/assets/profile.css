@@ -122,7 +122,7 @@
   font-size: 30px;
 }
 .close {
-  background-image: url("../assets/svgs/x-symbol.svg");
+  background-image: var(--x-path);
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0.28rem;
