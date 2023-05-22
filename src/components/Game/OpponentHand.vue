@@ -18,33 +18,20 @@ export default {
             const sourcePosition = sourceHand.getBoundingClientRect();
             this.targetPosX = targetPosition.left - sourcePosition.left;
             this.targetPosY = targetPosition.top - sourcePosition.top - targetPosition.height / 2;
-            /* console.log("Attack animation" + targetHand + " " + targetPosition); */
-            this.isAttacking = true; // Start the animation
+            this.isAttacking = true;
             setTimeout(() => {
-                this.isAttacking = false; // Stop the animation after a certain duration
+                this.isAttacking = false;
             }, 1000);
         },
-        /* updateAttackStyle() {
-            this.$nextTick(() => { }); // Force Vue to update the style
-        } */
     },
     computed: {
         attackStyle() {
-            /* console.log("Attack style" + this.targetPosX + " " + this.targetPosY); */
             return {
                 '--target-pos-x': `${this.targetPosX}px`,
                 '--target-pos-y': `${this.targetPosY}px`,
             };
         }
     },
-    /* watch: {
-        targetPosX() {
-            this.updateAttackStyle();
-        },
-        targetPosY() {
-            this.updateAttackStyle();
-        },
-    } */
 
 };
 </script>
@@ -57,8 +44,6 @@ export default {
 </template>
 
 <style scoped>
-/* Add component-specific styles here */
-
 .left-attack {
     /* position: absolute; */
     animation-name: leftAttackPlayer;

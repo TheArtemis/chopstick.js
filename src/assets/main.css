@@ -119,14 +119,6 @@ body {
   width: 100%;
 }
 
-/*.options-menu{
-    /* display: flex;
-    flex-direction: column;
-    width: 22%; 
-    background-color: #242424;   
-
-}*/
-
 @media screen and (max-width: 768px) {
   .wrapper {
     flex-direction: column;

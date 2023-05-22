@@ -77,11 +77,9 @@ export default {
 						Authorization: `${token}`,
 					},
 				});
-				/* console.log(response.data); */
 				localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
-				/* console.log(localStorage.getItem('chopsticks_userInfo')); */
 			} catch (error) {
-				/* console.log(error); */
+				console.log(error);
 			}
 		}
 	},
@@ -143,7 +141,8 @@ export default {
 					</div>
 				</div>
 			</div>
-	</div>
-</section></template>
+		</div>
+	</section>
+</template>
 
   

@@ -29,7 +29,6 @@ export default {
   },
   async created() {
     try {
-      console.log("created");
       if (localStorage.getItem('chopsticks_authToken')) {
         this.guest = false;
       }
@@ -44,7 +43,7 @@ export default {
               Authorization: token,
             },
           });
-          console.log(response.data);
+          /* console.log(response.data); */
           const data = [].concat(...Object.values(response.data));
           var gamelist = data.map(item => {
             const date = new Date(item.date);
@@ -56,7 +55,7 @@ export default {
             return { ...item, date: formattedDate };
           });
           this.recentGamesList = gamelist;
-          console.log(this.recentGamesList);
+          /* console.log(this.recentGamesList); */
           this.updateLineChart();
           this.updateWinLossCounts();
         } catch (error) {
@@ -66,47 +65,6 @@ export default {
     } catch (error) {
       console.error("created error", error);
     }
-  },
-  beforeMount() {
-    /* QUERY AL DATABASE PER AVERE LE PARTITE RECENTI */
-    /* RESTITUISCE UN INSIEME DI OGGETTI */
-    /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
-
-    /* this.recentGamesList.push({
-     player1: 'guest',
-     rating1: 1200,
-     player2: 'Peter',
-     rating2: 1200,
-     winner: 'Peter',
-     date: '2021-10-10',
-   })
-
-   this.recentGamesList.push({
-     player1: 'guest',
-     rating1: 1200,
-     player2: 'Peter',
-     rating2: 1200,
-     winner: 'guest',
-     date: '2021-11-10',
-   })
-   this.recentGamesList.push({
-     player1: 'guest',
-     rating1: 1200,
-     player2: 'Peter',
-     rating2: 1200,
-     winner: 'Peter',
-     date: '2021-11-10',
-   })
-   this.recentGamesList.push({
-     player1: 'guest',
-     rating1: 1200,
-     player2: 'Peter',
-     rating2: 1200,
-     winner: 'guest',
-     date: '2021-11-10',
-   })  */
-
-    console.log(this.recentGamesList);
   },
   mounted() {
     console.log("mounted");

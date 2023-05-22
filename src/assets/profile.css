@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   text-align: center;
   margin-bottom: 1rem;
   margin-top: 3rem;
@@ -108,7 +108,7 @@
   height: 100%;
   width: 100%;
   opacity: 0.5;
-  background-color:  #272522;
+  background-color: #272522;
   border-radius: 1em;
 }
 
@@ -127,7 +127,6 @@
   background-size: cover;
   margin: 0.28rem;
 }
-
 
 .bio-form {
   display: flex;
@@ -152,10 +151,9 @@
   resize: none;
   width: 75%;
   aspect-ratio: 2 / 1;
-  background-color:var(--bg-secondary);
+  background-color: var(--bg-secondary);
   border: 2px solid var(--color-primary);
   border-radius: 1em;
-  
 }
 
 .button {
@@ -166,13 +164,11 @@
   font-size: 11px;
   border-radius: 5px;
   cursor: pointer;
-  display: none;
- 
 }
 
-.textarea:focus + .button {
-  display:block;
-  float:right;
+.textarea + .button {
+  display: block;
+  float: right;
   margin-top: -13%;
   margin-right: 8%;
 }
@@ -180,7 +176,6 @@
 .button:hover {
   background-color: var(--color-secondary);
 }
-
 
 .contentdx {
   display: flex;
@@ -246,7 +241,6 @@
   font-size: 2.5em;
 }
 
-
 .stats .top-wrapper .top-container span.wins-text {
   text-align: center;
 }
@@ -275,8 +269,8 @@
   width: 78%;
   margin: auto;
 }
-@media only screen and (min-width: 768px){
-  .close{
+@media only screen and (min-width: 768px) {
+  .close {
     width: 15px;
     height: 15px;
   }
@@ -333,7 +327,7 @@
     width: 60%;
     height: 100%;
     margin-top: -3%;
-    align-items:start;
+    align-items: start;
     justify-content: center;
     text-align: center;
   }
@@ -374,7 +368,6 @@
         color: var(--color-primary);
         font-size: 1rem;
     }*/
-    
 
   .bio-form label#User {
     color: var(--color-primary);
@@ -382,7 +375,6 @@
     margin-top: 0rem;
     margin-bottom: 0;
   }
-   
 
   .button {
     padding: 3px;
