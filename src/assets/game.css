@@ -16,22 +16,13 @@
   margin-left: var(--navbar-size);
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: flex-start;
   width: 80%;
   height: 100%;
   position: relative;
-  /* height: 100%;
-  max-height: 680px;
-  min-height: 300px;
-  width: 100%;
-  max-width: 680px;
-  min-width: 300px;
-  aspect-ratio: 1 / 1; */
 }
 
 .game-board {
-  /* margin-top: 7px;  */
   position: relative;
   max-width: 600px;
   max-height: 600px;
@@ -41,15 +32,9 @@
   min-height: 380px;
   aspect-ratio: 1 /1;
 
-  /* min-width: min(100%, 600px);
-  min-height: min(100%, 600px);
-  max-width: max(330px, 25vw);
-  max-height: max(330px, 25vw);
-  aspect-ratio: 1 / 1; */
-
   display: flex;
   flex-direction: column;
-  /* justify-items: center; */
+
   background-color: var(--background-board);
   border: 2px solid var(--border-board);
   border-radius: 0.75em;
@@ -64,10 +49,8 @@
   margin-top: 1em;
   margin-bottom: 1em;
   color: var(--text-secondary);
-  /* margin-right: auto; */
   width: 100%;
   max-width: 680px;
-  /* margin-left: 1rem; */
 }
 
 .player-bar-picture {
@@ -102,7 +85,6 @@
   justify-content: center;
   gap: 30px;
   margin-top: auto;
-  /* padding-bottom: 5%; */
   margin-bottom: 0.5em;
 }
 
@@ -111,7 +93,6 @@
   justify-content: center;
   gap: 25px;
   margin-top: 0.5em;
-  /* padding-top: 2%; */
 }
 
 .hand {
@@ -120,17 +101,7 @@
   background-image: var(--hand0-path);
   background-size: cover;
   background-position: center;
-  /* display: none; */ /* TEST SFONDO VUOTO */
 }
-
-/* .hand.player:hover {
-  cursor: grab;
-}
-
-hand.player:active {
-  cursor: grabbing;
-} */
-
 .hand.player.left.moving.one {
   z-index: 100;
 }
@@ -180,7 +151,6 @@ hand.player:active {
 }
 
 .player.left {
-  /* transform: scale(-1, 1); */
   position: relative;
   z-index: 1;
 }
@@ -220,6 +190,7 @@ hand.player:active {
   opacity: 1;
   transition: opacity 0.2s ease;
   transition: 0.3s ease-in-out;
+  transition: width none, height none;
   pointer-events: auto;
 }
 
@@ -232,17 +203,18 @@ hand.player:active {
 .close-game-over {
   height: 20px;
   width: 20px;
-  background-image: url("@/assets/svgs/x-symbol.svg");
+  background-image: var(--x-path);
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
   z-index: 10000;
-  /* margin-left: 0.5em; */
   margin-top: 1em;
   cursor: pointer;
   pointer-events: auto;
   left: 0;
   margin-left: 16.5em;
+
+  transition: all none;
 }
 
 .close-game-over:hover {
@@ -282,25 +254,6 @@ hand.player:active {
   margin-right: auto;
 }
 
-/* .game-over-result h2 {
-  animation: grow 2s infinite;
-}
-
-@keyframes grow {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-} */
-
-/* .hidden h2 {
-  opacity: 0;
-} */
-
 .winner img {
   border: 4px solid #ffde49;
 }
@@ -316,13 +269,6 @@ hand.player:active {
   }
 }
 
-/* @media only screen and (max-height: 600px) {
-  .game-panel {
-    overflow-y: scroll;
-  }
-  
-}
- */
 @media only screen and (max-width: 768px) {
   .game-panel {
     overflow: visible;

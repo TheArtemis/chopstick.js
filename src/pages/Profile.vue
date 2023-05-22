@@ -175,7 +175,7 @@ export default {
     /* RESTITUISCE UN INSIEME DI OGGETTI */
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
-    this.recentGamesList.push({
+    /* this.recentGamesList.push({
       player1: 'Miles',
       rating1: 1200,
       player2: 'Peter',
@@ -191,7 +191,7 @@ export default {
       rating2: 1200,
       winner: 'Peter',
       date: '2021-11-10',
-    })
+    }) */
   },
 };
 </script>

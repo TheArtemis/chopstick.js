@@ -20,7 +20,7 @@ export default {
     } else {
       document.documentElement.removeAttribute('data-colors');
     }
-   },
+  },
   data() {
     return {
       username: '',
@@ -33,8 +33,6 @@ export default {
   },
   methods: {
     async submitRegister() {
-      // Make an HTTP request to your server to register the user
-      // with the entered username and password
 
       if (this.password !== this.confirmPassword) {
         this.error = "Passwords don't match";
@@ -45,22 +43,17 @@ export default {
       try {
         console.log('Registering user...');
 
-        /* const test = await axiosInstance.get('/test')
-        .then((response) => {
-          console.log(response);
-        }) */
-
         const response = await axiosInstance.post('/register', {
           username: this.username,
           password: this.password,
           mail: this.mail,
         });
 
-        // Handle the response from the server here
-        console.log(response.data);
+
+        /* console.log(response.data);
         console.log(this.username);
         console.log(this.password);
-        console.log(this.mail);
+        console.log(this.mail); */
 
         this.$router.push('/login');
 
@@ -106,33 +99,38 @@ export default {
 
                 <div class="form-outline form mb-3" style="color: var(--color-primary);  margin-top: -5px">
                   <input type="username" id="typeTextX" class="form-control form-control-lg"
-                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);" v-model="username" />
+                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);"
+                    v-model="username" />
                   <label class="form-label" for="typeTextX" style="color: var(--color-primary);">Username</label>
                 </div>
 
                 <div class="form-outline form mb-3" style="color: var(--color-primary);  margin-top: -15px">
                   <input type="username" id="typeEmailX" class="form-control form-control-lg"
-                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);" v-model="mail" />
+                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);"
+                    v-model="mail" />
                   <label class="form-label" for="typeEmailX" style="color: var(--color-primary);">E-mail</label>
                 </div>
 
                 <div class="form-outline form mb-3" style="color: var(--color-primary);  margin-top: -15px">
                   <input type="password" id="typePassword1" class="form-control form-control-lg"
-                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);" v-model="password" />
+                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);"
+                    v-model="password" />
                   <label class="form-label" for="typePassword1" style="color: var(--color-primary);">Password</label>
                 </div>
                 <div class="form-outline form mb-3" style="color: var(--color-primary);  margin-top: -15px">
                   <input type="password" id="typePassword2" class="form-control form-control-lg"
-                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);" v-model="confirmPassword" />
-                  <label class="form-label" for="typePassword2" style="color: var(--color-primary);">Confirm Password</label>
+                    style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);"
+                    v-model="confirmPassword" />
+                  <label class="form-label" for="typePassword2" style="color: var(--color-primary);">Confirm
+                    Password</label>
                 </div>
 
                 <button class="btn btn-outline btn-lg px-5" type="submit"
                   style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);">Register</button>
               </form>
               <div>
-                <p class="mb-0" style="color: var(--color-primary); margin-top: -45px;">Already have an account? <a href="/login"
-                    class="text-50 fw-bold " style="color: var(--color-primary);">Login</a>
+                <p class="mb-0" style="color: var(--color-primary); margin-top: -45px;">Already have an account? <a
+                    href="/login" class="text-50 fw-bold " style="color: var(--color-primary);">Login</a>
                 </p>
               </div>
             </div>
@@ -146,7 +144,6 @@ export default {
             </li>
           </div>
         </div>
-      </div>
     </div>
-  </section>
-</template>
+  </div>
+</section></template>

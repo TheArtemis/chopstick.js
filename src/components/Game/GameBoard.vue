@@ -84,10 +84,10 @@ export default {
 
       this.currentPiece = this.findCurrentPiece(event);
       if (!this.currentPiece)
-        return; /* If is not a valid piece stops the drag */
+        return;
 
       if (this.currentPiece.score == 0)
-        return; /* If the hand is empty stops the drag */
+        return;
 
       this.isDragging = true;
 
@@ -95,7 +95,6 @@ export default {
 
       this.startX = ev.clientX;
       this.startY = ev.clientY;
-      /* console.log(this.currentPiece, this.startX, this.startY)    */
 
     },
     doDrag(event, touch) {
@@ -104,38 +103,17 @@ export default {
         return;
       if (!this.currentPiece)
         return;
-      /* console.log("dragging"); */
-
 
       var ev = event;
       if (touch) {
         ev = event.touches[0];
       }
 
-      /* const boardRect = this.$el.getBoundingClientRect(); */
-      /* console.log(boardRect) */
-      /* const handRect = event.target.getBoundingClientRect(); */
-      /* console.log(handRect) */
-
       const xDelta = ev.clientX - this.startX;
       const yDelta = ev.clientY - this.startY;
 
-      /* event.clientX tells you the current horizontal 
-      position of the mouse pointer relative to the viewport */
-
       const newX = this.currentPiece.posX + xDelta;
       const newY = this.currentPiece.posY + yDelta;
-
-      /* TODO: Make so the hands cannot get out of bounds */
-
-      /* if(handRect.x > boardRect.x){
-          this.currentPiece.posX = newX;
-          this.startX = event.clientX
-      }
-      if(handRect.y > boardRect.y){
-          this.currentPiece.posY = newY;
-          this.startY = event.clientY 
-      } */
 
       this.currentPiece.posX = newX;
       this.startX = ev.clientX
@@ -144,9 +122,6 @@ export default {
       this.startY = ev.clientY
 
       this.handsPlayer[this.currentPiece] = this.currentPiece;
-
-      /* if (touch) { */
-      /* console.log("trying to find target"); */
 
       this.handsOpponent.left.pos = document.getElementById(this.handsOpponent.left.id).getBoundingClientRect();
       this.handsOpponent.right.pos = document.getElementById(this.handsOpponent.right.id).getBoundingClientRect();
@@ -157,33 +132,22 @@ export default {
       if (this.handsOpponent.left.pos.x < ev.clientX && ev.clientX < this.handsOpponent.left.pos.x + this.handsOpponent.left.pos.width &&
         this.handsOpponent.left.pos.y < ev.clientY && ev.clientY < this.handsOpponent.left.pos.y + this.handsOpponent.left.pos.height) {
         this.targetHand = this.handsOpponent.left;
-        /* console.log("found target left"); */
       }
       else if (this.handsOpponent.right.pos.x < ev.clientX && ev.clientX < this.handsOpponent.right.pos.x + this.handsOpponent.right.pos.width &&
         this.handsOpponent.right.pos.y < ev.clientY && ev.clientY < this.handsOpponent.right.pos.y + this.handsOpponent.right.pos.height) {
         this.targetHand = this.handsOpponent.right;
-        /* console.log("found target right"); */
       }
       else if (this.currentPiece != null && this.currentPiece == this.handsPlayer.left && handsPlayerRightPosition.x < ev.clientX && ev.clientX < handsPlayerRightPosition.x + handsPlayerRightPosition.width &&
         handsPlayerRightPosition.y < ev.clientY && ev.clientY < handsPlayerRightPosition.y + handsPlayerRightPosition.height) {
         this.targetHand = this.handsPlayer.right;
-        /* console.log("found target right"); */
       }
       else if (this.currentPiece != null && this.currentPiece == this.handsPlayer.right && handsPlayerLeftPosition.x < ev.clientX && ev.clientX < handsPlayerLeftPosition.x + handsPlayerLeftPosition.width &&
         handsPlayerLeftPosition.y < ev.clientY && ev.clientY < handsPlayerLeftPosition.y + handsPlayerLeftPosition.height) {
         this.targetHand = this.handsPlayer.left;
-        /* console.log("found target left"); */
       }
-
       else {
         this.targetHand = null;
       }
-
-      /* } */
-
-      /* console.log("dragging");
-      console.log(this.currentPiece.posX, this.currentPiece.posY)
-      console.log(this.handsPlayer[this.currentPiece].posX, this.handsPlayer[this.currentPiece].posY) */
 
     },
     stopDrag() {
@@ -219,30 +183,6 @@ export default {
       this.currentPiece = null;
       this.startX = 0;
       this.startY = 0;
-      /* console.log("stopped") */
-    },
-
-    /* Deprecated: target selection is handled in the doDrag function */
-
-    /* findCurrentTarget(event) {
-      return Object.values(this.handsOpponent).find(hand => hand.id === event.target.id);
-    }, */
-
-
-    /* enterTarget(event, touch) {
-      if (!this.isDragging)
-        return;      
-      this.targetHand = this.findCurrentTarget(event);
-    },
-    leaveTarget(event, touch) {
-      if (!this.isDragging)
-        return;      
-      this.targetHand = null;
-    }, */
-
-
-    mouseclick() {
-      /* console.log("clicked") */
     },
     disableNavbar() {
       this.$emit('disable-navbar');
@@ -256,13 +196,11 @@ export default {
         this.stopDrag();
     },
     isRightDragging() {
-      /* console.log(this.isDragging, this.currentPiece); */
       if (this.isDragging && this.currentPiece.id == 'hand-player-right')
         return true;
       return false;
     },
     isLeftDragging() {
-      /* console.log(this.isDragging, this.currentPiece); */
       if (this.isDragging && this.currentPiece.id == 'hand-player-left')
         return true;
       return false;
@@ -323,9 +261,7 @@ export default {
       this.handsOpponent.right.score = val;
     },
     mouseUpFlag: function () {
-      /* console.log("notice external"); */
       if (this.isDragging) {
-        /* console.log("tried to stop dragging"); */
         this.stopDrag();
       }
     },

@@ -72,39 +72,39 @@ export default {
     /* RESTITUISCE UN INSIEME DI OGGETTI */
     /* OGNI OGGETTO VERRA AGGIUNTO A this.recentGameList */
 
-     this.recentGamesList.push({
-      player1: 'guest',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'Peter',
-      date: '2021-10-10',
-    })
+    /* this.recentGamesList.push({
+     player1: 'guest',
+     rating1: 1200,
+     player2: 'Peter',
+     rating2: 1200,
+     winner: 'Peter',
+     date: '2021-10-10',
+   })
 
-    this.recentGamesList.push({
-      player1: 'guest',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'guest',
-      date: '2021-11-10',
-    })
-    this.recentGamesList.push({
-      player1: 'guest',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'Peter',
-      date: '2021-11-10',
-    })
-    this.recentGamesList.push({
-      player1: 'guest',
-      rating1: 1200,
-      player2: 'Peter',
-      rating2: 1200,
-      winner: 'guest',
-      date: '2021-11-10',
-    }) 
+   this.recentGamesList.push({
+     player1: 'guest',
+     rating1: 1200,
+     player2: 'Peter',
+     rating2: 1200,
+     winner: 'guest',
+     date: '2021-11-10',
+   })
+   this.recentGamesList.push({
+     player1: 'guest',
+     rating1: 1200,
+     player2: 'Peter',
+     rating2: 1200,
+     winner: 'Peter',
+     date: '2021-11-10',
+   })
+   this.recentGamesList.push({
+     player1: 'guest',
+     rating1: 1200,
+     player2: 'Peter',
+     rating2: 1200,
+     winner: 'guest',
+     date: '2021-11-10',
+   })  */
 
     console.log(this.recentGamesList);
   },
@@ -149,7 +149,7 @@ export default {
           {
             label: 'Rating',
             data: this.score,
-            borderColor:  '#F44336',
+            borderColor: '#F44336',
           },
         ],
       };
@@ -172,13 +172,15 @@ export default {
     updateWinLossCounts() {
       this.wins = 0;
       this.losses = 0;
-
       this.recentGamesList.forEach((game) => {
+        console.log(game.winner);
         if (game.winner == this.player) {
           this.wins++;
         } else {
           this.losses++;
         }
+
+
       });
     },
     createPieChart() {

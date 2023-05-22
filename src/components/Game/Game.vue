@@ -8,12 +8,6 @@ import axiosInstance from '@/services/axiosIstance.js';
 export default {
   name: 'Game',
   props: {
-    opponentType: {
-      type: String,
-      validator: function (value) {
-        return ['computer', 'human'].indexOf(value) !== -1
-      },
-    },
     mouseUpFlag: Boolean,
     hasGameStarted: Boolean,
   },
@@ -52,8 +46,6 @@ export default {
     }
   },
   async created() {
-    /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username) */
-
     try {
       const token = localStorage.getItem('chopsticks_authToken');
       console.log('Getting user info...');
@@ -86,7 +78,6 @@ export default {
         this.player.picture = JSON.parse(localStorage.getItem('chopsticks_userInfo')).picture;
       }
     }
-
   },
   methods: {
     /* Game Over Conditions */
@@ -138,7 +129,7 @@ export default {
       if (this.isGameOver())
         return this.endGame();
 
-      console.log("E' il turno di " + this.turn);
+      /* console.log("E' il turno di " + this.turn); */
 
       this.pastPositions.push([this.currentPosition.playerLeft, this.currentPosition.playerRight, this.currentPosition.opponentLeft, this.currentPosition.opponentRight]);
 
@@ -156,9 +147,9 @@ export default {
       /* Deactivate player hands */
       this.boardActive = false;
 
-      console.log("computer is thinking");
+      /* console.log("computer is thinking"); */
       await new Promise(resolve => setTimeout(resolve, 1000))
-      console.log("computer attack");
+      /* console.log("computer attack"); */
 
       if (this.currentPosition.opponentLeft == 0 && this.currentPosition.opponentRight % 2 == 0 || this.currentPosition.opponentRight == 0 && this.currentPosition.opponentLeft % 2 == 0) {
         const dec = Math.round(Math.random());
@@ -293,14 +284,11 @@ export default {
     playerSplitLeft() {
       this.currentPosition.playerLeft = this.currentPosition.playerRight / 2;
       this.currentPosition.playerRight = this.currentPosition.playerRight / 2;
-
     },
 
     playerSplitRight() {
-
       this.currentPosition.playerRight = this.currentPosition.playerLeft / 2;
       this.currentPosition.playerLeft = this.currentPosition.playerLeft / 2;
-
     },
 
     computerAttackLeft(handValue, handId) {
@@ -336,16 +324,11 @@ export default {
 
 
     playAttackAnimation(opponentHand, playerHand) {
-      /* console.log(this.$refs.gameBoard.$refs[opponentHand]); */
-
       const playerHandObject = this.$refs.gameBoard.$refs[playerHand];
       const playerHandPosition = playerHandObject.$el.getBoundingClientRect();
-      /* console.log(playerHandObject.$el) */
-
-      /* console.log(playerHandPosition); */
 
       this.$refs.gameBoard.$refs[opponentHand].AttackAnimation(playerHand, playerHandPosition);
-      /* this.$refs.GameBoard[opponentHand].AttackAnimation(playerHand); */
+
     },
     async endGame() {
       console.log("game ended");
@@ -353,21 +336,7 @@ export default {
         return;
       this.turn = -1;
       this.boardActive = false;
-      /* this.currentPosition = {
-        playerLeft: 0,
-        playerRight: 0,
-        opponentLeft: 0,
-        opponentRight: 0,
-      } */
-
       this.isGameOverHidden = false;
-
-      /* if (this.playerSurrenderFlag == true) {
-        this.winner = this.opponent.name;
-        this.loser = this.player.name;
-      } */
-
-
 
       if (this.hasPlayerLost() || this.surrendered) {
         this.winner = this.opponent.name;
@@ -410,8 +379,6 @@ export default {
         } catch (error) {
           console.log(error)
         }
-
-
       }
     },
     async updateRating() {
@@ -439,79 +406,18 @@ export default {
     },
     disableNavbar() {
       this.$emit('disable-navbar');
-      /* console.log("navbar disabled") */
     },
     enableNavbar() {
       this.$emit('enable-navbar');
-      /* console.log("navbar enabled"); */
     },
     closeGameOver() {
       this.isGameOverHidden = true;
     },
     surrenderGame() {
-      console.log("surrender game catched");
-      /* this.playerSurrenderFlag = true; */
       this.surrendered = true;
       this.endGame();
     }
   },
-  updated() {
-    /* console.log("game -> " + this.boardActive); */
-  },
-  watch: {
-    /* hasGameStarted: function (val) {
-      this.boardActive = val;
-
-      if (val == false) {
-        return;
-      }
-      else if (this.turn == -1) {
-        console.log("HERE GAME STARTS")
-        this.startGame();
-      }
-
-      
-
-    }, */
-    /* else {
-        console.log("HERE GAME ENDS")
-        return this.endGame();
-      } */
-
-    /* playerSurrenderFlag: function (val) {
-      if (val == true) {
-        this.turn = -1;
-        return this.endGame();
-      }
-    } */
-  },
-  /* computed: {
-    computedStyles() {
-      const left = this.boardPosition.left + (this.boardPosition.boardWidth - this.boardPosition.gameOverWidth) / 2
-      const top = this.boardPosition.top + (this.boardPosition.boardHeight - this.boardPosition.gameOverHeight) / 2
-      console.log(left, top)
-      return {
-        left: left + 'px',
-        top: top + 'px',
-      }
-    }
-  },
-  mounted() {
-    const position = document.getElementById('game-board').getBoundingClientRect();
-
-    console.log(position);
-
-    this.boardPosition = {
-      top: position.top,
-      left: position.left,
-      boardWidth: position.width,
-      boardHeight: position.height,
-      gameOverWidth: document.getElementById('game-over').getBoundingClientRect().width,
-      gameOverHeight: document.getElementById('game-over').getBoundingClientRect().height,
-    };
-
-    console.log(this.boardPosition);
-  }, */
 }
 </script>
 

@@ -19,7 +19,6 @@ export default {
     },
     computed: {
         computeWinner() {
-            /* console.log(this.winner); */
             if (this.winner == this.player.name)
                 return "You have won!";
             else if (this.winner == this.opponent.name)
@@ -33,11 +32,6 @@ export default {
             this.$emit('close-game-over');
         }
     },
-    /* watch: {
-        winner: function () {
-            this.computeWinner();
-        }
-    } */
 };
 </script>
 
