@@ -351,7 +351,7 @@ export default {
 
       if (this.guest == false) {
 
-        console.log("CALL THE GAME OVER TO DATABASE HERE")
+        /* console.log("CALL THE GAME OVER TO DATABASE HERE") */
         try {
           const token = localStorage.getItem('chopsticks_authToken');
           console.log(token);

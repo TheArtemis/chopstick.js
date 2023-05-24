@@ -107,7 +107,7 @@ export default {
                 <div class="form-outline form mb-3" style="color: var(--color-primary);  margin-top: -15px">
                   <input type="username" id="typeEmailX" class="form-control form-control-lg"
                     style="color: var(--color-primary); border-color: var(--color-primary); background-color: var(--bg-secondary);"
-                    v-model="mail" />
+                    v-model="mail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                   <label class="form-label" for="typeEmailX" style="color: var(--color-primary);">E-mail</label>
                 </div>
 
@@ -144,6 +144,7 @@ export default {
             </li>
           </div>
         </div>
+      </div>
     </div>
-  </div>
-</section></template>
+  </section>
+</template>
