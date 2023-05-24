@@ -45,32 +45,23 @@ export default {
 
 <style scoped>
 .left-attack {
-    /* position: absolute; */
     animation-name: leftAttackPlayer;
     animation-duration: 1s;
     z-index: 9999;
-    /* border: 2px solid red; */
 }
 
 @keyframes leftAttackPlayer {
     0% {
         transform: translate(0px, 0px) rotate(180deg) scale(-1, 1);
-        /* top: 0px;
-        left: 0px; */
 
     }
 
     50% {
         transform: translateX(var(--target-pos-x)) translateY(var(--target-pos-y)) rotate(180deg) scale(-1, 1);
-        /* Use the desired target position */
-        /* top: var(--target-pos-y);
-        left: var(--target-pos-x); */
     }
 
     100% {
         transform: translate(0px, 0px) rotate(180deg) scale(-1, 1);
-        /* top: 0px;
-        left: 0px; */
     }
 }
 
@@ -78,32 +69,19 @@ export default {
     animation-name: rightAttackPlayer;
     animation-duration: 1s;
     z-index: 999;
-    /* animation-timing-function: cubic-bezier(1, .48, .54, .73) */
-    /* border: 2px solid red; */
 }
 
 @keyframes rightAttackPlayer {
     0% {
         transform: translate(0px, 0px) rotate(180deg);
-
-        /* top: 0px;
-        left: 0px; */
-
     }
 
     50% {
         transform: translateX(var(--target-pos-x)) translateY(var(--target-pos-y)) rotate(180deg);
-
-        /* Use the desired target position */
-        /* top: var(--target-pos-y);
-        left: var(--target-pos-x); */
     }
 
     100% {
         transform: translate(0px, 0px) rotate(180deg);
-
-        /* top: 0px;
-        left: 0px; */
     }
 }
 </style>

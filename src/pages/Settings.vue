@@ -48,18 +48,18 @@ export default {
             Authorization: `${token}`,
           },
         });
-        console.log(response.data);
+        /* console.log(response.data); */
         localStorage.removeItem('chopsticks_authToken');
         localStorage.removeItem('chopsticks_userInfo');
         window.location.href = '/login'
-        console.log('user info changed');
+        /* console.log('user info changed'); */
       } catch (error) {
         console.log(error);
       }
     }
   },
   async created() {
-    console.log('Settings page created');
+    /* console.log('Settings page created'); */
     if (localStorage.getItem('chopsticks_authToken')) {
       this.guest = false;
     }
@@ -74,12 +74,12 @@ export default {
             Authorization: `${token}`,
           },
         });
-        console.log(response.data);
+        /* console.log(response.data); */
         localStorage.setItem('chopsticks_userInfo', JSON.stringify(response.data));
-        console.log(localStorage.getItem('chopsticks_userInfo'));
-        console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username);
+        /* console.log(localStorage.getItem('chopsticks_userInfo'));
+        console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).username); */
         this.username = JSON.parse(localStorage.getItem('chopsticks_userInfo')).username;
-        console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).email);
+        /* console.log(JSON.parse(localStorage.getItem('chopsticks_userInfo')).email); */
         this.email = JSON.parse(localStorage.getItem('chopsticks_userInfo')).email;
       } catch (error) {
         console.log(error);
