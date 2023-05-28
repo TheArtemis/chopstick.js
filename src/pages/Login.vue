@@ -1,12 +1,7 @@
 <script>
-import axios from 'axios';
+import axiosInstance from '@/services/axiosIstance'
 import ErrorBox from '@/components/ErrorBox.vue';
 import 'bootstrap/dist/css/bootstrap.css'
-
-const API_URL = 'http://localhost:3000';
-const axiosInstance = axios.create({
-	baseURL: API_URL,
-});
 
 export default {
 	name: 'Login',
