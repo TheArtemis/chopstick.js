@@ -1,15 +1,6 @@
-<!-- 
-    HERE GOES THE GAME MENU WITH SELECT GAME OPTIONS
- -->
-
 <script>
-import SelectMode from '@/components/GameMenu/SelectMode.vue';
-
 export default {
     name: 'GameMenu',
-    components: {
-        SelectMode,
-    },
     methods: {
         goToPlayComputerPage() {
             this.$router.push('/play/computer');
