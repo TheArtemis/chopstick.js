@@ -1,4 +1,4 @@
-# chopstick.js
+# chopstick.js 
 
 Chopsticks is a game developed for Languages and Web Technologies University course.
 
